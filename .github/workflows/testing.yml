@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        runs: |
+        run: |
           apt-get update -y && apt-get install -y bsdmainutils
       - name: Test with bash script
         run: |
