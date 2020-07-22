@@ -19,7 +19,7 @@ while read -r line; do
         [[ ! -z $str ]] && args="$args~$str"
         unset str
     fi        
-done < variables
+done < bargs_variables
 
 cut_num=1
 num_of_dicts=0
