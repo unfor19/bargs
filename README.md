@@ -37,7 +37,7 @@ No idea, need to test it
    - You can't add comments to this file, use the description
    - Don't add quotes (or double quotes) in the description
    - Arguments values (including default) must not contain whitespace
-   - Use the bargs description to `--help` message
+   - Use the bargs description to set the `--help` message
 
    ```bash
     ---
