@@ -94,7 +94,7 @@ No idea, need to test it
      ```
 
    - ```bash
-      bash example.sh -n Meir --gender male
+      $ bash example.sh -n Meir --gender male
       [ERROR] Required argument: age
 
       Usage: bash example.sh -n Willy --gender male -a 99
