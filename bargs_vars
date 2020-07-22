@@ -13,9 +13,10 @@ short=g
 name=location
 short=l
 description=insert your location
-default=chocolate_factory
+default=chocolate-factory
 ---
 name=bargs
-description=bash main.sh -n Willy --gender male
+description=bash example.sh -n Willy --gender male -a 99
+default=irrelevant
 ---
 ---

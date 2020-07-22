@@ -55,9 +55,8 @@ usage (){
     done
 
     echo -e "$usage_msg" | column -t -s "~"
-    exit 0
+    exit 1
 }
-
 
 declare -A d
 i=0
@@ -68,6 +67,7 @@ if [[ -z "$1" ]]; then
         i=$((i+1))
     done
 fi
+
 while [ "$1" != "" ]; do
     i=0
     found=
@@ -97,7 +97,6 @@ while [ "$1" != "" ]; do
         echo -e "[ERROR] Unknown argument: $1"
         usage
     fi
-    
     shift
 done
 
@@ -107,7 +106,6 @@ while [ $i -lt $num_of_dicts ]; do
     eval "d=(${dict[$i]})"
     result=$(printenv | grep ${d[name]} | cut -f2 -d "=")
     default="${d[default]}"
-    echo $result $default
     if [[ -z $result && -z $default ]]; then
         error_msg "Required argument: ${d[name]}"
     elif [[ -z $result && ! -z $default ]]; then
