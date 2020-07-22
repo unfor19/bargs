@@ -1,0 +1,21 @@
+---
+name=person_name
+short=n
+description=What is your name?
+default=willy
+---
+name=age
+short=a
+---
+name=gender
+short=g
+---
+name=location
+short=l
+description=insert your location
+---
+name=bargs
+description=bash main.sh -n willy --gender male
+default=
+---
+---
