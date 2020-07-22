@@ -6,13 +6,15 @@ Tired of doing [this - linuxcommand](http://linuxcommand.org/lc3_wss0120.php) or
 
 ## Requirements
 
+We're printing beautiful stuff with the `column` command
+
 ### macOS
 
-Works out of the box :)
+```bash
+$ brew install util-linux
+```
 
 ### Linux (Debian/Ubuntu)
-
-We're printing beautiful stuff with the `column` command, hence you need to install [bsdmainutils](https://screenshots.debian.net/package/bsdmainutils)
 
 ```bash
 $ sudo apt-get -y update && sudo apt-get install -y bsdmainutils

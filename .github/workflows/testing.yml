@@ -30,6 +30,9 @@ jobs:
         run: |
           bash --version
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          brew install util-linux
       - name: Test with bash script
         run: |
           bash example.sh -a 99 --gender male
