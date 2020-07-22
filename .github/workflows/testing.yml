@@ -18,6 +18,9 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update -y && sudo apt-get install -y bsdmainutils
+      - name: Test with bash script
+        run: |
+          bash example.sh -a 99 --gender male
 
   test-macos:
     runs-on: macos-latest
