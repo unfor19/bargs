@@ -63,7 +63,7 @@ No idea, need to test it
     ---
    ```
 
-1. Add the following reference at the beginning of your application
+1. Add the following line at the beginning of your application
 
    ```bash
    source bargs.sh "$@"
