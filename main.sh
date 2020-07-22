@@ -1,4 +1,4 @@
 #!/bin/bash
-
 source bargs.sh "$@"
-echo "$person_name $age $gender"
+
+echo -e "Name:~$person_name\nAge:~$age\nGender:~$gender" | column -t -s "~"

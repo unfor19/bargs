@@ -2,7 +2,7 @@
 name=person_name
 short=n
 description=What is your name?
-default=willy
+default=Willy
 ---
 name=age
 short=a
@@ -15,7 +15,7 @@ short=l
 description=insert your location
 ---
 name=bargs
-description=bash main.sh -n willy --gender male
+description=bash main.sh -n Willy --gender male
 default=
 ---
 ---

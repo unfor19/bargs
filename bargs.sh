@@ -60,6 +60,14 @@ usage (){
 
 
 declare -A d
+i=0
+if [[ -z "$1" ]]; then
+    while [ $i -lt $num_of_dicts ]; do
+        eval "d=(${dict[$i]})"
+        eval "export ${d[name]}=${d[default]}"
+        i=$((i+1))
+    done
+fi
 while [ "$1" != "" ]; do
     i=0
     found=
@@ -78,8 +86,6 @@ while [ "$1" != "" ]; do
                     eval "export ${d[name]}=$1"
                     found="${d[name]}"
                 fi
-                
-                found="${d[name]}"
             ;;
             -h | --help )
                 usage
