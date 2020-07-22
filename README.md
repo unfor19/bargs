@@ -6,7 +6,8 @@ Tired of doing [this - linuxcommand](http://linuxcommand.org/lc3_wss0120.php) or
 
 ## Requirements
 
-We're printing beautiful stuff with the `column` command
+- Bash v4.4+
+- We're printing beautiful stuff with the `column` command so each os has its own linux-utils
 
 ### macOS
 
