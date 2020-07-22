@@ -19,7 +19,7 @@ while read -r line; do
         [[ ! -z $str ]] && args="$args~$str"
         unset str
     fi        
-done < bargs_variables
+done < bargs_vars
 
 cut_num=1
 num_of_dicts=0
@@ -105,8 +105,9 @@ done
 i=0
 while [ $i -lt $num_of_dicts ]; do
     eval "d=(${dict[$i]})"
-    result=$(printenv | grep ${d[name]})
+    result=$(printenv | grep ${d[name]} | cut -f2 -d "=")
     default="${d[default]}"
+    echo $result $default
     if [[ -z $result && -z $default ]]; then
         error_msg "Required argument: ${d[name]}"
     elif [[ -z $result && ! -z $default ]]; then
