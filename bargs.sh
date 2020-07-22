@@ -82,7 +82,7 @@ while [ "$1" != "" ]; do
                 elif [[ -z "$1" ]]; then
                     eval "export ${d[name]}=${d[default]}"
                     found="${d[name]}"
-                else
+                elif [[ ! -z "$1" ]]; then
                     eval "export ${d[name]}=$1"
                     found="${d[name]}"
                 fi
@@ -96,6 +96,21 @@ while [ "$1" != "" ]; do
     if [[ -z $found ]]; then
         echo -e "[ERROR] Unknown argument: $1"
         usage
-    fi    
+    fi
+    
     shift
+done
+
+# final check - if empty, use defaults, otherwise it's required
+i=0
+while [ $i -lt $num_of_dicts ]; do
+    eval "d=(${dict[$i]})"
+    result=$(printenv | grep ${d[name]})
+    default="${d[default]}"
+    if [[ -z $result && -z $default ]]; then
+        error_msg "Required argument: ${d[name]}"
+    elif [[ -z $result && ! -z $default ]]; then
+        eval "export ${d[name]}=${d[default]}"
+    fi
+    i=$((i+1))
 done
