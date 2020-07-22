@@ -24,7 +24,7 @@ No idea, need to test it
 
 ## Getting Started
 
-1. Download the script and put it in the same folder as your code
+1. Download the script (4 kilobytes) and put it in the same folder as your code
 
    ```bash
    curl https://raw.githubusercontent.com/unfor19/bargs/master/bargs.sh --output bargs.sh
@@ -69,7 +69,7 @@ No idea, need to test it
    source bargs.sh "$@"
    ```
 
-1. That's it! You can now reference to arguments that were declared in `bargs_variables`, see [example.sh](https://github.com/unfor19/bargs/blob/master/example.sh)
+1. That's it! You can now reference to arguments that were declared in `bargs_vars`, see [example.sh](https://github.com/unfor19/bargs/blob/master/example.sh)
 
    <details><summary>
    Examples - Expand/Collapse
