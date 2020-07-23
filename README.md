@@ -80,43 +80,89 @@ Not supported (yet)
    source bargs.sh "$@"
    ```
 
-1. That's it! You can now reference to arguments that were declared in `bargs_vars`, see [example.sh](https://github.com/unfor19/bargs/blob/master/example.sh)
+1. That's it! You can now reference to arguments that were declared in `bargs_vars`
 
-   <details><summary>
-   Examples - Expand/Collapse
-   </summary>
+### Usage
 
-   - ```bash
-      $ bash example.sh -n Willy --gender male -a 99
-      Name:      Willy
-      Age:       99
-      Gender:    male
-      Location:  chocolate-factory
-     ```
+Using the `bargs_args` above in our application - `example.sh`
 
-   - ```bash
-      $ bash example.sh -h
+```bash
+#!/bin/bash
+source bargs.sh "$@"
 
-      Usage: bash example.sh -n Willy --gender male -a 99
-      --person_name  |  -n  [Willy]              What is your name?
-      --age          |  -a  [Required]
-      --gender       |  -g  [Required]
-      --location     |  -l  [chocolate-factory]  insert your location
-     ```
+echo -e \
+"Name:~$person_name\n"\
+"Age:~$age\n"\
+"Gender:~$gender\n"\
+"Location:~$location" | column -t -s "~"
+```
 
-   - ```bash
-      $ bash example.sh -n Meir --gender male
-      [ERROR] Required argument: age
+#### Usage output
 
-      Usage: bash example.sh -n Willy --gender male -a 99
+- Using the help flag
 
-      --person_name  |  -n  [Willy]              What is your name?
-      --age          |  -a  [Required]
-      --gender       |  -g  [Required]
-      --location     |  -l  [chocolate-factory]  insert your location
-     ```
+  ```bash
+  bash example.sh -h
 
-   </details>
+  Usage: bash example.sh -n Willy --gender male -a 99
+
+        --person_name  |  -n  [Willy]              What is your name?
+        --age          |  -a  [Required]
+        --gender       |  -g  [Required]
+        --location     |  -l  [chocolate-factory]  insert your location
+  ```
+
+- Using default values
+
+  ```bash
+  $ bash example.sh -a 99 --gender male
+
+  Name:      Willy
+  Age:       99
+  Gender:    male
+  Location:  chocolate-factory
+  ```
+
+- Providing all arguments
+
+  ```bash
+  $ bash example.sh -a 23 --gender male -l neverland -n meir
+
+  Name:      meir
+  Age:       23
+  Gender:    male
+  Location:  neverland
+  ```
+
+- Providing an empty required argument
+
+  ```bash
+  $ bash example.sh -a 99 --gender
+
+  [ERROR] Empty argument: gender
+
+  Usage: bash example.sh -n Willy --gender male -a 99
+
+        --person_name  |  -n  [Willy]              What is your name?
+        --age          |  -a  [Required]
+        --gender       |  -g  [Required]
+        --location     |  -l  [chocolate-factory]  insert your location
+  ```
+
+- Providing an unknown argument
+
+  ```bash
+  $ bash example.sh -a 99 -u meir
+
+  [ERROR] Unknown argument: -u
+
+  Usage: bash example.sh -n Willy --gender male -a 99
+
+        --person_name  |  -n  [Willy]              What is your name?
+        --age          |  -a  [Required]
+        --gender       |  -g  [Required]
+        --location     |  -l  [chocolate-factory]  insert your location
+  ```
 
 ## Authors
 
