@@ -25,3 +25,11 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: "eu-west-1"
           FILE: "dist"
+      - name: Invalidate AWS CloudFront distribution
+        uses: awact/cloudfront-action@master
+        env:
+          SOURCE_PATH: "/"
+          AWS_REGION: "eu-west-1"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
