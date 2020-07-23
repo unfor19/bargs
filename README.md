@@ -23,7 +23,7 @@ $ sudo apt-get -y update && sudo apt-get install -y bsdmainutils
 
 ### Windows
 
-No idea, need to test it
+Not supported (yet)
 
 ## Getting Started
 
