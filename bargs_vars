@@ -12,7 +12,7 @@ short=g
 ---
 name=location
 short=l
-description=insert your location
+description="insert your location"
 default=chocolate-factory
 ---
 name=bargs

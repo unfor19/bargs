@@ -41,7 +41,7 @@ delimiter="---"
 while read -r line; do
     if [[ "$line" != "${delimiter}" ]]; then
         arg_name=$(echo "$line"  | cut -f1 -d "=")
-        arg_value=$(echo "$line" | cut -f2 -d "=")
+        arg_value=$(echo "$line" | cut -f2 -d "=" | sed "s~\"~~g" | sed "s~'~~g")
         [[ -z $str ]] && \
             str="[${arg_name}]=\"${arg_value}\"" || \
             str="${str} [${arg_name}]=\"${arg_value}\""
