@@ -11,6 +11,7 @@ should(){
     local expr=$3
     echo "-------------------------------------------------------"
     echo "[LOG] $test_name - Should $expected"
+    echo "[LOG] Executing: $expr"
     output_msg=$(trap '$expr' EXIT)
     output_code=$?
 
