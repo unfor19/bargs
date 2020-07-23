@@ -55,6 +55,7 @@ usage (){
     done
 
     echo -e "$usage_msg" | column -t -s "~"
+    export DEBUG=1
     exit 1
 }
 
