@@ -36,17 +36,15 @@ jobs:
       - name: Test with bash script
         run: |
           bash example.sh -a 99 --gender male
-
-  test-windows:
-    runs-on: windows-latest
-
-    steps:
-      - name: Print bash version
-        shell: bash
-        run: |
-          bash --version
-      - uses: actions/checkout@v2
-      - name: Test with bash script
-        shell: bash
-        run: |
-          bash example.sh -a 99 --gender male
+  # test-windows:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: Print bash version
+  #       shell: bash
+  #       run: |
+  #         bash --version
+  #     - uses: actions/checkout@v2
+  #     - name: Test with bash script
+  #       shell: bash
+  #       run: |
+  #         bash example.sh -a 99 --gender male
