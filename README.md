@@ -32,10 +32,16 @@ Not supported (yet)
 1. Download the script (4 kilobytes) and put it in the same folder as your code
 
    ```bash
-   curl https://raw.githubusercontent.com/unfor19/bargs/master/bargs.sh --output bargs.sh
+   curl -s -L bargs.link/bargs.sh --output bargs.sh
    ```
 
-1. Create the file `bargs_vars`, put it in the same folder as `bargs.sh`
+1. Creating bargs_vars - do one of the following
+   - Create the file `bargs_vars`, put it in the same folder as `bargs.sh`
+   - Download the existing `bargs_vars` template
+     ```bash
+     curl -s -L bargs.link/bargs_vars --output bargs.sh
+     ```
+1. Declaring arguments/variables
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
    - If default is empty or not defiend, the argument is required
