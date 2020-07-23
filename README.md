@@ -39,7 +39,7 @@ Not supported (yet)
    - Create the file `bargs_vars`, put it in the same folder as `bargs.sh`
    - Download the existing `bargs_vars` template
      ```bash
-     curl -s -L bargs.link/bargs_vars --output bargs.sh
+     curl -s -L bargs.link/bargs_vars --output bargs_vars
      ```
 1. Declaring arguments/variables
 
