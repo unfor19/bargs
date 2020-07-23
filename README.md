@@ -46,7 +46,6 @@ Not supported (yet)
    - The delimiter `---` is required once at the beginning, and **twice** in the end
    - If default is empty or not defiend, the argument is required
    - You can't add comments to this file, use the description
-   - Don't add quotes (or double quotes) in the description
    - Arguments values (including default) must not contain whitespace
    - Use the bargs description to set the `--help` message
 
