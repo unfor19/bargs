@@ -6,4 +6,5 @@ echo -e \
 "Age:~$age\n"\
 "Gender:~$gender\n"\
 "Location:~$location\n"\
-"Favorite food:~$favorite_food" | column -t -s "~"
+"Favorite food:~$favorite_food\n"\
+"Secret:~$secret" | column -t -s "~"

@@ -44,10 +44,10 @@ Not supported (yet)
 1. Declaring arguments/variables
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
+   - Values which are not supported: `=`, `~`, `(whitespace)`
    - If the default is empty or not defined, the argument is required
    - You can't add comments to this file, use the description
-   - Arguments values (including default) must not contain whitespace
-   - Use the bargs description to set the `--help` message
+   - Use the bargs description to set the `--help` (usage) message
 
    ```bash
     ---
