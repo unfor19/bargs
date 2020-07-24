@@ -2,7 +2,7 @@
 source bargs.sh "$@"
 
 echo -e \
-"Name:~$person_name\n"\
-"Age:~$age\n"\
-"Gender:~$gender\n"\
-"Location:~$location" | column -t -s "~"
+"Name:~$PERSON_NAME\n"\
+"Age:~$AGE\n"\
+"Gender:~$GENDER\n"\
+"Location:~$LOCATION" | column -t -s "~"
