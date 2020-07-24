@@ -37,6 +37,27 @@ jobs:
       - name: Test with bash script
         run: |
           bash tests.sh
+
+  windows-wsl:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: download-ubuntu-wsl-distributiion
+        shell: powershell # $output = "$PSScriptRoot\Ubuntu.appx"
+        run: |
+          $url = "https://aka.ms/wsl-ubuntu-1804"
+          $output = ".\Ubuntu.appx"
+          $start_time = Get-Date
+          (New-Object System.Net.WebClient).DownloadFile($url, $output)
+          Rename-Item .\Ubuntu.appx .\Ubuntu.zip
+          Expand-Archive .\Ubuntu.zip .\Ubuntu
+      - name: test-wsl
+        shell: powershell
+        run: |
+          dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+          .\Ubuntu\ubuntu1804.exe install --root
+          wsl -u root -d Ubuntu-18.04 -- "apt-get update -y && apt-get install -y bsdmainutils"
+          wsl -u root -d Ubuntu-18.04 -- bash tests.sh
   # test-windows:
   #   runs-on: windows-latest
   #   steps:
