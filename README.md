@@ -9,7 +9,7 @@ Tired of doing [this - linuxcommand](http://linuxcommand.org/lc3_wss0120.php) or
 ## Requirements
 
 - Bash v4.4+
-- We're printing beautiful stuff with the `column` command so each os has its own linux-utils
+- Linux Utils - We're printing beautiful stuff with the [column](https://linux.die.net/man/1/column) command, and every OS has its own Linux Utils
 
 ### macOS
 
@@ -44,7 +44,7 @@ Not supported (yet)
 1. Declaring arguments/variables
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
-   - If default is empty or not defiend, the argument is required
+   - If the default is empty or not defined, the argument is required
    - You can't add comments to this file, use the description
    - Arguments values (including default) must not contain whitespace
    - Use the bargs description to set the `--help` message
