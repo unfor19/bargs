@@ -3,7 +3,7 @@
 ### Functions
 error_msg(){
     local msg=$1
-    echo -e "[ERROR] $1"
+    echo -e "[ERROR] $msg"
     usage
 }
 
@@ -11,16 +11,16 @@ error_msg(){
 usage (){
     local usage_msg=
     local i=0
-    while [ $i -lt $num_of_dicts ]; do
+    while [ $i -lt "$num_of_dicts" ]; do
         eval "d=(${dict[$i]})"
         if [[ "${d[name]}" == "bargs" ]]; then
             echo -e "\nUsage: ${d[description]}\n"
-        elif [[ ! -z "${d[name]}" ]]; then
+        elif [[ -n "${d[name]}" ]]; then
             usage_msg="$usage_msg\n\t--${d[name]}~|~-${d[short]}"
-            [[ ! -z "${d[default]}" ]] && \
+            [[ -n "${d[default]}" ]] && \
                 usage_msg="$usage_msg~[${d[default]}]" \
                 || usage_msg="$usage_msg~[Required]"
-            [[ ! -z "${d[description]}" ]] && \
+            [[ -n "${d[description]}" ]] && \
                 usage_msg="$usage_msg~${d[description]}"
             
             usage_msg="$usage_msg\n"
@@ -48,7 +48,7 @@ while read -r line; do
 
     elif [[ "$line" == "${delimiter}" ]]; then
         num_of_args=$((num_of_args+1))
-        [[ ! -z $str ]] && args="$args~$str"
+        [[ -n $str ]] && args="$args~$str"
         unset str
     fi        
 done < bargs_vars
@@ -58,11 +58,11 @@ done < bargs_vars
 cut_num=1
 num_of_dicts=0
 declare -A dict
-while [ $cut_num -le $(($num_of_args+1)) ]; do
+while [ $cut_num -le $(("$num_of_args"+1)) ]; do
     arg=$(echo "${args[@]}" | cut -d "~" -f $cut_num)
     if [[ ${#arg} -gt 0 ]]; then
         dict[$num_of_dicts]="$arg"
-        num_of_dicts=$(($num_of_dicts+1))
+        num_of_dicts=$(("$num_of_dicts"+1))
     fi
     cut_num=$((cut_num+1))
 done
@@ -77,16 +77,16 @@ while [ "$1" != "" ]; do
     while [ $i -lt $num_of_dicts ]; do
         eval "d=(${dict[$i]})"
         case "$1" in
-            -${d[short]} | --${d[name]} )
+            -"${d[short]}" | --"${d[name]}" )
                 shift
                 if [[ -z "$1" && -z "${d[default]}" ]]; then
                     error_msg "Empty argument: ${d[name]}"
                     usage
                 elif [[ -z "$1" ]]; then
-                    export ${d[name]}=${d[default]}
+                    export "${d[name]}"="${d[default]}"
                     found="${d[name]}"
-                elif [[ ! -z "$1" ]]; then
-                    export ${d[name]}=$1
+                elif [[ -n "$1" ]]; then
+                    export "${d[name]}"="$1"
                     found="${d[name]}"
                 fi
             ;;
@@ -109,12 +109,12 @@ i=0
 while [ $i -lt $num_of_dicts ]; do
     echo "${dict[$i]}"
     eval "d=(${dict[$i]})"
-    result=$(printenv | grep ${d[name]} | cut -f2 -d "=")
+    result=$(printenv | grep "${d[name]}" | cut -f2 -d "=")
     default="${d[default]}"
     if [[ -z $result && -z $default ]]; then
         error_msg "Required argument: ${d[name]}"
-    elif [[ -z $result && ! -z $default ]]; then
-        export ${d[name]}=${d[default]}
+    elif [[ -z $result && -n $default ]]; then
+        export "${d[name]}"="${d[default]}"
     fi
     i=$((i+1))
 done
