@@ -146,7 +146,7 @@ Secret:         !@#$%^&*?\/.,[]{}+-|
 
 [LOG] Test passed as expected
 -------------------------------------------------------
-[LOG] Valid options - Should pass
+[LOG] Valid Options - Should pass
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza
 [LOG] Output:
 
