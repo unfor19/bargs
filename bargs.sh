@@ -107,7 +107,6 @@ done
 # If empty, use default value, otherwise arg is required
 i=0
 while [ $i -lt $num_of_dicts ]; do
-    echo "${dict[$i]}"
     eval "d=(${dict[$i]})"
     result=$(printenv | grep "${d[name]}" | cut -f2 -d "=")
     default="${d[default]}"
