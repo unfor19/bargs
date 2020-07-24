@@ -10,7 +10,8 @@ description=How old are you?
 ---
 name=gender
 short=g
-description='Are you a male or female?'
+description='male or female?'
+options=male female
 ---
 name=location
 short=l
@@ -20,6 +21,13 @@ default=chocolate-factory
 name=favorite_food
 short=f
 default=chocolate
+options=chocolate pizza
+description=chocolate or pizza?
+---
+name=secret
+short=s
+default=!@#$%^&*'"?\/.,[]{}+-|
+description=special characters
 ---
 name=bargs
 description=bash example.sh -n Willy --gender male -a 99
