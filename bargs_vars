@@ -6,14 +6,20 @@ default=Willy
 ---
 name=age
 short=a
+description=How old are you?
 ---
 name=gender
 short=g
+description='Are you a male or female?'
 ---
 name=location
 short=l
-description="insert your location"
+description="Where do you live?"
 default=chocolate-factory
+---
+name=favorite_food
+short=f
+default=chocolate
 ---
 name=bargs
 description=bash example.sh -n Willy --gender male -a 99
