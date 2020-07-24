@@ -56,7 +56,7 @@ jobs:
         run: |
           dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
           .\Ubuntu\ubuntu1804.exe install --root
-          wsl -u root -d Ubuntu-18.04 -- "apt-get update -y && apt-get install -y bsdmainutils"
+          wsl -u root -d Ubuntu-18.04 -- bash linux_dependencies.sh
           wsl -u root -d Ubuntu-18.04 -- bash tests.sh
   # test-windows:
   #   runs-on: windows-latest
