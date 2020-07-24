@@ -9,7 +9,7 @@ Tired of doing [this - linuxcommand](http://linuxcommand.org/lc3_wss0120.php) or
 ## Requirements
 
 - Bash v4.4+
-- Linux Utils - We're printing beautiful stuff with the [column](https://linux.die.net/man/1/column) command, and every OS has its own Linux Utils
+- Linux Utils - We're printing beautiful stuff with the [column](https://linux.die.net/man/1/column) command, that is included in Linux Utils
 
 ### macOS
 
