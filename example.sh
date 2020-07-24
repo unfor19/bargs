@@ -5,4 +5,5 @@ echo -e \
 "Name:~$person_name\n"\
 "Age:~$age\n"\
 "Gender:~$gender\n"\
-"Location:~$location" | column -t -s "~"
+"Location:~$location\n"\
+"Favorite food:~$favorite_food" | column -t -s "~"
