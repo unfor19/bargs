@@ -28,5 +28,8 @@ should(){
 
 should pass "Default Values" "source example.sh -a 99 --gender male"
 should pass "New Values" "source example.sh -a 23 --gender male -l neverland -n meir"
+should pass "Valid options" "source example.sh -a 23 --gender male -l neverland -n meir -f pizza"
+should pass "Special Characters" "source example.sh -a 99 --gender male -s MxTZf+6K\HaAQlt\JWipe1oVRy"
 should fail "Empty Argument" "source example.sh -a 99 --gender"
 should fail "Unknown Argument"  "source example.sh -a 99 -u meir"
+should fail "Invalid Options" "source example.sh -a 23 --gender male -l neverland -n meir -f notgood"

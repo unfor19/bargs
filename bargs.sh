@@ -80,12 +80,22 @@ while [ "$1" != "" ]; do
             -"${d[short]}" | --"${d[name]}" )
                 shift
                 if [[ -z "$1" && -z "${d[default]}" ]]; then
+                    # arg is empty and default is empty
                     error_msg "Empty argument: ${d[name]}"
                     usage
-                elif [[ -z "$1" ]]; then
+                elif [[ -z "$1" && -n "${d[default]}" ]]; then
+                    # arg is empty and default is not empty
                     export "${d[name]}"="${d[default]}"
                     found="${d[name]}"
                 elif [[ -n "$1" ]]; then
+                    # arg is not empty, validating value
+                    if [[  -n ${d[options]} ]]; then
+                        valid=
+                        for o in ${d[options]}; do
+                            [[ "$o" == "$1" ]] && valid=true
+                        done
+                        [[ $valid != true ]] && error_msg "Invalid value for argument: ${d[name]}"
+                    fi
                     export "${d[name]}"="$1"
                     found="${d[name]}"
                 fi
