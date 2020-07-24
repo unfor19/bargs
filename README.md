@@ -44,33 +44,49 @@ Not supported (yet)
 1. Declaring arguments/variables
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
-   - If the default is empty or not defined, the argument is required
+   - Values which are not supported: `=`, `~`, `(whitespace)`
+   - If the `default` is empty or not defined, the argument is required
    - You can't add comments to this file, use the description
-   - Arguments values (including default) must not contain whitespace
-   - Use the bargs description to set the `--help` message
+   - Use the bargs description to set the `--help` (usage) message
+   - The `options` values must separated with a whitespace
 
    ```bash
-    ---
-    name=person_name
-    short=n
-    description=What is your name?
-    default=Willy
-    ---
-    name=age
-    short=a
-    ---
-    name=gender
-    short=g
-    ---
-    name=location
-    short=l
-    description=insert your location
-    default=chocolate-factory
-    ---
-    name=bargs
-    description=bash example.sh -n Willy --gender male -a 99
-    ---
-    ---
+   ---
+   name=person_name
+   short=n
+   description=What is your name?
+   default=Willy
+   ---
+   name=age
+   short=a
+   description=How old are you?
+   ---
+   name=gender
+   short=g
+   description='male or female?'
+   options=male female
+   ---
+   name=location
+   short=l
+   description="Where do you live?"
+   default=chocolate-factory
+   ---
+   name=favorite_food
+   short=f
+   default=chocolate
+   options=chocolate pizza
+   description=chocolate or pizza?
+   ---
+   name=secret
+   short=s
+   default=!@#$%^&*'"?\/.,[]{}+-|
+   description=special characters
+   ---
+   name=bargs
+   description=bash example.sh -n Willy --gender male -a 99
+   default=irrelevant
+   ---
+   ---
    ```
 
 1. Add the following line at the beginning of your application
@@ -93,75 +109,120 @@ echo -e \
 "Name:~$person_name\n"\
 "Age:~$age\n"\
 "Gender:~$gender\n"\
-"Location:~$location" | column -t -s "~"
+"Location:~$location\n"\
+"Favorite food:~$favorite_food\n"\
+"Secret:~$secret" | column -t -s "~"
 ```
 
 #### Usage output
 
-- Using the help flag
+Results after running [tests.sh](https://github.com/unfor19/bargs/blob/master/tests.sh)
 
-  ```bash
-  bash example.sh -h
+```
+-------------------------------------------------------
+[LOG] Default Values - Should pass
+[LOG] Executing: source example.sh -a 99 --gender male
+[LOG] Output:
 
-  Usage: bash example.sh -n Willy --gender male -a 99
+Name:           Willy
+Age:            99
+Gender:         male
+Location:       chocolate-factory
+Favorite food:  chocolate
+Secret:         !@#$%^&*?\/.,[]{}+-|
 
-        --person_name  |  -n  [Willy]              What is your name?
-        --age          |  -a  [Required]
-        --gender       |  -g  [Required]
-        --location     |  -l  [chocolate-factory]  insert your location
-  ```
+[LOG] Test passed as expected
+-------------------------------------------------------
+[LOG] New Values - Should pass
+[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir
+[LOG] Output:
 
-- Using default values
+Name:           meir
+Age:            23
+Gender:         male
+Location:       neverland
+Favorite food:  chocolate
+Secret:         !@#$%^&*?\/.,[]{}+-|
 
-  ```bash
-  $ bash example.sh -a 99 --gender male
+[LOG] Test passed as expected
+-------------------------------------------------------
+[LOG] Valid Options - Should pass
+[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza
+[LOG] Output:
 
-  Name:      Willy
-  Age:       99
-  Gender:    male
-  Location:  chocolate-factory
-  ```
+Name:           meir
+Age:            23
+Gender:         male
+Location:       neverland
+Favorite food:  pizza
+Secret:         !@#$%^&*?\/.,[]{}+-|
 
-- Providing all arguments
+[LOG] Test passed as expected
+-------------------------------------------------------
+[LOG] Special Characters - Should pass
+[LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6K\HaAQlt\JWipe1oVRy
+[LOG] Output:
 
-  ```bash
-  $ bash example.sh -a 23 --gender male -l neverland -n meir
+Name:           Willy
+Age:            99
+Gender:         male
+Location:       chocolate-factory
+Favorite food:  chocolate
+Secret:         MxTZf+6K\HaAQlt\JWipe1oVRy
 
-  Name:      meir
-  Age:       23
-  Gender:    male
-  Location:  neverland
-  ```
+[LOG] Test passed as expected
+-------------------------------------------------------
+[LOG] Empty Argument - Should fail
+[LOG] Executing: source example.sh -a 99 --gender
+[LOG] Output:
 
-- Providing an empty required argument
+[ERROR] Empty argument: gender
 
-  ```bash
-  $ bash example.sh -a 99 --gender
+Usage: bash example.sh -n Willy --gender male -a 99
 
-  [ERROR] Empty argument: gender
+	--person_name    |  -n  [Willy]                 What is your name?
+	--age            |  -a  [Required]              How old are you?
+	--gender         |  -g  [Required]              male or female?
+	--location       |  -l  [chocolate-factory]     Where do you live?
+	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
+	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
 
-  Usage: bash example.sh -n Willy --gender male -a 99
+[LOG] Test failed as expected
+-------------------------------------------------------
+[LOG] Unknown Argument - Should fail
+[LOG] Executing: source example.sh -a 99 -u meir
+[LOG] Output:
 
-        --person_name  |  -n  [Willy]              What is your name?
-        --age          |  -a  [Required]
-        --gender       |  -g  [Required]
-        --location     |  -l  [chocolate-factory]  insert your location
-  ```
+[ERROR] Unknown argument: -u
 
-- Providing an unknown argument
+Usage: bash example.sh -n Willy --gender male -a 99
 
-  ```bash
-  $ bash example.sh -a 99 -u meir
+	--person_name    |  -n  [Willy]                 What is your name?
+	--age            |  -a  [Required]              How old are you?
+	--gender         |  -g  [Required]              male or female?
+	--location       |  -l  [chocolate-factory]     Where do you live?
+	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
+	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
 
-  [ERROR] Unknown argument: -u
+[LOG] Test failed as expected
+-------------------------------------------------------
+[LOG] Invalid Options - Should fail
+[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f notgood
+[LOG] Output:
 
-  Usage: bash example.sh -n Willy --gender male -a 99
+[ERROR] Invalid value for argument: favorite_food
 
-        --person_name  |  -n  [Willy]              What is your name?
-        --age          |  -a  [Required]
-        --gender       |  -g  [Required]
-        --location     |  -l  [chocolate-factory]  insert your location
-  ```
+Usage: bash example.sh -n Willy --gender male -a 99
+
+	--person_name    |  -n  [Willy]                 What is your name?
+	--age            |  -a  [Required]              How old are you?
+	--gender         |  -g  [Required]              male or female?
+	--location       |  -l  [chocolate-factory]     Where do you live?
+	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
+	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
+
+[LOG] Test failed as expected
+```
 
 ## Authors
 
