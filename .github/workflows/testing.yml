@@ -21,7 +21,7 @@ jobs:
           sudo apt-get update -y && sudo apt-get install -y bsdmainutils
       - name: Test with bash script
         run: |
-          bash tests.sh
+          ./tests.sh
 
   test-macos:
     runs-on: macos-latest
@@ -36,13 +36,13 @@ jobs:
           brew update && brew install bash util-linux
       - name: Test with bash script
         run: |
-          bash tests.sh
+          ./tests.sh
 
   windows-wsl:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: download-ubuntu-wsl-distributiion
+      - name: Install dependencies
         shell: powershell # $output = "$PSScriptRoot\Ubuntu.appx"
         run: |
           $url = "https://aka.ms/wsl-ubuntu-1804"
@@ -51,7 +51,7 @@ jobs:
           (New-Object System.Net.WebClient).DownloadFile($url, $output)
           Rename-Item .\Ubuntu.appx .\Ubuntu.zip
           Expand-Archive .\Ubuntu.zip .\Ubuntu
-      - name: test-wsl
+      - name: Test with bash script
         shell: powershell
         run: |
           Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
