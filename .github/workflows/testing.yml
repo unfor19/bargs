@@ -21,7 +21,7 @@ jobs:
           sudo apt-get update -y && sudo apt-get install -y bsdmainutils
       - name: Test with bash script
         run: |
-          ./tests.sh
+          bash tests.sh
 
   test-macos:
     runs-on: macos-latest
@@ -36,7 +36,7 @@ jobs:
           brew update && brew install bash util-linux
       - name: Test with bash script
         run: |
-          ./tests.sh
+          bash tests.sh
 
   windows-wsl:
     runs-on: windows-latest
