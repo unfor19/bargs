@@ -25,7 +25,21 @@ $ sudo apt-get -y update && sudo apt-get install -y bsdmainutils
 
 ### Windows
 
-Not supported (yet)
+Works in Windows-Subsystem-Linux ([WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10)) using [Ubuntu 18.04](https://www.microsoft.com/en-il/p/ubuntu-1804-lts/9n9tngvndl3q?rtc=1&activetab=pivot:overviewtab)
+
+<details><summary>More details - Expand/Collapse</summary>
+
+Make sure you use [dos2unix](https://linux.die.net/man/1/dos2unix) on all files, see another example [here](https://github.com/unfor19/bargs/blob/master/.github/workflows/testing.yml)
+
+```powershell
+PS> choco install dos2unix
+...
+PS> dos2unix bargs.sh bargs_vars example.sh tests.sh
+...
+PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
+```
+
+</details>
 
 ## Getting Started
 
