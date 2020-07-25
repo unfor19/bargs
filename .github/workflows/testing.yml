@@ -38,35 +38,27 @@ jobs:
         run: |
           bash tests.sh
 
-  windows-wsl:
+  test-wsl:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        shell: powershell # $output = "$PSScriptRoot\Ubuntu.appx"
+        shell: powershell
         run: |
-          $url = "https://aka.ms/wsl-ubuntu-1804"
-          $output = ".\Ubuntu.appx"
-          $start_time = Get-Date
+          $url = "https://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.1-win64.zip"
+          $output = ".\dos2unix.zip"
           (New-Object System.Net.WebClient).DownloadFile($url, $output)
-          Rename-Item .\Ubuntu.appx .\Ubuntu.zip
+          Expand-Archive .\dos2unix.zip .\dos2unix
+          .\dos2unix\bin\dos2unix.exe bargs.sh bargs_vars example.sh tests.sh
+
+          $url = "https://aka.ms/wsl-ubuntu-1804"
+          $output = ".\Ubuntu.zip"
+          (New-Object System.Net.WebClient).DownloadFile($url, $output)
           Expand-Archive .\Ubuntu.zip .\Ubuntu
+          Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+          .\Ubuntu\ubuntu1804.exe install --root
+
       - name: Test with bash script
         shell: powershell
         run: |
-          Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-          .\Ubuntu\ubuntu1804.exe install --root
-          wsl -u root -d Ubuntu-18.04 -- ./scripts/linux_dependencies.sh
-          wsl -u root -d Ubuntu-18.04 -- ./tests.sh
-  # test-windows:
-  #   runs-on: windows-latest
-  #   steps:
-  #     - name: Print bash version
-  #       shell: bash
-  #       run: |
-  #         bash --version
-  #     - uses: actions/checkout@v2
-  #     - name: Test with bash script
-  #       shell: bash
-  #       run: |
-  #         bash example.sh -a 99 --gender male
+          wsl -u root -d Ubuntu-18.04 -- source ./tests.sh
