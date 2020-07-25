@@ -26,6 +26,7 @@ should(){
     fi
 }
 
+should pass "Help Menu" "source example.sh -h"
 should pass "Default Values" "source example.sh -a 99 --gender male"
 should pass "New Values" "source example.sh -a 23 --gender male -l neverland -n meir"
 should pass "Valid Options" "source example.sh -a 23 --gender male -l neverland -n meir -f pizza"
