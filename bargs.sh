@@ -108,7 +108,7 @@ while [ "$1" != "" ]; do
         i=$((i+1))
     done
     if [[ -z $found ]]; then
-        error_msg "[ERROR] Unknown argument: $1"
+        error_msg "Unknown argument: $1"
     fi
     shift
 done
