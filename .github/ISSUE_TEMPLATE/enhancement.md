@@ -1,7 +1,7 @@
 ---
-name: Feature request
+name: Enhancement
 about: Suggest an idea for this project
-title: "[FEATURE] "
+title: "[ENHANCEMENT] "
 labels: "enhancement"
 assignees: unfor19
 ---
