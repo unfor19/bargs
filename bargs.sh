@@ -5,6 +5,8 @@ error_msg(){
     local msg=$1
     echo -e "[ERROR] $msg"
     usage
+    export DEBUG=1
+    exit 1
 }
 
 
@@ -29,8 +31,6 @@ usage (){
     done
 
     echo -e "$usage_msg" | column -t -s "~"
-    export DEBUG=1
-    exit 1
 }
 
 
@@ -77,12 +77,16 @@ while [ "$1" != "" ]; do
     while [ $i -lt $num_of_dicts ]; do
         eval "d=(${dict[$i]})"
         case "$1" in
+            -h | --help )
+                usage
+                export DEBUG=0
+                exit 0
+            ;;        
             -"${d[short]}" | --"${d[name]}" )
                 shift
                 if [[ -z "$1" && -z "${d[default]}" ]]; then
                     # arg is empty and default is empty
                     error_msg "Empty argument: ${d[name]}"
-                    usage
                 elif [[ -z "$1" && -n "${d[default]}" ]]; then
                     # arg is empty and default is not empty
                     export "${d[name]}"="${d[default]}"
@@ -100,15 +104,11 @@ while [ "$1" != "" ]; do
                     found="${d[name]}"
                 fi
             ;;
-            -h | --help )
-                usage
-            ;;
         esac
         i=$((i+1))
     done
     if [[ -z $found ]]; then
-        echo -e "[ERROR] Unknown argument: $1"
-        usage
+        error_msg "[ERROR] Unknown argument: $1"
     fi
     shift
 done
