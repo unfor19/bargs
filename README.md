@@ -238,6 +238,24 @@ Usage: bash example.sh -n Willy --gender male -a 99
 [LOG] Test failed as expected
 ```
 
+## Contributing
+
+Report issues/questions/feature requests on the [Issues](https://github.com/unfor19/bargs/issues) section.
+
+Pull requests are welcome! These are the steps:
+
+1. Fork this repo
+1. Create your feature branch from master (`git checkout -b my-new-feature`)
+1. Add the code of your new feature
+1. Run tests on your code, feel free to add more tests
+   ```bash
+   $ bash tests.sh
+   ... # All good? Move on to the next step
+   ```
+1. Commit your remarkable changes (`git commit -am 'Added new feature'`)
+1. Push to the branch (`git push --set-up-stream origin my-new-feature`)
+1. Create a new Pull Request and provide details about your changes
+
 ## Authors
 
 Created and maintained by [Meir Gabay](https://github.com/unfor19)
