@@ -1,3 +1,6 @@
 #!/bin/bash
-[[ $USER == "root" ]] && apt-get update -y && apt-get install -y bsdmainutils \
-    || sudo apt-get update -y && sudo apt-get install -y bsdmainutils
+if [[ $USER == "root" ]]; then
+    apt-get update -y && apt-get install -y bsdmainutils
+else
+    sudo apt-get update -y && sudo apt-get install -y bsdmainutils
+fi
