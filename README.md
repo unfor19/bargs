@@ -6,6 +6,10 @@ Wrap your bash script with command line arguments
 
 Tired of doing [this - linuxcommand](http://linuxcommand.org/lc3_wss0120.php) or asking yourself [How do I parse command line arguments in Bash](https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash) easily? Great! Me too! Use this script to wrap your bash scripts with command line arguments, without bashing your head against the wall
 
+## Demo
+
+Take a look at this repository [ecs-stop-task](https://github.com/unfor19/ecs-stop-task), it demonstrates how bargs is used in a real-life situation 
+
 ## Requirements
 
 - Bash v4.4+
