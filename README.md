@@ -49,13 +49,13 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
    curl -s -L bargs.link/bargs.sh --output bargs.sh
    ```
 
-1. Creating bargs_vars - do one of the following
+1. Create bargs_vars - do one of the following
    - Create the file `bargs_vars`, put it in the same folder as `bargs.sh`
    - Download the existing `bargs_vars` template
      ```bash
      curl -s -L bargs.link/bargs_vars --output bargs_vars
      ```
-1. Declaring arguments/variables
+1. Declare arguments/variables
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
    - Values which are not supported: `=`, `~`, `(whitespace)`
@@ -103,11 +103,18 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
    ---
    ```
 
-1. Add the following line at the beginning of your application
+1. Make sure that `bargs.sh` and `bargs_vars` are in the same folder
 
-   ```bash
-   source bargs.sh "$@"
-   ```
+1. Add one of the following lines at the beginning of your application (see Usage below)
+
+   - `bargs.sh` is in the root folder of your project (just like in this repo)
+     ```bash
+     source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/bargs.sh "$@"
+     ```
+   - `bargs.sh` is in a subfolder, for example `tools`
+     ```bash
+     source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/tools/bargs.sh "$@"
+     ```
 
 1. That's it! You can now reference to arguments that were declared in `bargs_vars`
 
@@ -117,7 +124,7 @@ Using the `bargs_args` above in our application - `example.sh`
 
 ```bash
 #!/bin/bash
-source bargs.sh "$@"
+source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/bargs.sh "$@"
 
 echo -e \
 "Name:~$person_name\n"\
