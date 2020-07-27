@@ -1,4 +1,5 @@
 #!/bin/bash
+
 error_msg(){
     local msg=$1
     echo -e "[ERROR] $msg"
@@ -34,3 +35,7 @@ should pass "Special Characters" "source example.sh -a 99 --gender male -s MxTZf
 should fail "Empty Argument" "source example.sh -a 99 --gender"
 should fail "Unknown Argument"  "source example.sh -a 99 -u meir"
 should fail "Invalid Options" "source example.sh -a 23 --gender male -l neverland -n meir -f notgood"
+
+mv bargs_vars bargs_vars1
+should fail "Missing bargs_vars" "source example.sh -h"
+mv bargs_vars1 bargs_vars

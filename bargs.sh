@@ -3,8 +3,9 @@
 ### Functions
 error_msg(){
     local msg=$1
+    local no_usage=$2
     echo -e "[ERROR] $msg"
-    usage
+    [[ -z $no_usage ]] && usage
     export DEBUG=1
     exit 1
 }
@@ -33,10 +34,16 @@ usage (){
     echo -e "$usage_msg" | column -t -s "~"
 }
 
+check_bargs_vars(){
+    bargs_vars_path="$(dirname "${BASH_SOURCE[0]}")"/bargs_vars
+    [[ ! -f "$bargs_vars_path" ]] && error_msg "Make sure bargs_vars is in the same folder as bargs.sh" no_usage
+}
+
 
 ### Read bargs_vars
 # Reads the file, saving each arg as one string in the string ${args}
 # The arguments are separated with "~"
+check_bargs_vars
 delimiter="---"
 while read -r line; do
     if [[ "$line" != "${delimiter}" ]]; then
@@ -51,7 +58,7 @@ while read -r line; do
         [[ -n $str ]] && args="$args~$str"
         unset str
     fi        
-done < bargs_vars
+done < "$bargs_vars_path"
 
 
 ### args to list of dictionaries
