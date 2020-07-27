@@ -144,13 +144,6 @@ echo -e \
 Results after running [tests.sh](https://github.com/unfor19/bargs/blob/master/tests.sh)
 
 ```
-[LOG] Building
-[LOG] Copying files to /Users/meirgabay/bargs/dist
-[LOG] Copying bargs.sh to /Users/meirgabay/bargs/dist/3e7abe89/bargs.sh
-[LOG] Copying bargs_vars to /Users/meirgabay/bargs/dist/3e7abe89/bargs_vars
-[LOG] Copying example.sh to /Users/meirgabay/bargs/dist/3e7abe89/example.sh
-[LOG] Copying tests.sh to /Users/meirgabay/bargs/dist/3e7abe89/tests.sh
-[LOG] Finished building, artifacts in - /Users/meirgabay/bargs/dist
 -------------------------------------------------------
 [LOG] Help Menu - Should pass
 [LOG] Executing: source example.sh -h
