@@ -8,7 +8,11 @@ Tired of doing [this - linuxcommand](http://linuxcommand.org/lc3_wss0120.php) or
 
 ## Demo
 
-Take a look at this repository [ecs-stop-task](https://github.com/unfor19/ecs-stop-task), it demonstrates how bargs is used in a real-life situation
+- Take a look at this repository [ecs-stop-task](https://github.com/unfor19/ecs-stop-task), it demonstrates how bargs is used in a real-life situation
+- Run the [example.sh](./example.sh) application with [Docker](https://docs.docker.com/engine/install/)
+  ```bash
+  $ docker run --rm -it unfor19/bargs:example --help
+  ```
 
 ## Requirements
 
