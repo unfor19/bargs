@@ -1,0 +1,5 @@
+FROM ubuntu:18.04
+RUN apt-get -y update && apt-get install -y bsdmainutils
+WORKDIR /code
+COPY . .
+ENTRYPOINT [ "bash", "example.sh" ]

@@ -8,7 +8,7 @@ Tired of doing [this - linuxcommand](http://linuxcommand.org/lc3_wss0120.php) or
 
 ## Demo
 
-Take a look at this repository [ecs-stop-task](https://github.com/unfor19/ecs-stop-task), it demonstrates how bargs is used in a real-life situation 
+Take a look at this repository [ecs-stop-task](https://github.com/unfor19/ecs-stop-task), it demonstrates how bargs is used in a real-life situation
 
 ## Requirements
 
@@ -279,6 +279,25 @@ Usage: bash example.sh -n Willy --gender male -a 99
 
 [LOG] Test failed as expected
 ```
+
+## Package your application
+
+### Docker
+
+You can use [Docker](https://www.docker.com/why-docker) to package your Bash script as a Docker image, see the following example
+
+1. Clone this repository
+
+1. Build the image, see [Dockerfile.example](./Dockerfile.example), tag it `bargs:example`
+
+   ```bash
+   $ docker build -f Dockerfile.example -t bargs:example .
+   ```
+
+1. Run a container that is based on the image above :point_up:
+   ```bash
+   $ docker run --rm -it bargs:example -a 23 -g male
+   ```
 
 ## Contributing
 
