@@ -4,8 +4,6 @@ on:
   push:
     paths-ignore:
       - "README.md"
-  pull_request:
-    branches: [master]
 
 jobs:
   test-ubuntu:
