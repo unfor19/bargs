@@ -1,5 +1,5 @@
 #!/bin/bash
-source bargs.sh "$@"
+source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/bargs.sh "$@"
 
 echo -e \
 "Name:~$person_name\n"\

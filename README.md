@@ -53,13 +53,13 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
    curl -s -L bargs.link/bargs.sh --output bargs.sh
    ```
 
-1. Creating bargs_vars - do one of the following
+1. Create bargs_vars - do one of the following
    - Create the file `bargs_vars`, put it in the same folder as `bargs.sh`
    - Download the existing `bargs_vars` template
      ```bash
      curl -s -L bargs.link/bargs_vars --output bargs_vars
      ```
-1. Declaring arguments/variables
+1. Declare arguments/variables
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
    - Values which are not supported: `=`, `~`, `(whitespace)`
@@ -107,11 +107,18 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
    ---
    ```
 
-1. Add the following line at the beginning of your application
+1. Make sure that `bargs.sh` and `bargs_vars` are in the same folder
 
-   ```bash
-   source bargs.sh "$@"
-   ```
+1. Add **one** of the following lines at the beginning of your application (see Usage below)
+
+   - `bargs.sh` is in the root folder of your project (just like in this repo)
+     ```bash
+     source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/bargs.sh "$@"
+     ```
+   - `bargs.sh` is in a subfolder, for example `tools`
+     ```bash
+     source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/tools/bargs.sh "$@"
+     ```
 
 1. That's it! You can now reference to arguments that were declared in `bargs_vars`
 
@@ -121,7 +128,7 @@ Using the `bargs_args` above in our application - `example.sh`
 
 ```bash
 #!/bin/bash
-source bargs.sh "$@"
+source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/bargs.sh "$@"
 
 echo -e \
 "Name:~$person_name\n"\
@@ -137,6 +144,29 @@ echo -e \
 Results after running [tests.sh](https://github.com/unfor19/bargs/blob/master/tests.sh)
 
 ```
+[LOG] Building
+[LOG] Copying files to /Users/meirgabay/bargs/dist
+[LOG] Copying bargs.sh to /Users/meirgabay/bargs/dist/3e7abe89/bargs.sh
+[LOG] Copying bargs_vars to /Users/meirgabay/bargs/dist/3e7abe89/bargs_vars
+[LOG] Copying example.sh to /Users/meirgabay/bargs/dist/3e7abe89/example.sh
+[LOG] Copying tests.sh to /Users/meirgabay/bargs/dist/3e7abe89/tests.sh
+[LOG] Finished building, artifacts in - /Users/meirgabay/bargs/dist
+-------------------------------------------------------
+[LOG] Help Menu - Should pass
+[LOG] Executing: source example.sh -h
+[LOG] Output:
+
+
+Usage: bash example.sh -n Willy --gender male -a 99
+
+	--person_name    |  -n  [Willy]                 What is your name?
+	--age            |  -a  [Required]              How old are you?
+	--gender         |  -g  [Required]              male or female?
+	--location       |  -l  [chocolate-factory]     Where do you live?
+	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
+	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
+
+[LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Default Values - Should pass
 [LOG] Executing: source example.sh -a 99 --gender male
@@ -238,6 +268,14 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--location       |  -l  [chocolate-factory]     Where do you live?
 	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
 	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
+
+[LOG] Test failed as expected
+-------------------------------------------------------
+[LOG] Missing bargs_vars - Should fail
+[LOG] Executing: source example.sh -h
+[LOG] Output:
+
+[ERROR] Make sure bargs_vars is in the same folder as bargs.sh
 
 [LOG] Test failed as expected
 ```
