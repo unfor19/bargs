@@ -1,5 +1,4 @@
 #!/bin/bash
-PROJECT_DIR="${PWD}"
 
 error_msg(){
     local msg=$1
@@ -28,9 +27,6 @@ should(){
     fi
 }
 
-rm -rf "${PROJECT_DIR}/dist"
-source "${PROJECT_DIR}/scripts/app_build.sh"
-cd "${PROJECT_DIR}/dist" || error_msg "Couldn't create dist folder"
 should pass "Help Menu" "source example.sh -h"
 should pass "Default Values" "source example.sh -a 99 --gender male"
 should pass "New Values" "source example.sh -a 23 --gender male -l neverland -n meir"
