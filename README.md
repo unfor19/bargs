@@ -66,54 +66,55 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
 1. Declare arguments/variables
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
-   - Values which are not supported: `=`, `~`, `(whitespace)`
+   - Values which are not supported: `=`, `~`
    - If the `default` is empty or not defined, the argument is required
+   - If the `default` contains whitespaces, then use double quotes - `default="Willy Wonka"`
    - You can't add comments to this file, use the description
    - Use the bargs description to set the `--help` (usage) message
    - The `options` values must separated with a whitespace
 
-   ```bash
-   ---
-   name=person_name
-   short=n
-   description=What is your name?
-   default=Willy
-   ---
-   name=age
-   short=a
-   description=How old are you?
-   ---
-   name=gender
-   short=g
-   description='male or female?'
-   options=male female
-   ---
-   name=location
-   short=l
-   description="Where do you live?"
-   default=chocolate-factory
-   ---
-   name=favorite_food
-   short=f
-   default=chocolate
-   options=chocolate pizza
-   description=chocolate or pizza?
-   ---
-   name=secret
-   short=s
-   default=!@#$%^&*'"?\/.,[]{}+-|
-   description=special characters
-   ---
-   name=bargs
-   description=bash example.sh -n Willy --gender male -a 99
-   default=irrelevant
-   ---
-   ---
-   ```
+     ```
+     ---
+     name=person_name
+     short=n
+     description=What is your name?
+     default="Willy Wonka"
+     ---
+     name=age
+     short=a
+     description=How old are you?
+     ---
+     name=gender
+     short=g
+     description=male or female?
+     options=male female
+     ---
+     name=location
+     short=l
+     description=Where do you live?
+     default="chocolate factory"
+     ---
+     name=favorite_food
+     short=f
+     default=chocolate
+     options=chocolate pizza
+     description=chocolate or pizza?
+     ---
+     name=secret
+     short=s
+     default=!@#$%^&*'"?\/.,[]{}+-|
+     description=special characters
+     ---
+     name=bargs
+     description=bash example.sh -n Willy --gender male -a 99
+     default=irrelevant
+     ---
+     ---
+     ```
 
-1. Make sure that `bargs.sh` and `bargs_vars` are in the same folder
+1) Make sure that `bargs.sh` and `bargs_vars` are in the same folder
 
-1. Add **one** of the following lines at the beginning of your application (see Usage below)
+1) Add **one** of the following lines at the beginning of your application (see Usage below)
 
    - `bargs.sh` is in the root folder of your project (just like in this repo)
      ```bash
@@ -124,7 +125,7 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
      source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/tools/bargs.sh "$@"
      ```
 
-1. That's it! You can now reference to arguments that were declared in `bargs_vars`
+1) That's it! You can now reference to arguments that were declared in `bargs_vars`
 
 ### Usage
 
@@ -145,9 +146,14 @@ echo -e \
 
 #### Usage output
 
-Results after running [tests.sh](https://github.com/unfor19/bargs/blob/master/tests.sh)
+<details><summary>
+Results after running <a href="https://github.com/unfor19/bargs/blob/master/tests.sh">tests.sh</a> - Expand/Collapse
+
+</summary>
 
 ```
+$ bash tests.sh
+
 -------------------------------------------------------
 [LOG] Help Menu - Should pass
 [LOG] Executing: source example.sh -h
@@ -156,10 +162,10 @@ Results after running [tests.sh](https://github.com/unfor19/bargs/blob/master/te
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n  [Willy]                 What is your name?
+	--person_name    |  -n  [Willy Wonka]           What is your name?
 	--age            |  -a  [Required]              How old are you?
 	--gender         |  -g  [Required]              male or female?
-	--location       |  -l  [chocolate-factory]     Where do you live?
+	--location       |  -l  [chocolate factory]     Where do you live?
 	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
 	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
 
@@ -169,10 +175,10 @@ Usage: bash example.sh -n Willy --gender male -a 99
 [LOG] Executing: source example.sh -a 99 --gender male
 [LOG] Output:
 
-Name:           Willy
+Name:           Willy Wonka
 Age:            99
 Gender:         male
-Location:       chocolate-factory
+Location:       chocolate factory
 Favorite food:  chocolate
 Secret:         !@#$%^&*?\/.,[]{}+-|
 
@@ -208,10 +214,10 @@ Secret:         !@#$%^&*?\/.,[]{}+-|
 [LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6K\HaAQlt\JWipe1oVRy
 [LOG] Output:
 
-Name:           Willy
+Name:           Willy Wonka
 Age:            99
 Gender:         male
-Location:       chocolate-factory
+Location:       chocolate factory
 Favorite food:  chocolate
 Secret:         MxTZf+6K\HaAQlt\JWipe1oVRy
 
@@ -225,10 +231,10 @@ Secret:         MxTZf+6K\HaAQlt\JWipe1oVRy
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n  [Willy]                 What is your name?
+	--person_name    |  -n  [Willy Wonka]           What is your name?
 	--age            |  -a  [Required]              How old are you?
 	--gender         |  -g  [Required]              male or female?
-	--location       |  -l  [chocolate-factory]     Where do you live?
+	--location       |  -l  [chocolate factory]     Where do you live?
 	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
 	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
 
@@ -242,10 +248,10 @@ Usage: bash example.sh -n Willy --gender male -a 99
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n  [Willy]                 What is your name?
+	--person_name    |  -n  [Willy Wonka]           What is your name?
 	--age            |  -a  [Required]              How old are you?
 	--gender         |  -g  [Required]              male or female?
-	--location       |  -l  [chocolate-factory]     Where do you live?
+	--location       |  -l  [chocolate factory]     Where do you live?
 	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
 	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
 
@@ -259,10 +265,10 @@ Usage: bash example.sh -n Willy --gender male -a 99
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n  [Willy]                 What is your name?
+	--person_name    |  -n  [Willy Wonka]           What is your name?
 	--age            |  -a  [Required]              How old are you?
 	--gender         |  -g  [Required]              male or female?
-	--location       |  -l  [chocolate-factory]     Where do you live?
+	--location       |  -l  [chocolate factory]     Where do you live?
 	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
 	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
 
@@ -276,6 +282,8 @@ Usage: bash example.sh -n Willy --gender male -a 99
 
 [LOG] Test failed as expected
 ```
+
+</details>
 
 ## Package your application
 
