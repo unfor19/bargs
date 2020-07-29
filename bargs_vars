@@ -10,13 +10,13 @@ description=How old are you?
 ---
 name=gender
 short=g
-description='male or female?'
+description=male or female?
 options=male female
 ---
 name=location
 short=l
-description="Where do you live?"
-default=chocolate-factory
+description=Where do you live?
+default="chocolate factory"
 ---
 name=favorite_food
 short=f
