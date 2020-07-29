@@ -65,11 +65,11 @@ done < "$bargs_vars_path"
 cut_num=1
 num_of_dicts=0
 declare -A dict
-while [ $cut_num -le $(("$num_of_args"+1)) ]; do
+while [ $cut_num -le $((num_of_args+1)) ]; do
     arg=$(echo "${args[@]}" | cut -d "~" -f $cut_num)
     if [[ ${#arg} -gt 0 ]]; then
         dict[$num_of_dicts]="$arg"
-        num_of_dicts=$(("$num_of_dicts"+1))
+        num_of_dicts=$((num_of_dicts+1))
     fi
     cut_num=$((cut_num+1))
 done
