@@ -2,7 +2,7 @@
 name=person_name
 short=n
 description=What is your name?
-default=Willy
+default="Willy Wonka"
 ---
 name=age
 short=a
