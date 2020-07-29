@@ -29,6 +29,11 @@ short=s
 default=!@#$%^&*'"?\/.,[]{}+-|
 description=special characters
 ---
+name=language
+short=lang
+default=$LANG
+description=default value can be a variable
+---
 name=bargs
 description=bash example.sh -n Willy --gender male -a 99
 default=irrelevant
