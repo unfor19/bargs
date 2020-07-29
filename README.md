@@ -105,6 +105,11 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
      default=!@#$%^&*'"?\/.,[]{}+-|
      description=special characters
      ---
+     name=language
+     short=lang
+     default=$LANG
+     description=default value can be a variable
+     ---
      name=bargs
      description=bash example.sh -n Willy --gender male -a 99
      default=irrelevant
@@ -141,7 +146,8 @@ echo -e \
 "Gender:~$gender\n"\
 "Location:~$location\n"\
 "Favorite food:~$favorite_food\n"\
-"Secret:~$secret" | column -t -s "~"
+"Secret:~$secret\n"\
+"OS Language:~$language" | column -t -s "~"
 ```
 
 #### Usage output
@@ -151,9 +157,7 @@ Results after running <a href="https://github.com/unfor19/bargs/blob/master/test
 
 </summary>
 
-```
-$ bash tests.sh
-
+```bash
 -------------------------------------------------------
 [LOG] Help Menu - Should pass
 [LOG] Executing: source example.sh -h
@@ -162,12 +166,13 @@ $ bash tests.sh
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n  [Willy Wonka]           What is your name?
-	--age            |  -a  [Required]              How old are you?
-	--gender         |  -g  [Required]              male or female?
-	--location       |  -l  [chocolate factory]     Where do you live?
-	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
-	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--person_name    |  -n     [Willy Wonka]           What is your name?
+	--age            |  -a     [Required]              How old are you?
+	--gender         |  -g     [Required]              male or female?
+	--location       |  -l     [chocolate factory]     Where do you live?
+	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
+	--secret         |  -s     [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -181,6 +186,7 @@ Gender:         male
 Location:       chocolate factory
 Favorite food:  chocolate
 Secret:         !@#$%^&*?\/.,[]{}+-|
+OS Language:    en_US.UTF-8
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -194,6 +200,7 @@ Gender:         male
 Location:       neverland
 Favorite food:  chocolate
 Secret:         !@#$%^&*?\/.,[]{}+-|
+OS Language:    en_US.UTF-8
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -207,6 +214,7 @@ Gender:         male
 Location:       neverland
 Favorite food:  pizza
 Secret:         !@#$%^&*?\/.,[]{}+-|
+OS Language:    en_US.UTF-8
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -220,6 +228,7 @@ Gender:         male
 Location:       chocolate factory
 Favorite food:  chocolate
 Secret:         MxTZf+6K\HaAQlt\JWipe1oVRy
+OS Language:    en_US.UTF-8
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -231,12 +240,13 @@ Secret:         MxTZf+6K\HaAQlt\JWipe1oVRy
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n  [Willy Wonka]           What is your name?
-	--age            |  -a  [Required]              How old are you?
-	--gender         |  -g  [Required]              male or female?
-	--location       |  -l  [chocolate factory]     Where do you live?
-	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
-	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--person_name    |  -n     [Willy Wonka]           What is your name?
+	--age            |  -a     [Required]              How old are you?
+	--gender         |  -g     [Required]              male or female?
+	--location       |  -l     [chocolate factory]     Where do you live?
+	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
+	--secret         |  -s     [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -248,12 +258,13 @@ Usage: bash example.sh -n Willy --gender male -a 99
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n  [Willy Wonka]           What is your name?
-	--age            |  -a  [Required]              How old are you?
-	--gender         |  -g  [Required]              male or female?
-	--location       |  -l  [chocolate factory]     Where do you live?
-	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
-	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--person_name    |  -n     [Willy Wonka]           What is your name?
+	--age            |  -a     [Required]              How old are you?
+	--gender         |  -g     [Required]              male or female?
+	--location       |  -l     [chocolate factory]     Where do you live?
+	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
+	--secret         |  -s     [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -265,12 +276,13 @@ Usage: bash example.sh -n Willy --gender male -a 99
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n  [Willy Wonka]           What is your name?
-	--age            |  -a  [Required]              How old are you?
-	--gender         |  -g  [Required]              male or female?
-	--location       |  -l  [chocolate factory]     Where do you live?
-	--favorite_food  |  -f  [chocolate]             chocolate or pizza?
-	--secret         |  -s  [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--person_name    |  -n     [Willy Wonka]           What is your name?
+	--age            |  -a     [Required]              How old are you?
+	--gender         |  -g     [Required]              male or female?
+	--location       |  -l     [chocolate factory]     Where do you live?
+	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
+	--secret         |  -s     [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
