@@ -158,11 +158,11 @@ Results after running <a href="https://github.com/unfor19/bargs/blob/master/test
 
 </summary>
 
-```bash
+```testresults_output
 -------------------------------------------------------
 [LOG] Help Menu - Should pass
 [LOG] Executing: source example.sh -h
-[LOG] Output:
+[LOG] Output: 
 
 
 Usage: bash example.sh -n Willy --gender male -a 99
@@ -172,21 +172,21 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--gender         |  -g     [Required]              male or female?
 	--location       |  -l     [chocolate factory]     Where do you live?
 	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
-	--secret         |  -s     [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Default Values - Should pass
 [LOG] Executing: source example.sh -a 99 --gender male
-[LOG] Output:
+[LOG] Output: 
 
 Name:                  Willy Wonka
 Age:                   99
 Gender:                male
 Location:              chocolate factory
 Favorite food:         chocolate
-Secret:                !@#$%^&*?\/.,[]{}+-|
+Secret:                !@#0^&*?/.,[]{}+-|
 OS Language:           en_US.UTF-8
 Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 
@@ -194,14 +194,14 @@ Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 -------------------------------------------------------
 [LOG] New Values - Should pass
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir
-[LOG] Output:
+[LOG] Output: 
 
 Name:                  meir
 Age:                   23
 Gender:                male
 Location:              neverland
 Favorite food:         chocolate
-Secret:                !@#$%^&*?\/.,[]{}+-|
+Secret:                !@#0^&*?/.,[]{}+-|
 OS Language:           en_US.UTF-8
 Uppercased var names:  meir, 23 years old, from neverland
 
@@ -209,29 +209,29 @@ Uppercased var names:  meir, 23 years old, from neverland
 -------------------------------------------------------
 [LOG] Valid Options - Should pass
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza
-[LOG] Output:
+[LOG] Output: 
 
 Name:                  meir
 Age:                   23
 Gender:                male
 Location:              neverland
 Favorite food:         pizza
-Secret:                !@#$%^&*?\/.,[]{}+-|
+Secret:                !@#0^&*?/.,[]{}+-|
 OS Language:           en_US.UTF-8
 Uppercased var names:  meir, 23 years old, from neverland
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Special Characters - Should pass
-[LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6K\HaAQlt\JWipe1oVRy
-[LOG] Output:
+[LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6KHaAQltJWipe1oVRy
+[LOG] Output: 
 
 Name:                  Willy Wonka
 Age:                   99
 Gender:                male
 Location:              chocolate factory
 Favorite food:         chocolate
-Secret:                MxTZf+6K\HaAQlt\JWipe1oVRy
+Secret:                MxTZf+6KHaAQltJWipe1oVRy
 OS Language:           en_US.UTF-8
 Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 
@@ -239,7 +239,7 @@ Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 -------------------------------------------------------
 [LOG] Empty Argument - Should fail
 [LOG] Executing: source example.sh -a 99 --gender
-[LOG] Output:
+[LOG] Output: 
 
 [ERROR] Empty argument: gender
 
@@ -250,14 +250,14 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--gender         |  -g     [Required]              male or female?
 	--location       |  -l     [chocolate factory]     Where do you live?
 	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
-	--secret         |  -s     [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
 [LOG] Unknown Argument - Should fail
 [LOG] Executing: source example.sh -a 99 -u meir
-[LOG] Output:
+[LOG] Output: 
 
 [ERROR] Unknown argument: -u
 
@@ -268,14 +268,14 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--gender         |  -g     [Required]              male or female?
 	--location       |  -l     [chocolate factory]     Where do you live?
 	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
-	--secret         |  -s     [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
 [LOG] Invalid Options - Should fail
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f notgood
-[LOG] Output:
+[LOG] Output: 
 
 [ERROR] Invalid value for argument: favorite_food
 
@@ -286,55 +286,19 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--gender         |  -g     [Required]              male or female?
 	--location       |  -l     [chocolate factory]     Where do you live?
 	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
-	--secret         |  -s     [!@#$%^&*?\/.,[]{}+-|]  special characters
+	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
 [LOG] Missing bargs_vars - Should fail
 [LOG] Executing: source example.sh -h
-[LOG] Output:
+[LOG] Output: 
 
 [ERROR] Make sure bargs_vars is in the same folder as bargs.sh
 
-[LOG] Test failed as expected
-```
+[LOG] Test failed as expected```
 
-</details>
-
-## Package your application
-
-### Docker
-
-You can use [Docker](https://www.docker.com/why-docker) to package your Bash script as a Docker image, see the following example
-
-1. Clone this repository
-
-1. Build the image, see [Dockerfile.example](./Dockerfile.example), tag it `bargs:example`
-
-   ```bash
-   $ docker build -f Dockerfile.example -t bargs:example .
-   ```
-
-1. Run a container that is based on the image above :point_up:
-   ```bash
-   $ docker run --rm -it bargs:example -a 23 -g male
-   ```
-
-## Contributing
-
-Report issues/questions/feature requests on the [Issues](https://github.com/unfor19/bargs/issues) section.
-
-Pull requests are welcome! These are the steps:
-
-1. Fork this repo
-1. Create your feature branch from master (`git checkout -b my-new-feature`)
-1. Add the code of your new feature
-1. Run tests on your code, feel free to add more tests
-   ```bash
-   $ bash tests.sh
-   ... # All good? Move on to the next step
-   ```
 1. Commit your remarkable changes (`git commit -am 'Added new feature'`)
 1. Push to the branch (`git push --set-up-stream origin my-new-feature`)
 1. Create a new Pull Request and provide details about your changes
