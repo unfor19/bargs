@@ -147,7 +147,8 @@ echo -e \
 "Location:~$location\n"\
 "Favorite food:~$favorite_food\n"\
 "Secret:~$secret\n"\
-"OS Language:~$language" | column -t -s "~"
+"OS Language:~$language\n"\
+"Uppercased var names:~$PERSON_NAME, $AGE years old, from $LOCATION" | column -t -s "~"
 ```
 
 #### Usage output
@@ -180,13 +181,14 @@ Usage: bash example.sh -n Willy --gender male -a 99
 [LOG] Executing: source example.sh -a 99 --gender male
 [LOG] Output:
 
-Name:           Willy Wonka
-Age:            99
-Gender:         male
-Location:       chocolate factory
-Favorite food:  chocolate
-Secret:         !@#$%^&*?\/.,[]{}+-|
-OS Language:    en_US.UTF-8
+Name:                  Willy Wonka
+Age:                   99
+Gender:                male
+Location:              chocolate factory
+Favorite food:         chocolate
+Secret:                !@#$%^&*?\/.,[]{}+-|
+OS Language:           en_US.UTF-8
+Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -194,13 +196,14 @@ OS Language:    en_US.UTF-8
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir
 [LOG] Output:
 
-Name:           meir
-Age:            23
-Gender:         male
-Location:       neverland
-Favorite food:  chocolate
-Secret:         !@#$%^&*?\/.,[]{}+-|
-OS Language:    en_US.UTF-8
+Name:                  meir
+Age:                   23
+Gender:                male
+Location:              neverland
+Favorite food:         chocolate
+Secret:                !@#$%^&*?\/.,[]{}+-|
+OS Language:           en_US.UTF-8
+Uppercased var names:  meir, 23 years old, from neverland
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -208,13 +211,14 @@ OS Language:    en_US.UTF-8
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza
 [LOG] Output:
 
-Name:           meir
-Age:            23
-Gender:         male
-Location:       neverland
-Favorite food:  pizza
-Secret:         !@#$%^&*?\/.,[]{}+-|
-OS Language:    en_US.UTF-8
+Name:                  meir
+Age:                   23
+Gender:                male
+Location:              neverland
+Favorite food:         pizza
+Secret:                !@#$%^&*?\/.,[]{}+-|
+OS Language:           en_US.UTF-8
+Uppercased var names:  meir, 23 years old, from neverland
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -222,13 +226,14 @@ OS Language:    en_US.UTF-8
 [LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6K\HaAQlt\JWipe1oVRy
 [LOG] Output:
 
-Name:           Willy Wonka
-Age:            99
-Gender:         male
-Location:       chocolate factory
-Favorite food:  chocolate
-Secret:         MxTZf+6K\HaAQlt\JWipe1oVRy
-OS Language:    en_US.UTF-8
+Name:                  Willy Wonka
+Age:                   99
+Gender:                male
+Location:              chocolate factory
+Favorite food:         chocolate
+Secret:                MxTZf+6K\HaAQlt\JWipe1oVRy
+OS Language:           en_US.UTF-8
+Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 
 [LOG] Test passed as expected
 -------------------------------------------------------
