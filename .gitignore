@@ -2,3 +2,4 @@
 !.github*
 !.*ignore*
 dist/
+*.wiki
