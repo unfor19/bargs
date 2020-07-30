@@ -8,4 +8,5 @@ echo -e \
 "Location:~$location\n"\
 "Favorite food:~$favorite_food\n"\
 "Secret:~$secret\n"\
-"OS Language:~$language" | column -t -s "~"
+"OS Language:~$language\n"\
+"Uppercased var names:~$PERSON_NAME, $AGE years old, from $LOCATION" | column -t -s "~"
