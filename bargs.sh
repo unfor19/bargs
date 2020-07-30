@@ -97,6 +97,7 @@ while [ "$1" != "" ]; do
                 elif [[ -z "$1" && -n "${d[default]}" ]]; then
                     # arg is empty and default is not empty
                     export "${d[name]}"="${d[default]}"
+                    export "${d[name]^^}"="${d[default]}"
                     found="${d[name]}"
                 elif [[ -n "$1" ]]; then
                     # arg is not empty, validating value
@@ -108,6 +109,7 @@ while [ "$1" != "" ]; do
                         [[ $valid != true ]] && error_msg "Invalid value for argument: ${d[name]}"
                     fi
                     export "${d[name]}"="$1"
+                    export "${d[name]^^}"="$1"
                     found="${d[name]}"
                 fi
             ;;
@@ -131,6 +133,7 @@ while [ $i -lt $num_of_dicts ]; do
         error_msg "Required argument: ${d[name]}"
     elif [[ -z $result && -n $default ]]; then
         export "${d[name]}"="${d[default]}"
+        export "${d[name]^^}"="${d[default]}"
     fi
     i=$((i+1))
 done
