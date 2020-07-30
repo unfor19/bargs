@@ -117,9 +117,9 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
      ---
      ```
 
-1) Make sure that `bargs.sh` and `bargs_vars` are in the same folder
+1. Make sure that `bargs.sh` and `bargs_vars` are in the same folder
 
-1) Add **one** of the following lines at the beginning of your application (see Usage below)
+1. Add **one** of the following lines at the beginning of your application (see Usage below)
 
    - `bargs.sh` is in the root folder of your project (just like in this repo)
      ```bash
@@ -130,7 +130,7 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
      source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/tools/bargs.sh "$@"
      ```
 
-1) That's it! You can now reference to arguments that were declared in `bargs_vars`
+1. That's it! You can now reference to arguments that were declared in `bargs_vars`
 
 ### Usage
 
