@@ -9,4 +9,4 @@ echo -e \
 "Favorite food:~$favorite_food\n"\
 "Secret:~$secret\n"\
 "OS Language:~$language\n"\
-"Uppercased var names:~$PERSON_NAME, $AGE years old, lives in a $LOCATION" | column -t -s "~"
+"Uppercased var names:~$PERSON_NAME, $AGE years old, from $LOCATION" | column -t -s "~"
