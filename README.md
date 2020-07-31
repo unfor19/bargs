@@ -158,7 +158,9 @@ Results after running <a href="https://github.com/unfor19/bargs/blob/master/test
 
 </summary>
 
-```testresults_output
+<!-- replacer_start -->
+
+```
 -------------------------------------------------------
 [LOG] Help Menu - Should pass
 [LOG] Executing: source example.sh -h
@@ -297,8 +299,46 @@ Usage: bash example.sh -n Willy --gender male -a 99
 
 [ERROR] Make sure bargs_vars is in the same folder as bargs.sh
 
-[LOG] Test failed as expected```
+[LOG] Test failed as expected
+```
 
+<!-- replacer_stop -->
+
+</details>
+
+## Package your application
+
+### Docker
+
+You can use [Docker](https://www.docker.com/why-docker) to package your Bash script as a Docker image, see the following example
+
+1. Clone this repository
+
+1. Build the image, see [Dockerfile.example](./Dockerfile.example), tag it `bargs:example`
+
+   ```bash
+   $ docker build -f Dockerfile.example -t bargs:example .
+   ```
+
+1. Run a container that is based on the image above :point_up:
+   ```bash
+   $ docker run --rm -it bargs:example -a 23 -g male
+   ```
+
+## Contributing
+
+Report issues/questions/feature requests on the [Issues](https://github.com/unfor19/bargs/issues) section.
+
+Pull requests are welcome! These are the steps:
+
+1. Fork this repo
+1. Create your feature branch from master (`git checkout -b my-new-feature`)
+1. Add the code of your new feature
+1. Run tests on your code, feel free to add more tests
+   ```bash
+   $ bash tests.sh
+   ... # All good? Move on to the next step
+   ```
 1. Commit your remarkable changes (`git commit -am 'Added new feature'`)
 1. Push to the branch (`git push --set-up-stream origin my-new-feature`)
 1. Create a new Pull Request and provide details about your changes

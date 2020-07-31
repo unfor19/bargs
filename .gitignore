@@ -3,3 +3,4 @@
 !.*ignore*
 dist/
 *.wiki
+*.bak
