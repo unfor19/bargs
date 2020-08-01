@@ -66,58 +66,62 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
 1. Declare arguments/variables
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
-   - Values which are not supported: `=`, `~`
+   - Characters which are not supported: `=`, `~`, `$`, `\`
    - If the `default` is empty or not defined, the argument is required
    - If the `default` contains whitespaces, then use double quotes - `default="Willy Wonka"`
    - You can't add comments to this file, use the description
    - Use the bargs description to set the `--help` (usage) message
    - The `options` values must separated with a whitespace
 
-     ```
-     ---
-     name=person_name
-     short=n
-     description=What is your name?
-     default="Willy Wonka"
-     ---
-     name=age
-     short=a
-     description=How old are you?
-     ---
-     name=gender
-     short=g
-     description=male or female?
-     options=male female
-     ---
-     name=location
-     short=l
-     description=Where do you live?
-     default="chocolate factory"
-     ---
-     name=favorite_food
-     short=f
-     default=chocolate
-     options=chocolate pizza
-     description=chocolate or pizza?
-     ---
-     name=secret
-     short=s
-     default=!@#$%^&*'"?\/.,[]{}+-|
-     description=special characters
-     ---
-     name=language
-     short=lang
-     default=$LANG
-     description=default value can be a variable
-     ---
-     name=bargs
-     description=bash example.sh -n Willy --gender male -a 99
-     default=irrelevant
-     ---
-     ---
-     ```
+<!-- replacer_start_bargsvars -->
 
-1. Make sure that `bargs.sh` and `bargs_vars` are in the same folder
+```
+---
+name=person_name
+short=n
+description=What is your name?
+default="Willy Wonka"
+---
+name=age
+short=a
+description=How old are you?
+---
+name=gender
+short=g
+description=male or female?
+options=male female
+---
+name=location
+short=l
+description=Where do you live?
+default="chocolate factory"
+---
+name=favorite_food
+short=f
+default=chocolate
+options=chocolate pizza
+description=chocolate or pizza?
+---
+name=secret
+short=s
+default=!@#%^&*?/.,[]{}+-|
+description=special characters
+---
+name=language
+short=lang
+default=
+description=default value can be a variable
+---
+name=bargs
+description=bash example.sh -n Willy --gender male -a 99
+default=irrelevant
+---
+---
+```
+
+<!-- replacer_end_bargsvars -->
+
+4. Make sure that `bargs.sh` and `bargs_vars` are in the same folder
 
 1. Add **one** of the following lines at the beginning of your application (see Usage below)
 
@@ -164,69 +168,69 @@ Results after running <a href="https://github.com/unfor19/bargs/blob/master/test
 -------------------------------------------------------
 [LOG] Help Menu - Should pass
 [LOG] Executing: source example.sh -h
-[LOG] Output: 
+[LOG] Output:
 
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n     [Willy Wonka]           What is your name?
-	--age            |  -a     [Required]              How old are you?
-	--gender         |  -g     [Required]              male or female?
-	--location       |  -l     [chocolate factory]     Where do you live?
-	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
-	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [C.UTF-8]               default value can be a variable
+	--person_name    |  -n     [Willy Wonka]         What is your name?
+	--age            |  -a     [Required]            How old are you?
+	--gender         |  -g     [Required]            male or female?
+	--location       |  -l     [chocolate factory]   Where do you live?
+	--favorite_food  |  -f     [chocolate]           chocolate or pizza?
+	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
+	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Default Values - Should pass
 [LOG] Executing: source example.sh -a 99 --gender male
-[LOG] Output: 
+[LOG] Output:
 
 Name:                  Willy Wonka
 Age:                   99
 Gender:                male
 Location:              chocolate factory
 Favorite food:         chocolate
-Secret:                !@#0^&*?/.,[]{}+-|
-OS Language:           C.UTF-8
+Secret:                !@#%^&*?/.,[]{}+-|
+OS Language:           en_US.UTF-8
 Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] New Values - Should pass
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir
-[LOG] Output: 
+[LOG] Output:
 
 Name:                  meir
 Age:                   23
 Gender:                male
 Location:              neverland
 Favorite food:         chocolate
-Secret:                !@#0^&*?/.,[]{}+-|
-OS Language:           C.UTF-8
+Secret:                !@#%^&*?/.,[]{}+-|
+OS Language:           en_US.UTF-8
 Uppercased var names:  meir, 23 years old, from neverland
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Valid Options - Should pass
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza
-[LOG] Output: 
+[LOG] Output:
 
 Name:                  meir
 Age:                   23
 Gender:                male
 Location:              neverland
 Favorite food:         pizza
-Secret:                !@#0^&*?/.,[]{}+-|
-OS Language:           C.UTF-8
+Secret:                !@#%^&*?/.,[]{}+-|
+OS Language:           en_US.UTF-8
 Uppercased var names:  meir, 23 years old, from neverland
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Special Characters - Should pass
 [LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6KHaAQltJWipe1oVRy
-[LOG] Output: 
+[LOG] Output:
 
 Name:                  Willy Wonka
 Age:                   99
@@ -234,68 +238,68 @@ Gender:                male
 Location:              chocolate factory
 Favorite food:         chocolate
 Secret:                MxTZf+6KHaAQltJWipe1oVRy
-OS Language:           C.UTF-8
+OS Language:           en_US.UTF-8
 Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Empty Argument - Should fail
 [LOG] Executing: source example.sh -a 99 --gender
-[LOG] Output: 
+[LOG] Output:
 
 [ERROR] Empty argument: gender
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n     [Willy Wonka]           What is your name?
-	--age            |  -a     [Required]              How old are you?
-	--gender         |  -g     [Required]              male or female?
-	--location       |  -l     [chocolate factory]     Where do you live?
-	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
-	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [C.UTF-8]               default value can be a variable
+	--person_name    |  -n     [Willy Wonka]         What is your name?
+	--age            |  -a     [Required]            How old are you?
+	--gender         |  -g     [Required]            male or female?
+	--location       |  -l     [chocolate factory]   Where do you live?
+	--favorite_food  |  -f     [chocolate]           chocolate or pizza?
+	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
+	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
 [LOG] Unknown Argument - Should fail
 [LOG] Executing: source example.sh -a 99 -u meir
-[LOG] Output: 
+[LOG] Output:
 
 [ERROR] Unknown argument: -u
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n     [Willy Wonka]           What is your name?
-	--age            |  -a     [Required]              How old are you?
-	--gender         |  -g     [Required]              male or female?
-	--location       |  -l     [chocolate factory]     Where do you live?
-	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
-	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [C.UTF-8]               default value can be a variable
+	--person_name    |  -n     [Willy Wonka]         What is your name?
+	--age            |  -a     [Required]            How old are you?
+	--gender         |  -g     [Required]            male or female?
+	--location       |  -l     [chocolate factory]   Where do you live?
+	--favorite_food  |  -f     [chocolate]           chocolate or pizza?
+	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
+	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
 [LOG] Invalid Options - Should fail
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f notgood
-[LOG] Output: 
+[LOG] Output:
 
 [ERROR] Invalid value for argument: favorite_food
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
-	--person_name    |  -n     [Willy Wonka]           What is your name?
-	--age            |  -a     [Required]              How old are you?
-	--gender         |  -g     [Required]              male or female?
-	--location       |  -l     [chocolate factory]     Where do you live?
-	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
-	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [C.UTF-8]               default value can be a variable
+	--person_name    |  -n     [Willy Wonka]         What is your name?
+	--age            |  -a     [Required]            How old are you?
+	--gender         |  -g     [Required]            male or female?
+	--location       |  -l     [chocolate factory]   Where do you live?
+	--favorite_food  |  -f     [chocolate]           chocolate or pizza?
+	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
+	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
 [LOG] Missing bargs_vars - Should fail
 [LOG] Executing: source example.sh -h
-[LOG] Output: 
+[LOG] Output:
 
 [ERROR] Make sure bargs_vars is in the same folder as bargs.sh
 
