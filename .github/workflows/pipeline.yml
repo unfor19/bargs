@@ -21,7 +21,63 @@ jobs:
         run: |
           bash "${COMMITPUSH_FILE_PATH}"
 
+  test-ubuntu:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print bash version
+        run: |
+          bash --version
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y bsdmainutils
+      - name: Test with bash script
+        run: |
+          bash tests.sh
+
+  test-macos:
+    runs-on: macos-latest
+
+    steps:
+      - name: Print bash version
+        run: |
+          bash --version
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          brew install bash util-linux
+      - name: Test with bash script
+        run: |
+          bash tests.sh
+
+  test-wsl:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        shell: powershell
+        run: |
+          $url = "https://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.1-win64.zip"
+          $output = ".\dos2unix.zip"
+          (New-Object System.Net.WebClient).DownloadFile($url, $output)
+          Expand-Archive .\dos2unix.zip .\dos2unix
+          .\dos2unix\bin\dos2unix.exe bargs.sh bargs_vars example.sh tests.sh
+
+          $url = "https://aka.ms/wsl-ubuntu-1804"
+          $output = ".\Ubuntu.zip"
+          (New-Object System.Net.WebClient).DownloadFile($url, $output)
+          Expand-Archive .\Ubuntu.zip .\Ubuntu
+          Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+          .\Ubuntu\ubuntu1804.exe install --root
+
+      - name: Test with bash script
+        shell: powershell
+        run: |
+          wsl -u root -d Ubuntu-18.04 -- source ./tests.sh
+
   pipeline:
+    needs: [test-ubuntu, test-macos, test-wsl]
     runs-on: ubuntu-latest
 
     steps:
