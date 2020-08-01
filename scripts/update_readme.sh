@@ -13,7 +13,7 @@ update_readme(){
 
 usage_file_path=.testresults.log
 test_results=$(source tests.sh)
-echo -e "\`\`\`\n${test_results}\n\`\`\`" > "${usage_file_path}"
+echo -e "\`\`\`\n${test_results}\`\`\`" > "${usage_file_path}"
 update_readme "<!-- replacer_start_usage -->" "<!-- replacer_end_usage -->" "${usage_file_path}" "README.md"
 
 bargsvars_file_path=bargs_vars
