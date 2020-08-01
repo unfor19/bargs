@@ -1,18 +1,22 @@
 #!/bin/bash
-SRC_FILE_PATH=.testresults.log
-DST_FILE_PATH=README.md
 DOCKER_FOLDER=/app
-DOCKER_SRC_PATH="${DOCKER_FOLDER}"/"${SRC_FILE_PATH}"
-DOCKER_DST_PATH="${DOCKER_FOLDER}"/"${DST_FILE_PATH}"
 DOCKER_TAG=unfor19/replacer
 
-REPLACER_START_VALUE="<!-- replacer_start_usage -->"
-REPLACER_END_VALUE="<!-- replacer_end_usage -->"
+update_readme(){
+    local replacer_start_value=$1
+    local replacer_end_value=$2
+    local src_file_path=$3
+    local dst_file_path=$4
+    docker run --rm -v "${PWD}"/:${DOCKER_FOLDER} \
+        "${DOCKER_TAG}" -sf "${DOCKER_FOLDER}/${src_file_path}" -df "${DOCKER_FOLDER}/${dst_file_path}" -sv "${replacer_start_value}" -ev "${replacer_end_value}"
+}
 
+usage_file_path=.testresults.log
 test_results=$(source tests.sh)
+echo -e "\`\`\`\n${test_results}\n\`\`\`" > "${usage_file_path}"
+update_readme "<!-- replacer_start_usage -->" "<!-- replacer_end_usage -->" "${usage_file_path}" "README.md"
 
-echo -e "\`\`\`\n${test_results}\n\`\`\`" > "${SRC_FILE_PATH}"
-
-docker run --rm -v "${PWD}"/:${DOCKER_FOLDER} \
-    "${DOCKER_TAG}" -sf "${DOCKER_SRC_PATH}" -df "${DOCKER_DST_PATH}" -sv "${REPLACER_START_VALUE}" -ev "${REPLACER_END_VALUE}"
-
+bargsvars_file_path=bargs_vars
+bargsvars=$(cat ${bargsvars_file_path})
+echo -e "\`\`\`\n${bargsvars}\n\`\`\`" > ".${bargsvars_file_path}"
+update_readme "<!-- replacer_start_bargsvars -->" "<!-- replacer_end_bargsvars -->" ".${bargsvars_file_path}" "README.md"
