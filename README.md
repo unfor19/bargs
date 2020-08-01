@@ -158,7 +158,7 @@ Results after running <a href="https://github.com/unfor19/bargs/blob/master/test
 
 </summary>
 
-<!-- replacer_start -->
+<!-- replacer_start_usage -->
 
 ```
 -------------------------------------------------------
@@ -302,7 +302,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 [LOG] Test failed as expected
 ```
 
-<!-- replacer_stop -->
+<!-- replacer_end_usage -->
 
 </details>
 
