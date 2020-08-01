@@ -174,7 +174,7 @@ Results after running <a href="https://github.com/unfor19/bargs/blob/master/test
 -------------------------------------------------------
 [LOG] Help Menu - Should pass
 [LOG] Executing: source example.sh -h
-[LOG] Output:
+[LOG] Output: 
 
 
 Usage: bash example.sh -n Willy --gender male -a 99
@@ -191,7 +191,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 -------------------------------------------------------
 [LOG] Default Values - Should pass
 [LOG] Executing: source example.sh -a 99 --gender male
-[LOG] Output:
+[LOG] Output: 
 
 Name:                  Willy Wonka
 Age:                   99
@@ -206,7 +206,7 @@ Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 -------------------------------------------------------
 [LOG] New Values - Should pass
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir
-[LOG] Output:
+[LOG] Output: 
 
 Name:                  meir
 Age:                   23
@@ -221,7 +221,7 @@ Uppercased var names:  meir, 23 years old, from neverland
 -------------------------------------------------------
 [LOG] Valid Options - Should pass
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza
-[LOG] Output:
+[LOG] Output: 
 
 Name:                  meir
 Age:                   23
@@ -236,7 +236,7 @@ Uppercased var names:  meir, 23 years old, from neverland
 -------------------------------------------------------
 [LOG] Special Characters - Should pass
 [LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6KHaAQltJWipe1oVRy
-[LOG] Output:
+[LOG] Output: 
 
 Name:                  Willy Wonka
 Age:                   99
@@ -251,7 +251,7 @@ Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 -------------------------------------------------------
 [LOG] Empty Argument - Should fail
 [LOG] Executing: source example.sh -a 99 --gender
-[LOG] Output:
+[LOG] Output: 
 
 [ERROR] Empty argument: gender
 
@@ -269,7 +269,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 -------------------------------------------------------
 [LOG] Unknown Argument - Should fail
 [LOG] Executing: source example.sh -a 99 -u meir
-[LOG] Output:
+[LOG] Output: 
 
 [ERROR] Unknown argument: -u
 
@@ -287,7 +287,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 -------------------------------------------------------
 [LOG] Invalid Options - Should fail
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f notgood
-[LOG] Output:
+[LOG] Output: 
 
 [ERROR] Invalid value for argument: favorite_food
 
@@ -305,7 +305,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 -------------------------------------------------------
 [LOG] Missing bargs_vars - Should fail
 [LOG] Executing: source example.sh -h
-[LOG] Output:
+[LOG] Output: 
 
 [ERROR] Make sure bargs_vars is in the same folder as bargs.sh
 
