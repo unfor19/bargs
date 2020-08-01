@@ -17,9 +17,9 @@ COMMIT="COMMIT=${GITHUB_SHA}"
 echo -e "${COMMIT}\n${SHORT_COMMIT}" > "${DIST_DIR}/version"
 
 # Release
-if [[ -n "$GITHUB_REF" ]]; then
-    version=$(echo "${GITHUB_REF}" | sed "s|refs\/tags\/v||g")
-    [[ -n "$version" ]] && echo -e "VERSION=${version}" >> "${DIST_DIR}/version"
+version=$(echo "${GITHUB_REF}" | sed "s|refs\/tags\/v||g")
+if [[ -n "$version" ]]; then
+    echo -e "VERSION=${version}" >> "${DIST_DIR}/version"
     mkdir -p "${DIST_DIR}/${version}"
     find "${DIST_DIR}" -maxdepth 1 -type f \
         -exec cp {} "${DIST_DIR}/${version}" \;
