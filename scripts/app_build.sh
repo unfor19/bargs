@@ -17,6 +17,7 @@ COMMIT="COMMIT=${GITHUB_SHA}"
 echo -e "${COMMIT}\n${SHORT_COMMIT}" > "${DIST_DIR}/version"
 
 # Release
+GITHUB_REF=$(echo "${GITHUB_REF}" | grep 'refs\/tags\/v')
 version=$(echo "${GITHUB_REF}" | sed "s|refs\/tags\/v||g")
 if [[ -n "$version" ]]; then
     echo -e "VERSION=${version}" >> "${DIST_DIR}/version"
