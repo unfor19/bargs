@@ -175,7 +175,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--location       |  -l     [chocolate factory]     Where do you live?
 	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
 	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
+	--language       |  -lang  [C.UTF-8]               default value can be a variable
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -189,7 +189,7 @@ Gender:                male
 Location:              chocolate factory
 Favorite food:         chocolate
 Secret:                !@#0^&*?/.,[]{}+-|
-OS Language:           en_US.UTF-8
+OS Language:           C.UTF-8
 Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 
 [LOG] Test passed as expected
@@ -204,7 +204,7 @@ Gender:                male
 Location:              neverland
 Favorite food:         chocolate
 Secret:                !@#0^&*?/.,[]{}+-|
-OS Language:           en_US.UTF-8
+OS Language:           C.UTF-8
 Uppercased var names:  meir, 23 years old, from neverland
 
 [LOG] Test passed as expected
@@ -219,7 +219,7 @@ Gender:                male
 Location:              neverland
 Favorite food:         pizza
 Secret:                !@#0^&*?/.,[]{}+-|
-OS Language:           en_US.UTF-8
+OS Language:           C.UTF-8
 Uppercased var names:  meir, 23 years old, from neverland
 
 [LOG] Test passed as expected
@@ -234,7 +234,7 @@ Gender:                male
 Location:              chocolate factory
 Favorite food:         chocolate
 Secret:                MxTZf+6KHaAQltJWipe1oVRy
-OS Language:           en_US.UTF-8
+OS Language:           C.UTF-8
 Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 
 [LOG] Test passed as expected
@@ -253,7 +253,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--location       |  -l     [chocolate factory]     Where do you live?
 	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
 	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
+	--language       |  -lang  [C.UTF-8]               default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -271,7 +271,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--location       |  -l     [chocolate factory]     Where do you live?
 	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
 	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
+	--language       |  -lang  [C.UTF-8]               default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -289,7 +289,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--location       |  -l     [chocolate factory]     Where do you live?
 	--favorite_food  |  -f     [chocolate]             chocolate or pizza?
 	--secret         |  -s     [!@#0^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [en_US.UTF-8]           default value can be a variable
+	--language       |  -lang  [C.UTF-8]               default value can be a variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
