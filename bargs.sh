@@ -169,7 +169,16 @@ while [ $i -lt $num_of_dicts ]; do
             while true; do
                 echo -n "${d[name]^^}: "
                 read -re${hidden} prompt_value
-                [[ -n ${d[hidden]} ]] && echo ""
+                [[ -n $hidden ]] && echo ""
+                if [[ -n ${d[confirmation]} ]]; then
+                    while true; do
+                        confirm_value=
+                        echo -n "${d[name]^^} Confirmation: "
+                        read -re${hidden} confirm_value
+                        [[ -n $hidden ]] && echo ""
+                        [[ "$prompt_value" == "$confirm_value" ]] && break
+                    done
+                fi
                 valid=$(check_options "${d[options]}" "${d[name]}" "$prompt_value" "${d[allow_empty]}")
                 if [[ $valid == true ]]; then
                     [[ -n ${d[hidden]} ]] && echo ""
