@@ -93,11 +93,14 @@ default="Willy Wonka"
 name=age
 short=a
 description=How old are you?
+prompt=true
+confirmation=true
 ---
 name=gender
 short=g
 description=male or female?
 options=male female
+prompt=true
 ---
 name=location
 short=l
@@ -106,7 +109,7 @@ default="chocolate factory"
 ---
 name=favorite_food
 short=f
-default=chocolate
+allow_empty=true
 options=chocolate pizza
 description=chocolate or pizza?
 ---
@@ -117,8 +120,15 @@ description=special characters
 ---
 name=language
 short=lang
-default=
+default=$LANG
 description=default value can be a variable
+---
+name=password
+short=p
+prompt=true
+hidden=true
+confirmation=true
+description=What's your password?
 ---
 name=bargs
 description=bash example.sh -n Willy --gender male -a 99
@@ -183,47 +193,50 @@ Results after running <a href="https://github.com/unfor19/bargs/blob/master/test
 Usage: bash example.sh -n Willy --gender male -a 99
 
 	--person_name    |  -n     [Willy Wonka]         What is your name?
-	--age            |  -a     [Required]            How old are you?
-	--gender         |  -g     [Required]            male or female?
+	--age            |  -a     [REQUIRED]            How old are you?
+	--gender         |  -g     [REQUIRED]            male or female?
 	--location       |  -l     [chocolate factory]   Where do you live?
-	--favorite_food  |  -f     [chocolate]           chocolate or pizza?
+	--favorite_food  |  -f     []                    chocolate or pizza?
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [C.UTF-8]             default value can be a variable
+	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
+	--password       |  -p     [REQUIRED]            Whats your password?
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Default Values - Should pass
-[LOG] Executing: source example.sh -a 99 --gender male
+[LOG] Executing: source example.sh -a 99 --gender male -p mypassword
 [LOG] Output:
 
 Name:                  Willy Wonka
 Age:                   99
 Gender:                male
 Location:              chocolate factory
-Favorite food:         chocolate
+Favorite food:
 Secret:                !@#%^&*?/.,[]{}+-|
-OS Language:           C.UTF-8
+Password:              mypassword
+OS Language:           en_US.UTF-8
 Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] New Values - Should pass
-[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir
+[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -p mypassword
 [LOG] Output:
 
 Name:                  meir
 Age:                   23
 Gender:                male
 Location:              neverland
-Favorite food:         chocolate
+Favorite food:
 Secret:                !@#%^&*?/.,[]{}+-|
-OS Language:           C.UTF-8
+Password:              mypassword
+OS Language:           en_US.UTF-8
 Uppercased var names:  meir, 23 years old, from neverland
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Valid Options - Should pass
-[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza
+[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza -p mypassword
 [LOG] Output:
 
 Name:                  meir
@@ -232,77 +245,84 @@ Gender:                male
 Location:              neverland
 Favorite food:         pizza
 Secret:                !@#%^&*?/.,[]{}+-|
-OS Language:           C.UTF-8
+Password:              mypassword
+OS Language:           en_US.UTF-8
 Uppercased var names:  meir, 23 years old, from neverland
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Special Characters - Should pass
-[LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6KHaAQltJWipe1oVRy
+[LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6K\HaAQlt\JWipe1oVRy -p mypassword
 [LOG] Output:
 
 Name:                  Willy Wonka
 Age:                   99
 Gender:                male
 Location:              chocolate factory
-Favorite food:         chocolate
-Secret:                MxTZf+6KHaAQltJWipe1oVRy
-OS Language:           C.UTF-8
+Favorite food:
+Secret:                MxTZf+6K\HaAQlt\JWipe1oVRy
+Password:              mypassword
+OS Language:           en_US.UTF-8
 Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Empty Argument - Should fail
-[LOG] Executing: source example.sh -a 99 --gender
+[LOG] Executing: source example.sh -a 99 --gender -p mypassword
 [LOG] Output:
 
-[ERROR] Empty argument: gender
+[HINT] Valid options: male female
+[ERROR] Invalid value "-p" for the argument "gender"
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
 	--person_name    |  -n     [Willy Wonka]         What is your name?
-	--age            |  -a     [Required]            How old are you?
-	--gender         |  -g     [Required]            male or female?
+	--age            |  -a     [REQUIRED]            How old are you?
+	--gender         |  -g     [REQUIRED]            male or female?
 	--location       |  -l     [chocolate factory]   Where do you live?
-	--favorite_food  |  -f     [chocolate]           chocolate or pizza?
+	--favorite_food  |  -f     []                    chocolate or pizza?
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [C.UTF-8]             default value can be a variable
+	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
+	--password       |  -p     [REQUIRED]            Whats your password?
 
 [LOG] Test failed as expected
 -------------------------------------------------------
 [LOG] Unknown Argument - Should fail
-[LOG] Executing: source example.sh -a 99 -u meir
+[LOG] Executing: source example.sh -a 99 -u meir -p mypassword
 [LOG] Output:
 
-[ERROR] Unknown argument: -u
+[ERROR] Unknown argument "-u"
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
 	--person_name    |  -n     [Willy Wonka]         What is your name?
-	--age            |  -a     [Required]            How old are you?
-	--gender         |  -g     [Required]            male or female?
+	--age            |  -a     [REQUIRED]            How old are you?
+	--gender         |  -g     [REQUIRED]            male or female?
 	--location       |  -l     [chocolate factory]   Where do you live?
-	--favorite_food  |  -f     [chocolate]           chocolate or pizza?
+	--favorite_food  |  -f     []                    chocolate or pizza?
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [C.UTF-8]             default value can be a variable
+	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
+	--password       |  -p     [REQUIRED]            Whats your password?
 
 [LOG] Test failed as expected
 -------------------------------------------------------
 [LOG] Invalid Options - Should fail
-[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f notgood
+[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f notgood -p mypassword
 [LOG] Output:
 
-[ERROR] Invalid value for argument: favorite_food
+[HINT] Valid options: chocolate pizza
+[ERROR] Invalid value "notgood" for the argument "favorite_food"
 
 Usage: bash example.sh -n Willy --gender male -a 99
 
 	--person_name    |  -n     [Willy Wonka]         What is your name?
-	--age            |  -a     [Required]            How old are you?
-	--gender         |  -g     [Required]            male or female?
+	--age            |  -a     [REQUIRED]            How old are you?
+	--gender         |  -g     [REQUIRED]            male or female?
 	--location       |  -l     [chocolate factory]   Where do you live?
-	--favorite_food  |  -f     [chocolate]           chocolate or pizza?
+	--favorite_food  |  -f     []                    chocolate or pizza?
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
-	--language       |  -lang  [C.UTF-8]             default value can be a variable
+	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
+	--password       |  -p     [REQUIRED]            Whats your password?
 
 [LOG] Test failed as expected
 -------------------------------------------------------
