@@ -7,6 +7,7 @@ default="Willy Wonka"
 name=age
 short=a
 description=How old are you?
+prompt=true
 ---
 name=gender
 short=g
