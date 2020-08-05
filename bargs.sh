@@ -125,7 +125,7 @@ while [ "$1" != "" ]; do
                 shift
                 if [[ -z "$1" && -z "${d[default]}" ]]; then
                     # arg is empty and default is empty
-                    error_msg "Empty argument: ${d[name]}"
+                    error_msg "Empty argument \"${d[name]}\""
                 elif [[ -z "$1" && -n "${d[default]}" ]]; then
                     # arg is empty and default is not empty
                     export_env_var "${d[name]}" "${d[default]}"
@@ -140,7 +140,7 @@ while [ "$1" != "" ]; do
         i=$((i+1))
     done
     if [[ -z $found ]]; then
-        error_msg "Unknown argument: $1"
+        error_msg "Unknown argument \"$1\""
     fi
     shift
 done
@@ -159,10 +159,10 @@ while [ $i -lt $num_of_dicts ]; do
         elif [[ -n $default ]]; then
             export_env_var "${d[name]}" "${default}"
         elif [[ -n ${d[prompt]} ]]; then
+            # will not prompt if default is not empty
             prompt_value=
-            default_msg=": "
             while true; do
-                echo -n "${d[name]^^}${default_msg}"
+                echo -n "${d[name]^^}: "
                 read -re prompt_value
                 valid=$(check_options "${d[options]}" "${d[name]}" "$prompt_value")
                 [[ $valid == true ]] && break
@@ -174,7 +174,10 @@ while [ $i -lt $num_of_dicts ]; do
         fi
     elif [[ -n $result ]]; then
         valid=$(check_options "${d[options]}" "${d[name]}" "$result")
-        [[ $valid != true ]] && "Invalid value ${result} for argument: ${d[name]}"
+        if [[ $valid != true ]]; then
+            hint_msg "Valid options: ${d[options]}" 
+            error_msg "Invalid value \"${result}\" for the argument \"${d[name]}\""
+        fi
         : # argument is valid
     fi
     i=$((i+1))
