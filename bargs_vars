@@ -36,6 +36,12 @@ short=lang
 default=$LANG
 description=default value can be a variable
 ---
+name=password
+short=p
+prompt=true
+hidden=true
+description=What's your password?
+---
 name=bargs
 description=bash example.sh -n Willy --gender male -a 99
 default=irrelevant
