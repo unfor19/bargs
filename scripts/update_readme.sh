@@ -1,13 +1,13 @@
 #!/bin/bash
-DOCKER_FOLDER=/app
-DOCKER_TAG=unfor19/replacer
 
 update_readme(){
     local replacer_start_value=$1
     local replacer_end_value=$2
     local src_file_path=$3
     local dst_file_path=$4
-    docker run --rm -v "${PWD}"/:${DOCKER_FOLDER} \
+    local DOCKER_FOLDER=/app
+    local DOCKER_TAG=unfor19/replacer    
+    docker run --rm -v "${PWD}/:${DOCKER_FOLDER}" \
         "${DOCKER_TAG}" -sf "${DOCKER_FOLDER}/${src_file_path}" -df "${DOCKER_FOLDER}/${dst_file_path}" -sv "${replacer_start_value}" -ev "${replacer_end_value}"
 }
 
