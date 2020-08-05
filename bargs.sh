@@ -10,6 +10,13 @@ error_msg(){
     exit 1
 }
 
+export_env_var(){
+    local var_name=$1
+    local var_value=$2
+    export "${var_name}"="${var_value}"
+    export "${var_name^^}"="${var_value}"
+}
+
 
 usage (){
     local usage_msg=
@@ -100,8 +107,7 @@ while [ "$1" != "" ]; do
                     error_msg "Empty argument: ${d[name]}"
                 elif [[ -z "$1" && -n "${d[default]}" ]]; then
                     # arg is empty and default is not empty
-                    export "${d[name]}"="${d[default]}"
-                    export "${d[name]^^}"="${d[default]}"
+                    export_env_var "${d[name]}" "${d[default]}"
                     found="${d[name]}"
                 elif [[ -n "$1" ]]; then
                     # arg is not empty, validating value
@@ -112,8 +118,7 @@ while [ "$1" != "" ]; do
                         done
                         [[ $valid != true ]] && error_msg "Invalid value for argument: ${d[name]}"
                     fi
-                    export "${d[name]}"="$1"
-                    export "${d[name]^^}"="$1"
+                    export_env_var "${d[name]}" "$1"
                     found="${d[name]}"
                 fi
             ;;
@@ -134,18 +139,15 @@ while [ $i -lt $num_of_dicts ]; do
     result=$(printenv | grep "${d[name]}" | cut -f2 -d "=")
     default="${d[default]}"
     if [[ -z $result && -n ${d[allow_empty]} ]]; then
-        export "${d[name]}"=
-        export "${d[name]^^}"=
+        export_env_var "${d[name]}" ""
     elif [[ -z $result && -n $default ]]; then
-        export "${d[name]}"="$default"
-        export "${d[name]^^}"="$default"
+        export_env_var "${d[name]}" "${default}"
     elif [[ -z $result && -n ${d[prompt]} ]]; then
         prompt_value=
         default_msg=": "
         echo -n "${d[name]^^}${default_msg}"
         read -re prompt_value
-        export "${d[name]}"="${prompt_value}"
-        export "${d[name]^^}"="${prompt_value}"
+        export_env_var "${d[name]}" "${prompt_value}"
     elif [[ -z $result && -z $default ]]; then
         error_msg "Required argument: ${d[name]}"
     fi
