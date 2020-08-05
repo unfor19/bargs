@@ -13,6 +13,7 @@ name=gender
 short=g
 description=male or female?
 options=male female
+prompt=true
 ---
 name=location
 short=l
