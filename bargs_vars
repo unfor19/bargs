@@ -7,11 +7,13 @@ default="Willy Wonka"
 name=age
 short=a
 description=How old are you?
+prompt=true
 ---
 name=gender
 short=g
 description=male or female?
 options=male female
+prompt=true
 ---
 name=location
 short=l
@@ -33,6 +35,12 @@ name=language
 short=lang
 default=$LANG
 description=default value can be a variable
+---
+name=password
+short=p
+prompt=true
+hidden=true
+description=What's your password?
 ---
 name=bargs
 description=bash example.sh -n Willy --gender male -a 99
