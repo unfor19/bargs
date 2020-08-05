@@ -136,11 +136,18 @@ while [ $i -lt $num_of_dicts ]; do
     if [[ -z $result && -n ${d[allow_empty]} ]]; then
         export "${d[name]}"=
         export "${d[name]^^}"=
+    elif [[ -z $result && -n $default ]]; then
+        export "${d[name]}"="$default"
+        export "${d[name]^^}"="$default"
+    elif [[ -z $result && -n ${d[prompt]} ]]; then
+        prompt_value=
+        default_msg=": "
+        echo -n "${d[name]^^}${default_msg}"
+        read -re prompt_value
+        export "${d[name]}"="${prompt_value}"
+        export "${d[name]^^}"="${prompt_value}"
     elif [[ -z $result && -z $default ]]; then
         error_msg "Required argument: ${d[name]}"
-    elif [[ -z $result && -n $default ]]; then
-        export "${d[name]}"="${d[default]}"
-        export "${d[name]^^}"="${d[default]}"
     fi
     i=$((i+1))
 done
