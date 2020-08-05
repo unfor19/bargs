@@ -7,20 +7,6 @@ on:
       - "README.md"
 
 jobs:
-  update-readme:
-    runs-on: ubuntu-latest
-    env:
-      UPDATE_FILE_PATH: "scripts/update_readme.sh"
-      COMMITPUSH_FILE_PATH: "scripts/commit_push.sh"
-    steps:
-      - uses: actions/checkout@v2
-      - name: Update README.md file
-        run: |
-          bash "${UPDATE_FILE_PATH}"
-      - name: Commit and push new README.md file
-        run: |
-          bash "${COMMITPUSH_FILE_PATH}"
-
   test-ubuntu:
     runs-on: ubuntu-latest
 
