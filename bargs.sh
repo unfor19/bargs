@@ -129,7 +129,10 @@ while [ $i -lt $num_of_dicts ]; do
     eval "d=(${dict[$i]})"
     result=$(printenv | grep "${d[name]}" | cut -f2 -d "=")
     default="${d[default]}"
-    if [[ -z $result && -z $default ]]; then
+    if [[ -z $result && -n ${d[allow_empty]} ]]; then
+        export "${d[name]}"=
+        export "${d[name]^^}"=
+    elif [[ -z $result && -z $default ]]; then
         error_msg "Required argument: ${d[name]}"
     elif [[ -z $result && -n $default ]]; then
         export "${d[name]}"="${d[default]}"
