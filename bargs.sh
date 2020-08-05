@@ -19,13 +19,17 @@ usage (){
         if [[ "${d[name]}" == "bargs" ]]; then
             echo -e "\nUsage: ${d[description]}\n"
         elif [[ -n "${d[name]}" ]]; then
-            usage_msg="$usage_msg\n\t--${d[name]}~|~-${d[short]}"
-            [[ -n "${d[default]}" ]] && \
-                usage_msg="$usage_msg~[${d[default]}]" \
-                || usage_msg="$usage_msg~[Required]"
-            [[ -n "${d[description]}" ]] && \
-                usage_msg="$usage_msg~${d[description]}"
-            
+            usage_msg+="\n\t--${d[name]}~|~-${d[short]}"
+            if [[ -n "${d[allow_empty]}" ]]; then
+                usage_msg+="~[]"
+            elif [[ -n "${d[default]}" ]]; then
+                usage_msg+="~[${d[default]}]" 
+            else
+                 usage_msg+="~[REQUIRED]"
+            fi
+            if [[ -n "${d[description]}" ]]; then
+                usage_msg+="~${d[description]}"
+            fi
             usage_msg="$usage_msg\n"
         fi
         i=$((i+1))
