@@ -28,13 +28,13 @@ should(){
 }
 
 should pass "Help Menu" "source example.sh -h"
-should pass "Default Values" "source example.sh -a 99 --gender male"
-should pass "New Values" "source example.sh -a 23 --gender male -l neverland -n meir"
-should pass "Valid Options" "source example.sh -a 23 --gender male -l neverland -n meir -f pizza"
-should pass "Special Characters" "source example.sh -a 99 --gender male -s MxTZf+6K\HaAQlt\JWipe1oVRy"
-should fail "Empty Argument" "source example.sh -a 99 --gender"
-should fail "Unknown Argument"  "source example.sh -a 99 -u meir"
-should fail "Invalid Options" "source example.sh -a 23 --gender male -l neverland -n meir -f notgood"
+should pass "Default Values" "source example.sh -a 99 --gender male -p mypassword"
+should pass "New Values" "source example.sh -a 23 --gender male -l neverland -n meir -p mypassword"
+should pass "Valid Options" "source example.sh -a 23 --gender male -l neverland -n meir -f pizza -p mypassword"
+should pass "Special Characters" "source example.sh -a 99 --gender male -s MxTZf+6K\HaAQlt\JWipe1oVRy -p mypassword"
+should fail "Empty Argument" "source example.sh -a 99 --gender -p mypassword"
+should fail "Unknown Argument"  "source example.sh -a 99 -u meir -p mypassword"
+should fail "Invalid Options" "source example.sh -a 23 --gender male -l neverland -n meir -f notgood -p mypassword"
 
 mv bargs_vars bargs_vars1
 should fail "Missing bargs_vars" "source example.sh -h"

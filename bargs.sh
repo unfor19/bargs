@@ -27,12 +27,15 @@ check_options(){
     local options=$1
     local var_name=$2
     local var_value=$3
+    local allow_empty=$4
     local valid=false
     if [[ -n "$options" ]]; then
         for o in $options; do
             [[ "$o" == "$var_value" ]] && valid=true
         done
-    else
+    elif [[ -z $var_value && -n $allow_empty ]]; then
+        valid=true
+    elif [[ -n $var_value ]]; then
         valid=true
     fi
     echo $valid
@@ -160,20 +163,27 @@ while [ $i -lt $num_of_dicts ]; do
             export_env_var "${d[name]}" "${default}"
         elif [[ -n ${d[prompt]} ]]; then
             # will not prompt if default is not empty
+            hidden=
+            [[ -n ${d[hidden]} ]] && hidden=s
             prompt_value=
             while true; do
                 echo -n "${d[name]^^}: "
-                read -re prompt_value
-                valid=$(check_options "${d[options]}" "${d[name]}" "$prompt_value")
-                [[ $valid == true ]] && break
-                hint_msg "Valid options: ${d[options]}"
+                read -re${hidden} prompt_value
+                [[ -n ${d[hidden]} ]] && echo ""
+                valid=$(check_options "${d[options]}" "${d[name]}" "$prompt_value" "${d[allow_empty]}")
+                if [[ $valid == true ]]; then
+                    [[ -n ${d[hidden]} ]] && echo ""
+                    break
+                else
+                    [[ -n "${d[options]}" ]] && hint_msg "Valid options: ${d[options]}"
+                fi
             done
             export_env_var "${d[name]}" "${prompt_value}"
         elif [[ -z $default ]]; then
             error_msg "Required argument: ${d[name]}"
         fi
     elif [[ -n $result ]]; then
-        valid=$(check_options "${d[options]}" "${d[name]}" "$result")
+        valid=$(check_options "${d[options]}" "${d[name]}" "$result" "${d[allow_empty]}")
         if [[ $valid != true ]]; then
             hint_msg "Valid options: ${d[options]}" 
             error_msg "Invalid value \"${result}\" for the argument \"${d[name]}\""
