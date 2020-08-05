@@ -20,7 +20,7 @@ default="chocolate factory"
 ---
 name=favorite_food
 short=f
-default=chocolate
+allow_empty=true
 options=chocolate pizza
 description=chocolate or pizza?
 ---
