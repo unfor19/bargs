@@ -156,7 +156,7 @@ default=irrelevant
 
 ### Usage
 
-Using the `bargs_args` above in our application - `example.sh`
+Using the `bargs_vars` above in our application - `example.sh`
 
 ```bash
 #!/bin/bash
