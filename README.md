@@ -14,6 +14,22 @@ Tired of doing [this - linuxcommand](http://linuxcommand.org/lc3_wss0120.php) or
   $ docker run --rm -it unfor19/bargs:example --help
   ```
 
+## Features
+
+1. **Help Message** is auto generated, set `bargs > description` to update the usage (`--help`) message
+1. **Description Per Argument** is supported with `description=What is your name?`
+1. **Short and Long Names** are supported with `name=person_name` and `short=n`
+1. **Default Value** for each argument can be set with `default=some-value`
+   - If `default` contains whitespaces, use double quotes - `default="Willy Wonka"`
+   - If `default` starts with a `$`, then it's a variable, so `language=$LANG` is equivalent to `language=en_US.UTF-8`
+1. **Allow Empty Values** with `allow_empty=true`
+1. **Flag Argument** with `flag=true`, if the flag is provided, its value is true - `CI=true`
+1. **Constrain Values** is supported with `options=first second last`, use whitespace as a separator
+1. **Prompt** for arguments with `prompt=true`
+
+   - Hide user input with `hidden=true`
+   - Prompt for confirmation with `confirmation=true`
+
 ## Requirements
 
 - Bash v4.4+
@@ -57,29 +73,21 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
 
 ## Getting Started
 
-1. Download the script (8 kilobytes) and put it in the same folder as your code
+1. Download the `bargs.sh` (8 kilobytes) and the `bargs_vars` template
 
    ```bash
-   curl -s -L bargs.link/bargs.sh --output bargs.sh
+   $ curl -s -L bargs.link/bargs.sh --output bargs.sh
+   $ curl -s -L bargs.link/bargs_vars --output bargs_vars
    ```
 
-1. Create bargs_vars - do one of the following
-   - Create the file `bargs_vars`, put it in the same folder as `bargs.sh`
-   - Download the existing `bargs_vars` template
-     ```bash
-     curl -s -L bargs.link/bargs_vars --output bargs_vars
-     ```
-1. Declare arguments/variables
+   **IMPORTANT**! Make sure `bargs.sh` and `bargs_vars` are in the same folder
+
+2. Edit bargs_vars - Declare arguments/variables, here are some ground rules
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
-   - Characters which are not supported: `=`, `~`, `$`, `\`
-   - If the `default` is empty or not defined, the argument is required
-   - If the `default` contains whitespaces, then use double quotes - `default="Willy Wonka"`
-   - You can't add comments to this file, use the description
-   - Use the bargs description to set the `--help` (usage) message
-   - The `options` values must separated with a whitespace
-   - Prompt with `prompt=true`, hide prompt with `hidden=true`, prompt for confirmation with `confirmation=true`
-   - Allow empty value "" with `allow_empty=true`
+   - Characters which are not supported: `=`, `~`, `\`
+
+<details><summary>bargs_vars - Expand/Collpase</summary>
 
 <!-- replacer_start_bargsvars -->
 
@@ -149,9 +157,9 @@ default=irrelevant
 
 <!-- replacer_end_bargsvars -->
 
-4. Make sure that `bargs.sh` and `bargs_vars` are in the same folder
+</details>
 
-1. Add **one** of the following lines at the beginning of your application (see Usage below)
+3. Add **one** of the following lines at the beginning of your application (see Usage below)
 
    - `bargs.sh` is in the root folder of your project (just like in this repo)
      ```bash
@@ -162,7 +170,7 @@ default=irrelevant
      source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/tools/bargs.sh "$@"
      ```
 
-1. That's it! You can now reference to arguments that were declared in `bargs_vars`
+4. That's it! You can now reference to arguments that were declared in `bargs_vars`
 
 ### Usage
 
