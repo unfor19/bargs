@@ -223,8 +223,8 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 	--password       |  -p     [REQUIRED]            Whats your password?
-	--happy          |  -hp    [REQUIRED]            Flag for indicating that youre happy
-	--ci             |  -ci    [REQUIRED]            Flag for indicating its a CI/CD process
+	--happy          |  -hp    [FLAG]                Flag for indicating that youre happy
+	--ci             |  -ci    [FLAG]                Flag for indicating its a CI/CD process
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -335,8 +335,8 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 	--password       |  -p     [REQUIRED]            Whats your password?
-	--happy          |  -hp    [REQUIRED]            Flag for indicating that youre happy
-	--ci             |  -ci    [REQUIRED]            Flag for indicating its a CI/CD process
+	--happy          |  -hp    [FLAG]                Flag for indicating that youre happy
+	--ci             |  -ci    [FLAG]                Flag for indicating its a CI/CD process
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -356,8 +356,8 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 	--password       |  -p     [REQUIRED]            Whats your password?
-	--happy          |  -hp    [REQUIRED]            Flag for indicating that youre happy
-	--ci             |  -ci    [REQUIRED]            Flag for indicating its a CI/CD process
+	--happy          |  -hp    [FLAG]                Flag for indicating that youre happy
+	--ci             |  -ci    [FLAG]                Flag for indicating its a CI/CD process
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -378,8 +378,8 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 	--password       |  -p     [REQUIRED]            Whats your password?
-	--happy          |  -hp    [REQUIRED]            Flag for indicating that youre happy
-	--ci             |  -ci    [REQUIRED]            Flag for indicating its a CI/CD process
+	--happy          |  -hp    [FLAG]                Flag for indicating that youre happy
+	--ci             |  -ci    [FLAG]                Flag for indicating its a CI/CD process
 
 [LOG] Test failed as expected
 -------------------------------------------------------
