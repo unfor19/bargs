@@ -130,6 +130,16 @@ hidden=true
 confirmation=true
 description=What's your password?
 ---
+name=happy
+short=hp
+flag=true
+description=Flag for indicating that you're happy
+---
+name=ci
+short=ci
+flag=true
+description=Flag for indicating it's a CI/CD process
+---
 name=bargs
 description=bash example.sh -n Willy --gender male -a 99
 default=irrelevant
@@ -171,6 +181,8 @@ echo -e \
 "Secret:~$secret\n"\
 "Password:~$password\n"\
 "OS Language:~$language\n"\
+"I'm happy:~$happy\n"\
+"CI Process:~$CI\n"\
 "Uppercased var names:~$PERSON_NAME, $AGE years old, from $LOCATION" | column -t -s "~"
 ```
 
@@ -200,6 +212,8 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 	--password       |  -p     [REQUIRED]            Whats your password?
+	--happy          |  -hp    [REQUIRED]            Flag for indicating that youre happy
+	--ci             |  -ci    [REQUIRED]            Flag for indicating its a CI/CD process
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -215,6 +229,8 @@ Favorite food:
 Secret:                !@#%^&*?/.,[]{}+-|
 Password:              mypassword
 OS Language:           en_US.UTF-8
+I'm happy:
+CI Process:
 Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 
 [LOG] Test passed as expected
@@ -231,6 +247,8 @@ Favorite food:
 Secret:                !@#%^&*?/.,[]{}+-|
 Password:              mypassword
 OS Language:           en_US.UTF-8
+I'm happy:
+CI Process:
 Uppercased var names:  meir, 23 years old, from neverland
 
 [LOG] Test passed as expected
@@ -247,6 +265,8 @@ Favorite food:         pizza
 Secret:                !@#%^&*?/.,[]{}+-|
 Password:              mypassword
 OS Language:           en_US.UTF-8
+I'm happy:
+CI Process:
 Uppercased var names:  meir, 23 years old, from neverland
 
 [LOG] Test passed as expected
@@ -263,7 +283,27 @@ Favorite food:
 Secret:                MxTZf+6K\HaAQlt\JWipe1oVRy
 Password:              mypassword
 OS Language:           en_US.UTF-8
+I'm happy:
+CI Process:
 Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
+
+[LOG] Test passed as expected
+-------------------------------------------------------
+[LOG] Use Flag - Should pass
+[LOG] Executing: source example.sh -a 23 --gender male --happy -p mypassword -ci
+[LOG] Output:
+
+Name:                  Willy Wonka
+Age:                   23
+Gender:                male
+Location:              chocolate factory
+Favorite food:
+Secret:                !@#%^&*?/.,[]{}+-|
+Password:              mypassword
+OS Language:           en_US.UTF-8
+I'm happy:             true
+CI Process:            true
+Uppercased var names:  Willy Wonka, 23 years old, from chocolate factory
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -284,6 +324,8 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 	--password       |  -p     [REQUIRED]            Whats your password?
+	--happy          |  -hp    [REQUIRED]            Flag for indicating that youre happy
+	--ci             |  -ci    [REQUIRED]            Flag for indicating its a CI/CD process
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -303,6 +345,8 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 	--password       |  -p     [REQUIRED]            Whats your password?
+	--happy          |  -hp    [REQUIRED]            Flag for indicating that youre happy
+	--ci             |  -ci    [REQUIRED]            Flag for indicating its a CI/CD process
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -323,6 +367,8 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--secret         |  -s     [!@#%^&*?/.,[]{}+-|]  special characters
 	--language       |  -lang  [en_US.UTF-8]         default value can be a variable
 	--password       |  -p     [REQUIRED]            Whats your password?
+	--happy          |  -hp    [REQUIRED]            Flag for indicating that youre happy
+	--ci             |  -ci    [REQUIRED]            Flag for indicating its a CI/CD process
 
 [LOG] Test failed as expected
 -------------------------------------------------------
