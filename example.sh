@@ -10,4 +10,6 @@ echo -e \
 "Secret:~$secret\n"\
 "Password:~$password\n"\
 "OS Language:~$language\n"\
+"I'm happy:~$happy\n"\
+"CI Process:~$CI\n"\
 "Uppercased var names:~$PERSON_NAME, $AGE years old, from $LOCATION" | column -t -s "~"

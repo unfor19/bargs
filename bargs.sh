@@ -125,7 +125,10 @@ while [ "$1" != "" ]; do
                 exit 0
             ;;
             -"${d[short]}" | --"${d[name]}" )
-                shift
+                if [[ -z ${d[flag]} ]]; then
+                    shift
+                fi
+
                 if [[ -z "$1" && -z "${d[default]}" ]]; then
                     # arg is empty and default is empty
                     error_msg "Empty argument \"${d[name]}\""
@@ -135,7 +138,13 @@ while [ "$1" != "" ]; do
                     found="${d[name]}"
                 elif [[ -n "$1" ]]; then
                     # arg is not empty
-                    export_env_var "${d[name]}" "$1"
+                    if [[ -n "${d[flag]}" ]]; then
+                    # it's a flag
+                        export_env_var "${d[name]}" true
+                    else
+                    # not a flag, regular argument
+                        export_env_var "${d[name]}" "$1"
+                    fi
                     found="${d[name]}"
                 fi
             ;;
@@ -157,7 +166,7 @@ while [ $i -lt $num_of_dicts ]; do
     result=$(printenv | grep "${d[name]}" | cut -f2 -d "=")
     if [[ -z $result ]]; then
         default="${d[default]}"
-        if [[ -n ${d[allow_empty]} ]]; then
+        if [[ -n ${d[allow_empty]} || -n ${d[flag]} ]]; then
             export_env_var "${d[name]}" ""
         elif [[ -n $default ]]; then
             export_env_var "${d[name]}" "${default}"
