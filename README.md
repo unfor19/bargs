@@ -2,11 +2,15 @@
 
 [![testing](https://github.com/unfor19/bargs/workflows/testing/badge.svg)](https://github.com/unfor19/bargs/actions?query=workflow%3Atesting)
 
-Wrap your bash script with command line arguments. Parsing command line arguments in bash is now an easy task!
+Wrap your bash script with command line arguments.
+
+![bargs-demo](https://github.com/unfor19/bargs/blob/master/assets/bargs_demo.gif)
 
 Tired of doing [this - linuxcommand](http://linuxcommand.org/lc3_wss0120.php) or asking yourself [How do I parse command line arguments in Bash](https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash) easily? Great! Me too! Use this script to wrap your bash scripts with command line arguments, without bashing your head against the wall
 
-## Demo
+Parsing command line arguments in bash has never been easier! Let's go!
+
+## Examples
 
 - Take a look at this repository [ecs-stop-task](https://github.com/unfor19/ecs-stop-task) and [replacer](https://github.com/unfor19/replacer), they both demonstrate how bargs is used in real tools
 - To run a slim application which uses bargs, run the [example.sh](./example.sh) application with [Docker](https://docs.docker.com/engine/install/)
