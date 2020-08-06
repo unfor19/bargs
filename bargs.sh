@@ -50,7 +50,9 @@ usage (){
             echo -e "\nUsage: ${d[description]}\n"
         elif [[ -n "${d[name]}" ]]; then
             usage_msg+="\n\t--${d[name]}~|~-${d[short]}"
-            if [[ -n "${d[allow_empty]}" ]]; then
+            if [[ -n "${d[flag]}" ]]; then
+                usage_msg+="~[FLAG]"
+            elif [[ -n "${d[allow_empty]}" ]]; then
                 usage_msg+="~[]"
             elif [[ -n "${d[default]}" ]]; then
                 usage_msg+="~[${d[default]}]" 
