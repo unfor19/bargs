@@ -20,15 +20,18 @@ Tired of doing [this - linuxcommand](http://linuxcommand.org/lc3_wss0120.php) or
 1. **Description Per Argument** is supported with `description=What is your name?`
 1. **Short and Long Names** are supported with `name=person_name` and `short=n`
 1. **Default Value** for each argument can be set with `default=some-value`
+
    - If `default` contains whitespaces, use double quotes - `default="Willy Wonka"`
-   - If `default` starts with a `$`, then it's a variable, so `language=$LANG` is equivalent to `language=en_US.UTF-8`
+   - If `default` starts with a `$`, then it's a variable<br>
+     `default=$LANG` is evaluted to `default=en_US.UTF-8`
+
 1. **Allow Empty Values** with `allow_empty=true`
 1. **Flag Argument** with `flag=true`, if the flag is provided, its value is true - `CI=true`
 1. **Constrain Values** is supported with `options=first second last`, use whitespace as a separator
 1. **Prompt** for arguments with `prompt=true`
 
    - Hide user input with `hidden=true`
-   - Prompt for confirmation with `confirmation=true`
+   - Prompt for value confirmation with `confirmation=true`
 
 ## Requirements
 
