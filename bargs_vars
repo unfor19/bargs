@@ -44,6 +44,16 @@ hidden=true
 confirmation=true
 description=What's your password?
 ---
+name=happy
+short=hp
+flag=true
+description=Flag for indicating that you're happy
+---
+name=ci
+short=ci
+flag=true
+description=Flag for indicating it's a CI/CD process
+---
 name=bargs
 description=bash example.sh -n Willy --gender male -a 99
 default=irrelevant
