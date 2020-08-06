@@ -57,7 +57,7 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
 
 ## Getting Started
 
-1. Download the script (4 kilobytes) and put it in the same folder as your code
+1. Download the script (8 kilobytes) and put it in the same folder as your code
 
    ```bash
    curl -s -L bargs.link/bargs.sh --output bargs.sh
