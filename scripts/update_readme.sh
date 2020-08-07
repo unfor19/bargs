@@ -11,6 +11,8 @@ update_readme(){
         "${DOCKER_TAG}" -sf "${DOCKER_FOLDER}/${src_file_path}" -df "${DOCKER_FOLDER}/${dst_file_path}" -sv "${replacer_start_value}" -ev "${replacer_end_value}"
 }
 
+export LANG=C.UTF-8
+
 usage_file_path=.testresults.log
 test_results=$(source tests.sh)
 echo -e "\`\`\`\n${test_results}\n\`\`\`" > "${usage_file_path}"
