@@ -287,7 +287,7 @@ Uppercased var names:  meir, 23 years old, from neverland
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Special Characters - Should pass
-[LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6K\HaAQlt\JWipe1oVRy -p mypassword
+[LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6KHaAQltJWipe1oVRy -p mypassword
 [LOG] Output:
 
 Name:                  Willy Wonka
@@ -295,7 +295,7 @@ Age:                   99
 Gender:                male
 Location:              chocolate factory
 Favorite food:
-Secret:                MxTZf+6K\HaAQlt\JWipe1oVRy
+Secret:                MxTZf+6KHaAQltJWipe1oVRy
 Password:              mypassword
 OS Language:           en_US.UTF-8
 I'm happy:
