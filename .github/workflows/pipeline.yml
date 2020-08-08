@@ -15,6 +15,14 @@ jobs:
         run: |
           bash --version
       - uses: actions/checkout@v2
+      - name: Lint with shellcheck
+        uses: reviewdog/action-shellcheck@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          path: "."
+          pattern: "bargs.sh"
+          exclude: "./.git/*"
       - name: Install dependencies
         run: |
           sudo apt-get update -y && sudo apt-get install -y bsdmainutils
@@ -44,7 +52,7 @@ jobs:
       - name: Install dependencies
         shell: powershell
         run: |
-          $url = "https://waterlan.home.xs4all.nl/dos2unix/dos2unix-7.4.1-win64.zip"
+          $url = "http://bargs.link/utils/dos2unix-7.4.1-win64.zip"
           $output = ".\dos2unix.zip"
           (New-Object System.Net.WebClient).DownloadFile($url, $output)
           Expand-Archive .\dos2unix.zip .\dos2unix
