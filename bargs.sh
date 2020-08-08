@@ -1,11 +1,13 @@
 #!/bin/bash
 
+
 ### Global variables
 bargs_vars_path=""
 args=""
 num_of_args=0
 declare -A list_args_dicts
 num_of_dicts=0
+
 
 ### Functions
 error_msg(){
@@ -16,6 +18,7 @@ error_msg(){
     export DEBUG=1
     exit 1
 }
+
 
 hint_msg(){
     local msg=$1
@@ -29,6 +32,7 @@ export_env_var(){
     export "${var_name}=${var_value}"
     export "${var_name^^}=${var_value}"
 }
+
 
 check_options(){
     local options=$1
@@ -47,6 +51,7 @@ check_options(){
     fi
     echo $valid
 }
+
 
 usage (){
     local usage_msg=
@@ -78,12 +83,14 @@ usage (){
     echo -e "$usage_msg" | column -t -s "~"
 }
 
+
 clean_chars(){
     local str=$1
     str=${str//\'/}
     str=${str//\"/}
     echo "$str"
 }
+
 
 check_bargs_vars(){
     bargs_vars_path=$(dirname "${BASH_SOURCE[0]}")/bargs_vars
@@ -243,7 +250,6 @@ function export_args_validation(){
         fi
         i=$((i+1))
     done
-
 }
 
 
