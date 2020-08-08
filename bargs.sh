@@ -70,6 +70,12 @@ usage (){
     echo -e "$usage_msg" | column -t -s "~"
 }
 
+clean_chars(){
+    local str=$1
+    str=${str//\'/}
+    str=${str//\"/}
+    echo "$str"
+}
 
 check_bargs_vars(){
     bargs_vars_path=$(dirname "${BASH_SOURCE[0]}")/bargs_vars
@@ -84,8 +90,7 @@ check_bargs_vars
 delimiter="---"
 while read -r line; do
     if [[ $line != "$delimiter" ]]; then
-        line=${line//\'/}
-        line=${line//\"/}
+        line=$(clean_chars "$line")
         arg_name=$(echo "$line"  | cut -f1 -d "=")
         arg_value=$(echo "$line" | cut -f2 -d "=")
         [[ -z $str ]] && \
