@@ -6,6 +6,7 @@ on:
       - "master"
     paths-ignore:
       - "README.md"
+  pull_request:
 
 jobs:
   test-ubuntu:
@@ -20,7 +21,6 @@ jobs:
         uses: reviewdog/action-shellcheck@v1
         with:
           github_token: ${{ secrets.github_token }}
-          reporter: github-shellcheck-review
           path: "."
           pattern: "bargs.sh"
           exclude: "./.git/*"
