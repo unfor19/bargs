@@ -12,8 +12,8 @@ Parsing command line arguments in Bash has never been easier!
 
 ## Examples
 
-- Take a look at this repository [ecs-stop-task](https://github.com/unfor19/ecs-stop-task) and [replacer](https://github.com/unfor19/replacer), they both demonstrate how bargs is used in real tools
-- To run a slim application which uses bargs, run the [example.sh](./example.sh) application with [Docker](https://docs.docker.com/engine/install/)
+- Take a look at [replacer](https://github.com/unfor19/replacer) and [ecs-stop-task](https://github.com/unfor19/ecs-stop-task), both repositories demonstrate how bargs is used in "real-life situations"
+- To run a slim application which uses bargs, run the [example.sh](https://github.com/unfor19/bargs/blob/master/example.sh) application with [Docker](https://docs.docker.com/engine/install/)
   ```bash
   $ docker run --rm -it unfor19/bargs:example --help
   ```
@@ -80,16 +80,15 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
 
 ## Getting Started
 
-1. Download the `bargs.sh` (8 kilobytes) and the `bargs_vars` template
+1. Download `bargs.sh` (8 kilobytes) and the `bargs_vars` template
 
    ```bash
-   $ curl -s -L bargs.link/bargs.sh --output bargs.sh
-   $ curl -s -L bargs.link/bargs_vars --output bargs_vars
+   $ curl -sL --remote-name-all bargs.link/{bargs.sh,bargs_vars}
    ```
 
    **IMPORTANT**! Make sure `bargs.sh` and `bargs_vars` are in the same folder
 
-2. Edit bargs_vars - Declare arguments/variables, here are some ground rules
+2. Edit `bargs_vars` - Declare arguments/variables, here are some ground rules
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
    - Characters which are not supported: `=`, `~`, `\`, `'`, `"`
@@ -177,7 +176,7 @@ default=irrelevant
      source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/tools/bargs.sh "$@"
      ```
 
-4. That's it! You can now reference to arguments that were declared in `bargs_vars`
+4. The arguments are now available as environment variables, both lowercased and UPPERCASED, see usage below
 
 ### Usage
 
@@ -214,7 +213,7 @@ Results after running <a href="https://github.com/unfor19/bargs/blob/master/test
 -------------------------------------------------------
 [LOG] Help Menu - Should pass
 [LOG] Executing: source example.sh -h
-[LOG] Output: 
+[LOG] Output:
 
 
 Usage: bash example.sh -n Willy --gender male -a 99
@@ -234,7 +233,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 -------------------------------------------------------
 [LOG] Default Values - Should pass
 [LOG] Executing: source example.sh -a 99 --gender male -p mypassword
-[LOG] Output: 
+[LOG] Output:
 
 Name:                  Willy Wonka
 Age:                   99
@@ -252,7 +251,7 @@ Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 -------------------------------------------------------
 [LOG] New Values - Should pass
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -p mypassword
-[LOG] Output: 
+[LOG] Output:
 
 Name:                  meir
 Age:                   23
@@ -270,7 +269,7 @@ Uppercased var names:  meir, 23 years old, from neverland
 -------------------------------------------------------
 [LOG] Valid Options - Should pass
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza -p mypassword
-[LOG] Output: 
+[LOG] Output:
 
 Name:                  meir
 Age:                   23
@@ -288,7 +287,7 @@ Uppercased var names:  meir, 23 years old, from neverland
 -------------------------------------------------------
 [LOG] Special Characters - Should pass
 [LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6KHaAQltJWipe1oVRy -p mypassword
-[LOG] Output: 
+[LOG] Output:
 
 Name:                  Willy Wonka
 Age:                   99
@@ -306,7 +305,7 @@ Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 -------------------------------------------------------
 [LOG] Use Flag - Should pass
 [LOG] Executing: source example.sh -a 23 --gender male --happy -p mypassword -ci
-[LOG] Output: 
+[LOG] Output:
 
 Name:                  Willy Wonka
 Age:                   23
@@ -324,7 +323,7 @@ Uppercased var names:  Willy Wonka, 23 years old, from chocolate factory
 -------------------------------------------------------
 [LOG] Empty Argument - Should fail
 [LOG] Executing: source example.sh -a 99 --gender -p mypassword
-[LOG] Output: 
+[LOG] Output:
 
 [HINT] Valid options: male female
 [ERROR] Invalid value "-p" for the argument "gender"
@@ -346,7 +345,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 -------------------------------------------------------
 [LOG] Unknown Argument - Should fail
 [LOG] Executing: source example.sh -a 99 -u meir -p mypassword
-[LOG] Output: 
+[LOG] Output:
 
 [ERROR] Unknown argument "-u"
 
@@ -367,7 +366,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 -------------------------------------------------------
 [LOG] Invalid Options - Should fail
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f notgood -p mypassword
-[LOG] Output: 
+[LOG] Output:
 
 [HINT] Valid options: chocolate pizza
 [ERROR] Invalid value "notgood" for the argument "favorite_food"
@@ -389,7 +388,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 -------------------------------------------------------
 [LOG] Missing bargs_vars - Should fail
 [LOG] Executing: source example.sh -h
-[LOG] Output: 
+[LOG] Output:
 
 [ERROR] Make sure bargs_vars is in the same folder as bargs.sh
 
@@ -400,24 +399,26 @@ Usage: bash example.sh -n Willy --gender male -a 99
 
 </details>
 
-## Package your application
-
-### Docker
+## Package your application with Docker
 
 You can use [Docker](https://www.docker.com/why-docker) to package your Bash script as a Docker image, see the following example
 
 1. Clone this repository
 
-1. Build the image, see [Dockerfile.example](./Dockerfile.example), tag it `bargs:example`
+1. Build the image, see [Dockerfile.example](https://github.com/unfor19/bargs/blob/master/Dockerfile.example), tag it `bargs:example`
 
    ```bash
    $ docker build -f Dockerfile.example -t bargs:example .
    ```
 
-1. Run a container that is based on the image above :point_up:
+1. Run a container that is based on the image above
    ```bash
    $ docker run --rm -it bargs:example -a 23 -g male
    ```
+
+## Use this repository as a template
+
+Thinking of writing a new Bash script? Hit the [Use this template](https://github.com/unfor19/bargs/generate) button and get a fully working example of bargs, including [GitHub Actions workflows](https://github.com/unfor19/bargs/tree/master/.github/workflows).
 
 ## Contributing
 
