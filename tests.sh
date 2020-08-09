@@ -16,7 +16,7 @@ should(){
     output_msg=$(trap '$expr' EXIT)
     output_code=$?
 
-    echo -e "[LOG] Output: \n\n$output_msg\n"
+    echo -e "[LOG] Output:\n\n$output_msg\n"
 
     if [[ $expected == "pass" && $output_code -eq 0 ]]; then
         echo "[LOG] Test passed as expected"
