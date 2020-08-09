@@ -243,7 +243,7 @@ function export_args_validation(){
         elif [[ -n $result ]]; then
             valid=$(check_options "${arg_dict[options]}" "${arg_dict[name]}" "$result" "${arg_dict[allow_empty]}")
             if [[ $valid != "true" ]]; then
-                hint_msg "Valid options: ${arg_dict[options]}" 
+                hint_msg "Valid options: ${arg_dict[options]// / OR }"
                 error_msg "Invalid value \"${result}\" for the argument \"${arg_dict[name]}\""
             fi
             : # argument is valid
