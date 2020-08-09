@@ -325,7 +325,7 @@ Uppercased var names:  Willy Wonka, 23 years old, from chocolate factory
 [LOG] Executing: source example.sh -a 99 --gender -p mypassword
 [LOG] Output: 
 
-[HINT] Valid options: male female
+[HINT] Valid options: male OR female
 [ERROR] Invalid value "-p" for the argument "gender"
 
 Usage: bash example.sh -n Willy --gender male -a 99
@@ -368,7 +368,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f notgood -p mypassword
 [LOG] Output: 
 
-[HINT] Valid options: chocolate pizza
+[HINT] Valid options: chocolate OR pizza
 [ERROR] Invalid value "notgood" for the argument "favorite_food"
 
 Usage: bash example.sh -n Willy --gender male -a 99
