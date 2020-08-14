@@ -14,7 +14,7 @@ jobs:
           usage_file_path=.testresults.log
           test_results=$(source tests.sh)
           echo -e "\`\`\`\n${test_results}\n\`\`\`" > "${usage_file_path}"
-      - uses: unfor19/replacer-action@v1.0.0
+      - uses: unfor19/replacer-action@v1.0.1
         name: Update README.md file with test results
         with:
           src-file-path: ".testresults.log"
@@ -26,7 +26,7 @@ jobs:
           bargsvars_file_path=bargs_vars
           bargsvars=$(sed 's~\$~\\\$~g' < ${bargsvars_file_path})
           echo -e "\`\`\`\n${bargsvars}\n\`\`\`" > ".${bargsvars_file_path}"
-      - uses: unfor19/replacer-action@v1.0.0
+      - uses: unfor19/replacer-action@v1.0.1
         name: Update README.md file with bargs_vars
         with:
           src-file-path: ".bargs_vars"
