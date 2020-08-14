@@ -7,14 +7,29 @@ on:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    env:
-      UPDATE_FILE_PATH: "scripts/update_readme.sh"
-      COMMITPUSH_FILE_PATH: "scripts/commit_push.sh"
     steps:
       - uses: actions/checkout@v2
-      - name: Update README.md file
-        run: |
-          bash "${UPDATE_FILE_PATH}"
-      - name: Commit and push new README.md file
-        run: |
-          bash "${COMMITPUSH_FILE_PATH}"
+      - name: Prepare tests.sh output
+      run: |
+          usage_file_path=.testresults.log
+          test_results=$(source tests.sh)
+          echo -e "\`\`\`\n${test_results}\n\`\`\`" > "${usage_file_path}"
+      - uses: unfor19/replacer-action@v1.0.0
+        name: Update README.md file with test results
+        with:
+          src-file-path:   ".test_results.log"
+          dst-file-path:   "README.md"
+          start-value:     "<!-- replacer_start_usage -->"
+          end-value:       "<!-- replacer_end_usage -->"
+      - name: Prepare bargs_vars file
+      run: |
+          bargsvars_file_path=bargs_vars
+          bargsvars=$(sed 's~\$~\\\$~g' < ${bargsvars_file_path})
+          echo -e "\`\`\`\n${bargsvars}\n\`\`\`" > ".${bargsvars_file_path}"
+      - uses: unfor19/replacer-action@v1.0.0
+        name: Update README.md file with bargs_vars
+        with:
+          src-file-path:   ".bargs_vars"
+          dst-file-path:   "README.md"
+          start-value:     "<!-- replacer_start_bargsvars -->"
+          end-value:       "<!-- replacer_end_bargsvars -->"
