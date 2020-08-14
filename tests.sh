@@ -27,6 +27,7 @@ should(){
     fi
 }
 
+export USERNAME=$USER
 should pass "Help Menu" "source example.sh -h"
 should pass "Default Values" "source example.sh -a 99 --gender male -p mypassword"
 should pass "New Values" "source example.sh -a 23 --gender male -l neverland -n meir -p mypassword"
