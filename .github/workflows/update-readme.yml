@@ -10,26 +10,26 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Prepare tests.sh output
-      run: |
+        run: |
           usage_file_path=.testresults.log
           test_results=$(source tests.sh)
           echo -e "\`\`\`\n${test_results}\n\`\`\`" > "${usage_file_path}"
       - uses: unfor19/replacer-action@v1.0.0
         name: Update README.md file with test results
         with:
-          src-file-path:   ".test_results.log"
-          dst-file-path:   "README.md"
-          start-value:     "<!-- replacer_start_usage -->"
-          end-value:       "<!-- replacer_end_usage -->"
+          src-file-path: ".test_results.log"
+          dst-file-path: "README.md"
+          start-value: "<!-- replacer_start_usage -->"
+          end-value: "<!-- replacer_end_usage -->"
       - name: Prepare bargs_vars file
-      run: |
+        run: |
           bargsvars_file_path=bargs_vars
           bargsvars=$(sed 's~\$~\\\$~g' < ${bargsvars_file_path})
           echo -e "\`\`\`\n${bargsvars}\n\`\`\`" > ".${bargsvars_file_path}"
       - uses: unfor19/replacer-action@v1.0.0
         name: Update README.md file with bargs_vars
         with:
-          src-file-path:   ".bargs_vars"
-          dst-file-path:   "README.md"
-          start-value:     "<!-- replacer_start_bargsvars -->"
-          end-value:       "<!-- replacer_end_bargsvars -->"
+          src-file-path: ".bargs_vars"
+          dst-file-path: "README.md"
+          start-value: "<!-- replacer_start_bargsvars -->"
+          end-value: "<!-- replacer_end_bargsvars -->"
