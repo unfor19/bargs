@@ -211,7 +211,6 @@ export_args_validation(){
             default=${arg_dict[default]}
             if [[ -n ${arg_dict[allow_env_var]} ]]; then
                 # set default to env var only if env var is UPPERCASED
-                echo "here"
                 declare -n env_var_value=${arg_dict[name]^^}
                 default=$env_var_value
             fi
