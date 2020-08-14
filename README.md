@@ -154,6 +154,11 @@ short=ci
 flag=true
 description=Flag for indicating it is a CI/CD process
 ---
+name=username
+short=un
+allow_env_var=true
+description=Username fetched from environment variable
+---
 name=bargs
 description=bash example.sh -n Willy --gender male -a 99
 default=irrelevant
