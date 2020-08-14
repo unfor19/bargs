@@ -218,10 +218,10 @@ export_args_validation(){
                 default=$env_var_value
             fi
 
-            if [[ -n ${arg_dict[allow_empty]} || -n ${arg_dict[flag]} ]]; then
+            if [[ -n $default ]]; then
+                export_env_var "${arg_dict[name]}" "${default}"      
+            elif [[ -n ${arg_dict[allow_empty]} || -n ${arg_dict[flag]} ]]; then
                 export_env_var "${arg_dict[name]}" ""
-            elif [[ -n $default ]]; then
-                export_env_var "${arg_dict[name]}" "${default}"         
             elif [[ -n ${arg_dict[prompt]} ]]; then
                 # will not prompt if default is not empty
                 hidden=
