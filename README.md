@@ -197,7 +197,8 @@ echo -e \
 "OS Language:~$language\n"\
 "I'm happy:~$happy\n"\
 "CI Process:~$CI\n"\
-"Uppercased var names:~$PERSON_NAME, $AGE years old, from $LOCATION" | column -t -s "~"
+"Uppercased var names:~$PERSON_NAME, $AGE years old, from $LOCATION\n"\
+"Username from env var:~$username" | column -t -s "~"
 ```
 
 #### Usage output

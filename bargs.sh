@@ -68,10 +68,13 @@ usage (){
             elif [[ -n ${arg_dict[allow_empty]} ]]; then
                 usage_msg+="~[]"
             elif [[ -n ${arg_dict[default]} ]]; then
-                usage_msg+="~[${arg_dict[default]}]" 
+                usage_msg+="~[${arg_dict[default]}]"
+            elif [[ ${arg_dict[allow_env_var]} ]]; then
+                usage_msg+="~[ENV_VAR]"
             else
                  usage_msg+="~[REQUIRED]"
             fi
+
             if [[ -n ${arg_dict[description]} ]]; then
                 usage_msg+="~${arg_dict[description]}"
             fi
@@ -98,7 +101,7 @@ check_bargs_vars(){
 }
 
 
-function read_bargs_vars(){
+read_bargs_vars(){
     # Reads the file, saving each arg as one string in the string ${args}
     # The arguments are separated with "~"    
     check_bargs_vars
@@ -125,7 +128,7 @@ function read_bargs_vars(){
 }
 
 
-function args_to_list_dicts(){
+args_to_list_dicts(){
     # args to list of dictionaries (associative arrays)
     local cut_num=1
     local arg=
@@ -140,7 +143,7 @@ function args_to_list_dicts(){
 }
 
 
-function set_args_to_vars(){
+set_args_to_vars(){
     # The good old 'while case shift'
     declare -A arg_dict
     local i
@@ -191,7 +194,7 @@ function set_args_to_vars(){
 }
 
 
-function export_args_validation(){
+export_args_validation(){
     # Export variables only if passed validation test
     declare -A arg_dict
     local result
@@ -206,10 +209,17 @@ function export_args_validation(){
         result=$(printenv | grep "${arg_dict[name]}" | cut -f2 -d "=")
         if [[ -z $result ]]; then
             default=${arg_dict[default]}
+            if [[ -n ${arg_dict[allow_env_var]} ]]; then
+                # set default to env var only if env var is UPPERCASED
+                echo "here"
+                declare -n env_var_value=${arg_dict[name]^^}
+                default=$env_var_value
+            fi
+
             if [[ -n ${arg_dict[allow_empty]} || -n ${arg_dict[flag]} ]]; then
                 export_env_var "${arg_dict[name]}" ""
             elif [[ -n $default ]]; then
-                export_env_var "${arg_dict[name]}" "${default}"
+                export_env_var "${arg_dict[name]}" "${default}"         
             elif [[ -n ${arg_dict[prompt]} ]]; then
                 # will not prompt if default is not empty
                 hidden=
