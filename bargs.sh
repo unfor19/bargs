@@ -209,7 +209,7 @@ export_args_validation(){
         result=$(printenv | grep "${arg_dict[name]}" | cut -f2 -d "=")
         if [[ -z $result ]]; then
             default=${arg_dict[default]}
-            if [[ -n ${arg_dict[allow_env_var]} ]]; then
+            if [[ -z $default && -n ${arg_dict[allow_env_var]} ]]; then
                 # set default to env var only if env var is UPPERCASED
                 declare -n env_var_value=${arg_dict[name]^^}
                 default=$env_var_value
