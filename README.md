@@ -245,7 +245,6 @@ Usage: bash example.sh -n Willy --gender male -a 99
 [LOG] Executing: source example.sh -a 99 --gender male -p mypassword
 [LOG] Output:
 
-here
 Name:                   Willy Wonka
 Age:                    99
 Gender:                 male
@@ -265,7 +264,6 @@ Username from env var:  runner
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -p mypassword
 [LOG] Output:
 
-here
 Name:                   meir
 Age:                    23
 Gender:                 male
@@ -285,7 +283,6 @@ Username from env var:  runner
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza -p mypassword
 [LOG] Output:
 
-here
 Name:                   meir
 Age:                    23
 Gender:                 male
@@ -305,7 +302,6 @@ Username from env var:  runner
 [LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6KHaAQltJWipe1oVRy -p mypassword
 [LOG] Output:
 
-here
 Name:                   Willy Wonka
 Age:                    99
 Gender:                 male
@@ -325,7 +321,6 @@ Username from env var:  runner
 [LOG] Executing: source example.sh -a 23 --gender male --happy -p mypassword -ci
 [LOG] Output:
 
-here
 Name:                   Willy Wonka
 Age:                    23
 Gender:                 male
