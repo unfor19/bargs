@@ -164,7 +164,10 @@ set_args_to_vars(){
                         shift
                     fi
 
-                    if [[ -z $1 && -z ${arg_dict[default]} ]]; then
+                    if [[ -z $1 && -n ${arg_dict[allow_env_var]} ]]; then
+                        declare -n env_var_value=${arg_dict[name]^^}
+                        export_env_var "${arg_dict[name]}" "$env_var_value"
+                    elif [[ -z $1 && -z ${arg_dict[default]} ]]; then
                         # arg is empty and default is empty
                         error_msg "Empty argument \"${arg_dict[name]}\""
                     elif [[ -z $1 && -n ${arg_dict[default]} ]]; then
