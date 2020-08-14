@@ -229,6 +229,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--password       |  -p     [REQUIRED]            What is your password?
 	--happy          |  -hp    [FLAG]                Flag for indicating that you are happy
 	--ci             |  -ci    [FLAG]                Flag for indicating it is a CI/CD process
+	--username       |  -un    [ENV_VAR]             Username fetched from environment variable
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -236,17 +237,19 @@ Usage: bash example.sh -n Willy --gender male -a 99
 [LOG] Executing: source example.sh -a 99 --gender male -p mypassword
 [LOG] Output:
 
-Name:                  Willy Wonka
-Age:                   99
-Gender:                male
-Location:              chocolate factory
+here
+Name:                   Willy Wonka
+Age:                    99
+Gender:                 male
+Location:               chocolate factory
 Favorite food:
-Secret:                !@#%^&*?/.,[]{}+-|
-Password:              mypassword
-OS Language:           C.UTF-8
+Secret:                 !@#%^&*?/.,[]{}+-|
+Password:               mypassword
+OS Language:            C.UTF-8
 I'm happy:
 CI Process:
-Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
+Uppercased var names:   Willy Wonka, 99 years old, from chocolate factory
+Username from env var:  runner
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -254,17 +257,19 @@ Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -p mypassword
 [LOG] Output:
 
-Name:                  meir
-Age:                   23
-Gender:                male
-Location:              neverland
+here
+Name:                   meir
+Age:                    23
+Gender:                 male
+Location:               neverland
 Favorite food:
-Secret:                !@#%^&*?/.,[]{}+-|
-Password:              mypassword
-OS Language:           C.UTF-8
+Secret:                 !@#%^&*?/.,[]{}+-|
+Password:               mypassword
+OS Language:            C.UTF-8
 I'm happy:
 CI Process:
-Uppercased var names:  meir, 23 years old, from neverland
+Uppercased var names:   meir, 23 years old, from neverland
+Username from env var:  runner
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -272,17 +277,19 @@ Uppercased var names:  meir, 23 years old, from neverland
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza -p mypassword
 [LOG] Output:
 
-Name:                  meir
-Age:                   23
-Gender:                male
-Location:              neverland
-Favorite food:         pizza
-Secret:                !@#%^&*?/.,[]{}+-|
-Password:              mypassword
-OS Language:           C.UTF-8
+here
+Name:                   meir
+Age:                    23
+Gender:                 male
+Location:               neverland
+Favorite food:          pizza
+Secret:                 !@#%^&*?/.,[]{}+-|
+Password:               mypassword
+OS Language:            C.UTF-8
 I'm happy:
 CI Process:
-Uppercased var names:  meir, 23 years old, from neverland
+Uppercased var names:   meir, 23 years old, from neverland
+Username from env var:  runner
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -290,17 +297,19 @@ Uppercased var names:  meir, 23 years old, from neverland
 [LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6KHaAQltJWipe1oVRy -p mypassword
 [LOG] Output:
 
-Name:                  Willy Wonka
-Age:                   99
-Gender:                male
-Location:              chocolate factory
+here
+Name:                   Willy Wonka
+Age:                    99
+Gender:                 male
+Location:               chocolate factory
 Favorite food:
-Secret:                MxTZf+6KHaAQltJWipe1oVRy
-Password:              mypassword
-OS Language:           C.UTF-8
+Secret:                 MxTZf+6KHaAQltJWipe1oVRy
+Password:               mypassword
+OS Language:            C.UTF-8
 I'm happy:
 CI Process:
-Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
+Uppercased var names:   Willy Wonka, 99 years old, from chocolate factory
+Username from env var:  runner
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -308,17 +317,19 @@ Uppercased var names:  Willy Wonka, 99 years old, from chocolate factory
 [LOG] Executing: source example.sh -a 23 --gender male --happy -p mypassword -ci
 [LOG] Output:
 
-Name:                  Willy Wonka
-Age:                   23
-Gender:                male
-Location:              chocolate factory
+here
+Name:                   Willy Wonka
+Age:                    23
+Gender:                 male
+Location:               chocolate factory
 Favorite food:
-Secret:                !@#%^&*?/.,[]{}+-|
-Password:              mypassword
-OS Language:           C.UTF-8
-I'm happy:             true
-CI Process:            true
-Uppercased var names:  Willy Wonka, 23 years old, from chocolate factory
+Secret:                 !@#%^&*?/.,[]{}+-|
+Password:               mypassword
+OS Language:            C.UTF-8
+I'm happy:              true
+CI Process:             true
+Uppercased var names:   Willy Wonka, 23 years old, from chocolate factory
+Username from env var:  runner
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -341,6 +352,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--password       |  -p     [REQUIRED]            What is your password?
 	--happy          |  -hp    [FLAG]                Flag for indicating that you are happy
 	--ci             |  -ci    [FLAG]                Flag for indicating it is a CI/CD process
+	--username       |  -un    [ENV_VAR]             Username fetched from environment variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -362,6 +374,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--password       |  -p     [REQUIRED]            What is your password?
 	--happy          |  -hp    [FLAG]                Flag for indicating that you are happy
 	--ci             |  -ci    [FLAG]                Flag for indicating it is a CI/CD process
+	--username       |  -un    [ENV_VAR]             Username fetched from environment variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -384,6 +397,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--password       |  -p     [REQUIRED]            What is your password?
 	--happy          |  -hp    [FLAG]                Flag for indicating that you are happy
 	--ci             |  -ci    [FLAG]                Flag for indicating it is a CI/CD process
+	--username       |  -un    [ENV_VAR]             Username fetched from environment variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
