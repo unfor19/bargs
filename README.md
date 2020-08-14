@@ -29,6 +29,9 @@ Parsing command line arguments in Bash has never been easier!
    - If `default` starts with a `$`, then it's a variable<br>
      `default=$LANG` is evaluted to `default=en_US.UTF-8`
 
+1. **Allow Environment Variables** with `allow_env_var=true`, if argument is empty and default is not set, then the environment variable will be used
+   - Environment variable name must be UPPERCASED, `export USERNAME=willywonka`
+   - Available in your application as `$USERNAME` or `$username`
 1. **Allow Empty Values** with `allow_empty=true`
 1. **Flag Argument** with `flag=true`, if the flag is provided, its value is true - `CI=true`
 1. **Constrain Values** is supported with `options=first second last`, use whitespace as a separator
