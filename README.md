@@ -167,7 +167,6 @@ description=bash example.sh -n Willy --gender male -a 99
 default=irrelevant
 ---
 ---
-
 ```
 
 <!-- replacer_end_bargsvars -->
