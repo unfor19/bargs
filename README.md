@@ -89,9 +89,12 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
    $ curl -sL --remote-name-all bargs.link/{bargs.sh,bargs_vars}
    ```
 
-   **IMPORTANT**! Make sure `bargs.sh` and `bargs_vars` are in the same folder
+1. Reference to `bargs_vars` - do one of the following
 
-2. Edit `bargs_vars` - Declare arguments/variables, here are some ground rules
+   - Default behavior - `bargs.sh` and `bargs_vars` are in the same folder
+   - Specific `bargs_vars` path - `export BARGS_VARS_PATH="${PWD}/path/to/my_bargs_vars"`, see [tests.sh](https://github.com/unfor19/bargs/blob/master/tests.sh#L37-L38)
+
+1. Edit `bargs_vars` - Declare arguments/variables, here are some ground rules
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
    - Characters which are not supported: `=`, `~`, `\`, `'`, `"`
@@ -174,7 +177,7 @@ default=irrelevant
 
 </details>
 
-3. Add **one** of the following lines at the beginning of your application (see Usage below)
+4. Add **one** of the following lines at the beginning of your application (see Usage below)
 
    - `bargs.sh` is in the root folder of your project (just like in this repo)
      ```bash
@@ -185,7 +188,7 @@ default=irrelevant
      source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/tools/bargs.sh "$@"
      ```
 
-4. The arguments are now available as environment variables, both lowercased and UPPERCASED, see usage below
+5. The arguments are now available as environment variables, both lowercased and UPPERCASED (see Usage below)
 
 ### Usage
 
