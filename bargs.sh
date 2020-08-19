@@ -95,16 +95,20 @@ clean_chars(){
 }
 
 
-check_bargs_vars(){
-    bargs_vars_path=$(dirname "${BASH_SOURCE[0]}")/bargs_vars
-    [[ ! -f $bargs_vars_path ]] && error_msg "Make sure bargs_vars is in the same folder as bargs.sh" no_usage
+check_bargs_vars_path(){
+    local bargs_vars_path
+    if [[ -z "$BARGS_VARS_PATH" || ! -f "$BARGS_VARS_PATH" ]]; then
+        bargs_vars_path=$(dirname "${BASH_SOURCE[0]}")/bargs_vars
+        [[ ! -f $bargs_vars_path ]] && error_msg "Make sure bargs_vars is in the same folder as bargs.sh\n\tAnother option - export BARGS_VARS_PATH=\"\${PWD}/path/to/my_bargs_vars\"" no_usage
+        BARGS_VARS_PATH="$bargs_vars_path"
+    fi
 }
 
 
 read_bargs_vars(){
     # Reads the file, saving each arg as one string in the string ${args}
-    # The arguments are separated with "~"    
-    check_bargs_vars
+    # The arguments are separated with "~" 
+    check_bargs_vars_path
     local delimiter="---"
     local arg_name
     local arg_value
@@ -124,7 +128,7 @@ read_bargs_vars(){
             [[ -n $str ]] && args="$args~$str"
             unset str
         fi        
-    done < "$bargs_vars_path"
+    done < "$BARGS_VARS_PATH"
 }
 
 
