@@ -34,7 +34,7 @@ bargs_vars_dir="$(dirname $bargs_vars_path)"
 mkdir -p "$bargs_vars_dir"
 cp bargs_vars "$bargs_vars_path"
 export BARGS_VARS_PATH="$bargs_vars_path"
-sed -i.bak 's~Willy Wonka~Oompa Looma~' "$bargs_vars_dir"
+sed -i.bak 's~Willy Wonka~Oompa Looma~' "$bargs_vars_path"
 should pass "Bargs Vars Path" "source example.sh -a 33 --gender male -p mypassword"
 unset BARGS_VARS_PATH
 rm -r "$bargs_vars_dir"
