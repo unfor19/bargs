@@ -83,11 +83,10 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
 
 ## Getting Started
 
-1. Download `bargs.sh` (8 kilobytes) and the `bargs_vars` template
+1. Download `bargs.sh` (10 kilobytes) and the `bargs_vars` template
 
-   ```bash
-   $ curl -sL --remote-name-all bargs.link/{bargs.sh,bargs_vars}
-   ```
+   - Latest version (master) - `curl -sL --remote-name-all bargs.link/{bargs.sh,bargs_vars}`
+   - Specific release (v1.x.x) - `curl -sL --remote-name-all bargs.link/1.1.0/{bargs.sh,bargs_vars}`
 
 1. Reference to `bargs_vars` - do one of the following
 
