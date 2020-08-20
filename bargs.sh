@@ -160,7 +160,7 @@ set_args_to_vars(){
         found=
         while [[ $i -lt $num_of_dicts ]]; do
             eval "arg_dict=(${list_args_dicts[$i]})"
-            contains_equal=$(echo "$1" | grep "[\-|\-\-]=.*")
+            contains_equal=$(echo "$1" | grep "^[\-|\-\-]*\w*=")
             if [[ -n $contains_equal ]]; then
                 definition=${1%=*} # "--definition=value"
             else
