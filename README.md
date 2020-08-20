@@ -223,6 +223,25 @@ Results after running <a href="https://github.com/unfor19/bargs/blob/master/test
 
 ```
 -------------------------------------------------------
+[LOG] Bargs Vars Path - Should pass
+[LOG] Executing: source example.sh -a 33 --gender male -p mypassword
+[LOG] Output:
+
+Name:                   Oompa Looma
+Age:                    33
+Gender:                 male
+Location:               chocolate factory
+Favorite food:
+Secret:                 !@#%^&*?/.,[]{}+-|
+Password:               mypassword
+OS Language:            C.UTF-8
+I'm happy:
+CI Process:
+Uppercased var names:   Oompa Looma, 33 years old, from chocolate factory
+Username from env var:  runner
+
+[LOG] Test passed as expected
+-------------------------------------------------------
 [LOG] Help Menu - Should pass
 [LOG] Executing: source example.sh -h
 [LOG] Output:
@@ -412,6 +431,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 [LOG] Output:
 
 [ERROR] Make sure bargs_vars is in the same folder as bargs.sh
+	Another option - export BARGS_VARS_PATH="/path/to/my_bargs_vars"
 
 [LOG] Test failed as expected
 ```
