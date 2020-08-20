@@ -21,8 +21,11 @@ Parsing command line arguments in Bash has never been easier!
 ## Features
 
 1. **Help Message** is auto generated, set `bargs > description` to update the usage (`--help`) message
-1. **Description Per Argument** is supported with `description=What is your name?`
 1. **Short and Long Names** are supported with `name=person_name` and `short=n`
+1. **Description Per Argument** is supported with `description=What is your name?`
+1. **Flexible Assignment** enables passing arguments with the equal sign or a whitespace
+   - `example.sh --name "Willy Wonka"`
+   - `example.sh --name="Willy Wonka"`
 1. **Default Value** for each argument can be set with `default=some-value`
 
    - If `default` contains whitespaces, use double quotes - `default="Willy Wonka"`
