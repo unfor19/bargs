@@ -40,9 +40,9 @@ unset BARGS_VARS_PATH
 rm -r "$bargs_vars_dir"
 
 should pass "Help Menu" "source example.sh -h"
-should pass "Default Values" "source example.sh -a 99 --gender male -p mypassword"
-should pass "New Values" "source example.sh -a 23 --gender male -l neverland -n meir -p mypassword"
-should pass "Valid Options" "source example.sh -a 23 --gender male -l neverland -n meir -f pizza -p mypassword"
+should pass "Default Values" "source example.sh -a 99 --gender=male -p mypassword"
+should pass "New Values" "source example.sh -a 23 --gender male -l=neverland -n meir -p mypassword"
+should pass "Valid Options" "source example.sh -a 23 --gender male -l neverland -n meir -f pizza -p=mypassword"
 should pass "Special Characters" "source example.sh -a 99 --gender male -s MxTZf+6K\HaAQlt\JWipe1oVRy -p mypassword"
 should pass "Use Flag" "source example.sh -a 23 --gender male --happy -p mypassword -ci"
 should fail "Empty Argument" "source example.sh -a 99 --gender -p mypassword"
