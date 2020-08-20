@@ -152,40 +152,53 @@ set_args_to_vars(){
     declare -A arg_dict
     local i
     local found
+    local definition
+    local contains_equal
+    local value
     while [[ -n $1 ]]; do
         i=0
         found=
         while [[ $i -lt $num_of_dicts ]]; do
             eval "arg_dict=(${list_args_dicts[$i]})"
-            case "$1" in
+            contains_equal=$(echo "$1" | grep "^[\-|\-\-]*\w*=")
+            if [[ -n $contains_equal ]]; then
+                definition=${1%=*} # "--definition=value"
+            else
+                definition=$1 # "--definition value"
+            fi
+
+            case "$definition" in
                 -h | --help )
                     usage
                     export DEBUG=0
                     exit 0
                 ;;
                 -"${arg_dict[short]}" | --"${arg_dict[name]}" )
-                    if [[ -z ${arg_dict[flag]} ]]; then
+                    if [[ -n $contains_equal ]]; then
+                        value=${1#*=}
+                    elif [[ -z ${arg_dict[flag]} ]]; then
                         shift
+                        value=$1
                     fi
 
-                    if [[ -z $1 && -n ${arg_dict[allow_env_var]} ]]; then
+                    if [[ -z $value && -n ${arg_dict[allow_env_var]} ]]; then
                         declare -n env_var_value=${arg_dict[name]^^}
                         export_env_var "${arg_dict[name]}" "$env_var_value"
-                    elif [[ -z $1 && -z ${arg_dict[default]} ]]; then
+                    elif [[ -z $value && -z ${arg_dict[default]} ]]; then
                         # arg is empty and default is empty
                         error_msg "Empty argument \"${arg_dict[name]}\""
-                    elif [[ -z $1 && -n ${arg_dict[default]} ]]; then
+                    elif [[ -z $value && -n ${arg_dict[default]} ]]; then
                         # arg is empty and default is not empty
                         export_env_var "${arg_dict[name]}" "${arg_dict[default]}"
                         found=${arg_dict[name]}
-                    elif [[ -n $1 ]]; then
+                    elif [[ -n $value ]]; then
                         # arg is not empty
                         if [[ -n ${arg_dict[flag]} ]]; then
                         # it's a flag
                             export_env_var "${arg_dict[name]}" true
                         else
                         # not a flag, regular argument
-                            export_env_var "${arg_dict[name]}" "$1"
+                            export_env_var "${arg_dict[name]}" "$value"
                         fi
                         found=${arg_dict[name]}
                     fi
@@ -193,9 +206,7 @@ set_args_to_vars(){
             esac
             i=$((i+1))
         done
-        if [[ -z $found ]]; then
-            error_msg "Unknown argument \"$1\""
-        fi
+        [[ -z $found ]] && error_msg "Unknown argument \"$definition\""
         shift
     done
 }
