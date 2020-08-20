@@ -266,7 +266,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Default Values - Should pass
-[LOG] Executing: source example.sh -a 99 --gender male -p mypassword
+[LOG] Executing: source example.sh -a 99 --gender=male -p mypassword
 [LOG] Output:
 
 Name:                   Willy Wonka
@@ -285,7 +285,7 @@ Username from env var:  runner
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] New Values - Should pass
-[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -p mypassword
+[LOG] Executing: source example.sh -a 23 --gender male -l=neverland -n meir -p mypassword
 [LOG] Output:
 
 Name:                   meir
@@ -304,7 +304,7 @@ Username from env var:  runner
 [LOG] Test passed as expected
 -------------------------------------------------------
 [LOG] Valid Options - Should pass
-[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza -p mypassword
+[LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza -p=mypassword
 [LOG] Output:
 
 Name:                   meir
