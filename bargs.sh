@@ -152,17 +152,6 @@ args_to_list_dicts(){
     done
 }
 
-unset_env_vars(){
-    declare -A arg_dict
-    local i
-    i=0
-    while [[ $i -lt $_NUM_OF_DICTS ]]; do
-        eval "arg_dict=(${_LIST_ARGS_DICTS[$i]})"
-        unset "${arg_dict[name]}"
-        i=$((i+1))
-    done
-}
-
 
 set_args_to_vars(){
     # The good old 'while case shift'
