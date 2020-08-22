@@ -31,7 +31,7 @@ should(){
 export USERNAME=$USER
 bargs_vars_path=".testpath/.bargs_vars"
 bargs_vars_dir="$(dirname $bargs_vars_path)"
-rm -r "$bargs_vars_dir"
+[[ -d "$bargs_vars_dir" ]] && rm -r "$bargs_vars_dir"
 mkdir -p "$bargs_vars_dir"
 cp bargs_vars "$bargs_vars_path"
 sed -i.bak 's~Willy Wonka~Oompa Looma~' "$bargs_vars_path"
