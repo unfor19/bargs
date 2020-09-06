@@ -2,21 +2,20 @@
 
 [![testing](https://github.com/unfor19/bargs/workflows/testing/badge.svg)](https://github.com/unfor19/bargs/actions?query=workflow%3Atesting)
 
-Wrap your Bash script with command line arguments.
+A utility for creating a Bash CLI application.
 
 ![bargs-demo](https://github.com/unfor19/bargs/blob/master/assets/bargs_demo.gif)
 
-Tired of doing [this - linuxcommand](http://linuxcommand.org/lc3_wss0120.php) or asking yourself [How do I parse command line arguments in Bash](https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash) easily? Great! Me too! Use this script to wrap your bash scripts with command line arguments, without bashing your head against the wall
-
-Parsing command line arguments in Bash has never been easier!
-
 ## Examples
 
-- Take a look at [replacer](https://github.com/unfor19/replacer) and [ecs-stop-task](https://github.com/unfor19/ecs-stop-task), both repositories demonstrate how bargs is used in "real-life situations"
-- To run a slim application which uses bargs, run the [example.sh](https://github.com/unfor19/bargs/blob/master/example.sh) application with [Docker](https://docs.docker.com/engine/install/)
+- Run the [example.sh](https://github.com/unfor19/bargs/blob/master/example.sh) application with [Docker](https://docs.docker.com/engine/install/)
   ```bash
   $ docker run --rm -it unfor19/bargs:example --help
   ```
+- For more examples, take a look at the following repositories
+  - [unfor19/modulecost](https://github.com/unfor19/modulecost)
+  - [unfor19/replacer](https://github.com/unfor19/replacer)
+  - [unfor19/ecs-stop-task](https://github.com/unfor19/ecs-stop-task)
 
 ## Features
 
@@ -480,6 +479,12 @@ Pull requests are welcome! These are the steps:
 1. Commit your remarkable changes (`git commit -am 'Added new feature'`)
 1. Push to the branch (`git push --set-up-stream origin my-new-feature`)
 1. Create a new Pull Request and provide details about your changes
+
+## Keywords
+
+- Passing command-line arguments to a Bash script
+- Passing command-line arguments in Bash
+- Parsing command-line arguments in Bash
 
 ## Authors
 
