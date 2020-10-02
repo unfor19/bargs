@@ -165,6 +165,7 @@ name=username
 short=un
 allow_env_var=true
 description=Username fetched from environment variable
+default=willywonka
 ---
 name=bargs
 description=bash example.sh -n Willy --gender male -a 99
