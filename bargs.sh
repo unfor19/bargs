@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# trap ctrl-c and call ctrl_c()
+trap ctrl_c INT
+ctrl_c() {
+    exit 0
+}
 
 ### Global variables
 _BARGS_VARS_PATH=""
