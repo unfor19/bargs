@@ -260,7 +260,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--password       |  -p     [REQUIRED]            What is your password?
 	--happy          |  -hp    [FLAG]                Flag for indicating that you are happy
 	--ci             |  -ci    [FLAG]                Flag for indicating it is a CI/CD process
-	--username       |  -un    [ENV_VAR]             Username fetched from environment variable
+	--username       |  -un    [willywonka]          Username fetched from environment variable
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -378,7 +378,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--password       |  -p     [REQUIRED]            What is your password?
 	--happy          |  -hp    [FLAG]                Flag for indicating that you are happy
 	--ci             |  -ci    [FLAG]                Flag for indicating it is a CI/CD process
-	--username       |  -un    [ENV_VAR]             Username fetched from environment variable
+	--username       |  -un    [willywonka]          Username fetched from environment variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -400,7 +400,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--password       |  -p     [REQUIRED]            What is your password?
 	--happy          |  -hp    [FLAG]                Flag for indicating that you are happy
 	--ci             |  -ci    [FLAG]                Flag for indicating it is a CI/CD process
-	--username       |  -un    [ENV_VAR]             Username fetched from environment variable
+	--username       |  -un    [willywonka]          Username fetched from environment variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
@@ -423,7 +423,7 @@ Usage: bash example.sh -n Willy --gender male -a 99
 	--password       |  -p     [REQUIRED]            What is your password?
 	--happy          |  -hp    [FLAG]                Flag for indicating that you are happy
 	--ci             |  -ci    [FLAG]                Flag for indicating it is a CI/CD process
-	--username       |  -un    [ENV_VAR]             Username fetched from environment variable
+	--username       |  -un    [willywonka]          Username fetched from environment variable
 
 [LOG] Test failed as expected
 -------------------------------------------------------
