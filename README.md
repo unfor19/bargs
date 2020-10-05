@@ -65,6 +65,12 @@ $ sudo apt-get -y update && sudo apt-get install -y bsdmainutils
 $ apk add --no-cache util-linux bash
 ```
 
+### CentOS
+
+```bash
+$ yum update -y && yum install -y util-linux bash
+```
+
 ### Windows
 
 Works in Windows-Subsystem-Linux ([WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10)) using [Ubuntu 18.04](https://www.microsoft.com/en-il/p/ubuntu-1804-lts/9n9tngvndl3q?rtc=1&activetab=pivot:overviewtab)
