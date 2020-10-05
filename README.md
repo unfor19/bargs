@@ -105,6 +105,16 @@ PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
    - Characters which are not supported: `=`, `~`, `\`, `'`, `"`
+   - The last variable `bargs` is necessary, comments below
+
+```
+---
+name=bargs                                                # DON'T TOUCH!
+description=bash example.sh -n Willy --gender male -a 99  # Editable, that's the usage message
+default=irrelevant                                        # DON'T TOUCH!
+---
+---
+```
 
 <details><summary>bargs_vars - Expand/Collpase</summary>
 
@@ -486,12 +496,6 @@ Pull requests are welcome! These are the steps:
 1. Commit your remarkable changes (`git commit -am 'Added new feature'`)
 1. Push to the branch (`git push --set-up-stream origin my-new-feature`)
 1. Create a new Pull Request and provide details about your changes
-
-## Keywords
-
-- Passing command-line arguments to a Bash script
-- Passing command-line arguments in Bash
-- Parsing command-line arguments in Bash
 
 ## Authors
 
