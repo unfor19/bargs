@@ -215,19 +215,20 @@ Using the `bargs_vars` above in our application - `example.sh`
 #!/bin/bash
 source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/bargs.sh "$@"
 
-echo -e \
-"Name:~$person_name\n"\
-"Age:~$age\n"\
-"Gender:~$gender\n"\
-"Location:~$location\n"\
-"Favorite food:~$favorite_food\n"\
-"Secret:~$secret\n"\
-"Password:~$password\n"\
-"OS Language:~$language\n"\
-"I'm happy:~$happy\n"\
-"CI Process:~$CI\n"\
-"Uppercased var names:~$PERSON_NAME, $AGE years old, from $LOCATION\n"\
-"Username from env var:~$username" | column -t -s "~"
+echo "
+Name: ~ $person_name
+Age: ~ $age
+Gender: ~ $gender
+Location: ~ $location
+Favorite food: ~ $favorite_food
+Secret: ~ $secret
+Password: ~ $password
+OS Language: ~ $language
+I am happy: ~ $happy
+CI Process: ~ $CI
+Uppercased var names: ~ $PERSON_NAME, $AGE years old, from $LOCATION
+Username from env var: ~ $username " \
+    | column -t -s "~"
 ```
 
 #### Usage output
