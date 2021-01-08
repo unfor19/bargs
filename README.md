@@ -245,18 +245,18 @@ Results after running <a href="https://github.com/unfor19/bargs/blob/master/test
 [LOG] Executing: source example.sh -a 33 --gender male -p mypassword
 [LOG] Output:
 
-Name:                   Oompa Looma
-Age:                    33
-Gender:                 male
-Location:               chocolate factory
-Favorite food:
-Secret:                 !@#%^&*?/.,[]{}+-|
-Password:               mypassword
-OS Language:            C.UTF-8
-I'm happy:
-CI Process:
-Uppercased var names:   Oompa Looma, 33 years old, from chocolate factory
-Username from env var:  runner
+Name:                     Oompa Looma
+Age:                      33
+Gender:                   male
+Location:                 chocolate factory
+Favorite food:            
+Secret:                   !@#%^&*?/.,[]{}+-|
+Password:                 mypassword
+OS Language:              C.UTF-8
+I am happy:               
+CI Process:               
+Uppercased var names:     Oompa Looma, 33 years old, from chocolate factory
+Username from env var:    runner 
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -285,18 +285,18 @@ Usage: bash example.sh -n Willy --gender male -a 99
 [LOG] Executing: source example.sh -a 99 --gender=male -p mypassword
 [LOG] Output:
 
-Name:                   Willy Wonka
-Age:                    99
-Gender:                 male
-Location:               chocolate factory
-Favorite food:
-Secret:                 !@#%^&*?/.,[]{}+-|
-Password:               mypassword
-OS Language:            C.UTF-8
-I'm happy:
-CI Process:
-Uppercased var names:   Willy Wonka, 99 years old, from chocolate factory
-Username from env var:  runner
+Name:                     Willy Wonka
+Age:                      99
+Gender:                   male
+Location:                 chocolate factory
+Favorite food:            
+Secret:                   !@#%^&*?/.,[]{}+-|
+Password:                 mypassword
+OS Language:              C.UTF-8
+I am happy:               
+CI Process:               
+Uppercased var names:     Willy Wonka, 99 years old, from chocolate factory
+Username from env var:    runner 
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -304,18 +304,18 @@ Username from env var:  runner
 [LOG] Executing: source example.sh -a 23 --gender male -l=neverland -n meir -p mypassword
 [LOG] Output:
 
-Name:                   meir
-Age:                    23
-Gender:                 male
-Location:               neverland
-Favorite food:
-Secret:                 !@#%^&*?/.,[]{}+-|
-Password:               mypassword
-OS Language:            C.UTF-8
-I'm happy:
-CI Process:
-Uppercased var names:   meir, 23 years old, from neverland
-Username from env var:  runner
+Name:                     meir
+Age:                      23
+Gender:                   male
+Location:                 neverland
+Favorite food:            
+Secret:                   !@#%^&*?/.,[]{}+-|
+Password:                 mypassword
+OS Language:              C.UTF-8
+I am happy:               
+CI Process:               
+Uppercased var names:     meir, 23 years old, from neverland
+Username from env var:    runner 
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -323,18 +323,18 @@ Username from env var:  runner
 [LOG] Executing: source example.sh -a 23 --gender male -l neverland -n meir -f pizza -p=mypassword
 [LOG] Output:
 
-Name:                   meir
-Age:                    23
-Gender:                 male
-Location:               neverland
-Favorite food:          pizza
-Secret:                 !@#%^&*?/.,[]{}+-|
-Password:               mypassword
-OS Language:            C.UTF-8
-I'm happy:
-CI Process:
-Uppercased var names:   meir, 23 years old, from neverland
-Username from env var:  runner
+Name:                     meir
+Age:                      23
+Gender:                   male
+Location:                 neverland
+Favorite food:            pizza
+Secret:                   !@#%^&*?/.,[]{}+-|
+Password:                 mypassword
+OS Language:              C.UTF-8
+I am happy:               
+CI Process:               
+Uppercased var names:     meir, 23 years old, from neverland
+Username from env var:    runner 
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -342,18 +342,18 @@ Username from env var:  runner
 [LOG] Executing: source example.sh -a 99 --gender male -s MxTZf+6KHaAQltJWipe1oVRy -p mypassword
 [LOG] Output:
 
-Name:                   Willy Wonka
-Age:                    99
-Gender:                 male
-Location:               chocolate factory
-Favorite food:
-Secret:                 MxTZf+6KHaAQltJWipe1oVRy
-Password:               mypassword
-OS Language:            C.UTF-8
-I'm happy:
-CI Process:
-Uppercased var names:   Willy Wonka, 99 years old, from chocolate factory
-Username from env var:  runner
+Name:                     Willy Wonka
+Age:                      99
+Gender:                   male
+Location:                 chocolate factory
+Favorite food:            
+Secret:                   MxTZf+6KHaAQltJWipe1oVRy
+Password:                 mypassword
+OS Language:              C.UTF-8
+I am happy:               
+CI Process:               
+Uppercased var names:     Willy Wonka, 99 years old, from chocolate factory
+Username from env var:    runner 
 
 [LOG] Test passed as expected
 -------------------------------------------------------
@@ -361,18 +361,18 @@ Username from env var:  runner
 [LOG] Executing: source example.sh -a 23 --gender male --happy -p mypassword -ci
 [LOG] Output:
 
-Name:                   Willy Wonka
-Age:                    23
-Gender:                 male
-Location:               chocolate factory
-Favorite food:
-Secret:                 !@#%^&*?/.,[]{}+-|
-Password:               mypassword
-OS Language:            C.UTF-8
-I'm happy:              true
-CI Process:             true
-Uppercased var names:   Willy Wonka, 23 years old, from chocolate factory
-Username from env var:  runner
+Name:                     Willy Wonka
+Age:                      23
+Gender:                   male
+Location:                 chocolate factory
+Favorite food:            
+Secret:                   !@#%^&*?/.,[]{}+-|
+Password:                 mypassword
+OS Language:              C.UTF-8
+I am happy:               true
+CI Process:               true
+Uppercased var names:     Willy Wonka, 23 years old, from chocolate factory
+Username from env var:    runner 
 
 [LOG] Test passed as expected
 -------------------------------------------------------
