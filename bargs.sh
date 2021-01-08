@@ -253,6 +253,7 @@ export_args_validation(){
                 hidden=
                 [[ -n ${arg_dict[hidden]} ]] && hidden=s
                 prompt_value=
+                trap 'trap - INT; kill -s HUP -- -$$' INT
                 while :; do
                     echo -n "${arg_dict[name]^^}: "
                     read -re${hidden} prompt_value
