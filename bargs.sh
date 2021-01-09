@@ -235,7 +235,7 @@ export_args_validation(){
     local i=0
     while [[ $i -lt $_NUM_OF_DICTS ]]; do
         eval "arg_dict=(${_LIST_ARGS_DICTS[$i]})"
-        result=$(printenv | grep "${arg_dict[name]}" | cut -f2 -d "=")
+        result=$(printenv | grep "^${arg_dict[name]}=" | cut -f2 -d "=")
         if [[ -z $result ]]; then
             default=${arg_dict[default]}
             if [[ -n ${arg_dict[allow_env_var]} ]]; then
