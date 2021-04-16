@@ -4,7 +4,7 @@
 
 A utility for creating a Bash CLI application.
 
-![bargs-demo](https://github.com/unfor19/bargs/blob/master/assets/bargs_demo.gif)
+![bargs-demo](https://d33vo9sj4p3nyc.cloudfront.net/bargs/bargs-example.gif)
 
 ## Examples
 
