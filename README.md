@@ -93,15 +93,21 @@ wsl -u root -d Ubuntu-18.04 -- source example.sh
 
 1. Download `bargs.sh` (10 kilobytes) and the `bargs_vars` template
 
-   - Latest version (master) - `curl -sL --remote-name-all bargs.link/{bargs.sh,bargs_vars}`
-   - Specific release (v1.x.x) - `curl -sL --remote-name-all bargs.link/1.1.0/{bargs.sh,bargs_vars}`
+   - Latest version (master)
+     ```bash
+	 curl -sL --remote-name-all bargs.link/{bargs.sh,bargs_vars}
+	 ```
+   - Specific release (v1.x.x)
+     ```bash
+	 curl -sL --remote-name-all bargs.link/1.1.4/{bargs.sh,bargs_vars}
+	 ```
 
-1. Reference to `bargs_vars` - do one of the following
+2. Reference to `bargs_vars` - do one of the following
 
    - Default behavior - `bargs.sh` and `bargs_vars` are in the same folder
    - Specific `bargs_vars` path - `export BARGS_VARS_PATH="${PWD}/path/to/my_bargs_vars"`, see [tests.sh](https://github.com/unfor19/bargs/blob/master/tests.sh#L37-L38)
 
-1. Edit `bargs_vars` - Declare arguments/variables, here are some ground rules
+3. Edit `bargs_vars` - Declare arguments/variables, here are some ground rules
 
    - The delimiter `---` is required once at the beginning, and **twice** in the end
    - Characters which are not supported: `=`, `~`, `\`, `'`, `"`
