@@ -50,25 +50,25 @@ A utility for creating a Bash CLI application.
 ### macOS
 
 ```bash
-brew install util-linux
+$ brew install util-linux
 ```
 
 ### Ubuntu (Debian)
 
 ```bash
-sudo apt-get -y update && sudo apt-get install -y bsdmainutils
+$ sudo apt-get -y update && sudo apt-get install -y bsdmainutils
 ```
 
 ### Alpine
 
 ```bash
-apk add --no-cache util-linux bash
+$ apk add --no-cache util-linux bash
 ```
 
 ### CentOS
 
 ```bash
-yum update -y && yum install -y util-linux bash
+$ yum update -y && yum install -y util-linux bash
 ```
 
 ### Windows
@@ -80,11 +80,11 @@ Works in Windows-Subsystem-Linux ([WSL](https://docs.microsoft.com/en-us/windows
 Make sure you use [dos2unix](https://linux.die.net/man/1/dos2unix) on all files, see another example [here](https://github.com/unfor19/bargs/blob/master/.github/workflows/testing.yml)
 
 ```powershell
-choco install dos2unix
-# ...
-dos2unix bargs.sh bargs_vars example.sh tests.sh
-# ...
-wsl -u root -d Ubuntu-18.04 -- source example.sh
+PS> choco install dos2unix
+...
+PS> dos2unix bargs.sh bargs_vars example.sh tests.sh
+...
+PS> wsl -u root -d Ubuntu-18.04 -- source example.sh
 ```
 
 </details>
@@ -469,12 +469,12 @@ You can use [Docker](https://www.docker.com/why-docker) to package your Bash scr
 1. Build the image, see [Dockerfile.example](https://github.com/unfor19/bargs/blob/master/Dockerfile.example), tag it `bargs:example`
 
    ```bash
-   docker build -f Dockerfile.example -t bargs:example .
+   $ docker build -f Dockerfile.example -t bargs:example .
    ```
 
 1. Run a container that is based on the image above
    ```bash
-   docker run --rm -it bargs:example -a 23 -g male
+   $ docker run --rm -it bargs:example -a 23 -g male
    ```
 
 ## Use this repository as a template
@@ -492,7 +492,7 @@ Pull requests are welcome! These are the steps:
 1. Add the code of your new feature
 1. Run tests on your code, feel free to add more tests
    ```bash
-   bash tests.sh
+   $ bash tests.sh
    ... # All good? Move on to the next step
    ```
 1. Commit your remarkable changes (`git commit -am 'Added new feature'`)
