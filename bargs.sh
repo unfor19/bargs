@@ -190,6 +190,8 @@ set_args_to_vars(){
                     elif [[ -z ${arg_dict[flag]} ]]; then
                         shift
                         value=$1
+                    elif [[ -n ${arg_dict[flag]} ]]; then
+                        value=$1
                     fi
 
                     if [[ -z $value && -n ${arg_dict[allow_env_var]} ]]; then
