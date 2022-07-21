@@ -12,7 +12,7 @@ _ARGS=""
 _NUM_OF_ARGS=0
 declare -A _LIST_ARGS_DICTS
 _NUM_OF_DICTS=0
-
+_MIN_BASH_VERSION="4.4"
 
 ### Functions
 error_msg(){
@@ -22,6 +22,19 @@ error_msg(){
     [[ -z $no_usage ]] && usage
     export DEBUG=1
     exit 1
+}
+
+version_greater_equal()
+{
+    # How to compare a program's version in a shell script?
+    # https://unix.stackexchange.com/a/567537
+    # $1: actual version
+    # $2: minimum required version
+    if [ -z "$2" ] || [ -z "$1" ];
+    then
+        return 1
+    fi
+    printf '%s\n%s\n' "$2" "$1" | sort --check=quiet --version-sort
 }
 
 
@@ -115,6 +128,12 @@ check_bargs_vars_path(){
     fi
 }
 
+check_bash_version(){
+    if ! version_greater_equal "$BASH_VERSION" "$_MIN_BASH_VERSION";
+    then
+        error_msg "Minimum bash version required: $_MIN_BASH_VERSION. Current version: $BASH_VERSION"
+    fi
+}
 
 read_bargs_vars(){
     # Reads the file, saving each arg as one string in the string ${args}
@@ -292,6 +311,7 @@ export_args_validation(){
 }
 
 ### Main
+check_bash_version
 read_bargs_vars
 args_to_list_dicts
 set_args_to_vars "$@" # <-- user input

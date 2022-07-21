@@ -50,6 +50,21 @@ should fail "Empty Argument" "source example.sh -a 99 --gender -p mypassword"
 should fail "Unknown Argument"  "source example.sh -a 99 -u meir -p mypassword"
 should fail "Invalid Options" "source example.sh -a 23 --gender male -l neverland -n meir -f notgood -p mypassword"
 
+## Test recent, minimum, and outdated bash versions ##
+_tests_saved_bash_version="$BASH_VERSION"
+_tests_old_bash_version="3.2.57(1)-release"
+_tests_min_bash_version="4.4"
+_tests_recent_bash_version="5.1.16(1)-release"
+
+export BASH_VERSION="$_tests_recent_bash_version"
+should pass "Recent bash version: $_tests_recent_bash_version" "source example.sh -a 1 -g male -p password"
+export BASH_VERSION="$_tests_min_bash_version"
+should pass "Minimum bash version: $_tests_min_bash_version" "source example.sh -a 1 -g male -p password"
+export BASH_VERSION="$_tests_old_bash_version"
+should fail "Outdated bash version: $_tests_old_bash_version" "source example.sh -a 1 -g male -p password"
+# Restore proper BASH_VERSION
+export BASH_VERSION="$_tests_saved_bash_version"
+
 # bargs_vars path - fail
 mv bargs_vars bargs_vars1
 should fail "Missing bargs_vars" "source example.sh -h"
