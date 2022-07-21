@@ -49,7 +49,10 @@ A utility for creating a Bash CLI application.
 
 ### macOS
 
+> Note: macOS ships with an outdated and incompatible `bash` version, so you need to install a newer one. If you install from homebrew, ensure `"$(brew --prefix)/bin"` is in your `$PATH`, ahead of `/usr/bin`.
+
 ```bash
+brew install bash
 brew install util-linux
 ```
 
