@@ -13,5 +13,6 @@ OS Language:           ~ $language
 I am happy:            ~ $happy
 CI Process:            ~ $CI
 Uppercased var names:  ~ $PERSON_NAME, $AGE years old, from $LOCATION
-Username from env var: ~ $username " \
+Username from env var: ~ $username 
+Option with hyphens:   ~ $option_with_hyphens" \
     | column -t -s "~"
