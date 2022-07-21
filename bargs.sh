@@ -64,12 +64,14 @@ usage (){
     declare -A arg_dict
     while [[ $i -lt $_NUM_OF_DICTS ]]; do
         eval "arg_dict=(${_LIST_ARGS_DICTS[$i]})"
-        if [[ ${arg_dict[name]} = "bargs" ]]; then
+        if [[ ${arg_dict[option_name]} = "bargs" ]]; then
             echo -e "\nUsage: ${arg_dict[description]}\n"
         elif [[ ${arg_dict[type]} = "group" ]]; then
             : # group do nothing
-        elif [[ -n ${arg_dict[name]} ]]; then
-            usage_msg+="\n\t--${arg_dict[name]}~|~-${arg_dict[short]}"
+        elif [[ -n ${arg_dict[option_name]} ]]; then
+            # print arg_dict[option_name] rather than arg_dict[name] which may
+            # have had hyphens replaced
+            usage_msg+="\n\t--${arg_dict[option_name]}~|~-${arg_dict[short]}"
             if [[ -n ${arg_dict[flag]} ]]; then
                 usage_msg+="~[FLAG]"
             elif [[ -n ${arg_dict[allow_empty]} ]]; then
@@ -125,14 +127,29 @@ read_bargs_vars(){
     local arg_value
     local str
     local line
+    local option_name
     while read -r line; do
         if [[ $line != "$delimiter" ]]; then
             line=$(clean_chars "$line")
             arg_name=$(echo "$line"  | cut -f1 -d "=")
             arg_value=$(echo "$line" | cut -f2 -d "=")
+            if [ "$arg_name" = name ];
+            then
+                # save the original name as "option_name" for usage() output
+                option_name="${arg_value}"
+                # normalize name, replacing hyphens with underscores for use
+                # as a shell variable name
+                arg_value="${arg_value//-/_}"
+            else
+                # if we're not working with the "name=" arg, reset option_name
+                option_name=""
+            fi
+
             [[ -z $str ]] && \
                 str="[${arg_name}]=\"${arg_value}\"" || \
                 str="${str} [${arg_name}]=\"${arg_value}\""
+            [[ -n $option_name ]] && \
+                str="${str} [option_name]=\"${option_name}\""
 
         elif [[ $line = "$delimiter" ]]; then
             _NUM_OF_ARGS=$((_NUM_OF_ARGS+1))
@@ -184,7 +201,8 @@ set_args_to_vars(){
                     export DEBUG=0
                     exit 0
                 ;;
-                -"${arg_dict[short]}" | --"${arg_dict[name]}" )
+                # check for option_name, rather than the potentially transformed arg_dict[name]
+                -"${arg_dict[short]}" | --"${arg_dict[option_name]}" )
                     if [[ -n $contains_equal ]]; then
                         value=${1#*=}
                     elif [[ -z ${arg_dict[flag]} ]]; then
