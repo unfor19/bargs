@@ -60,6 +60,11 @@ allow_env_var=true
 description=Username fetched from environment variable
 default=willywonka
 ---
+name=option-with-hyphens
+short=hy
+description=This option has hyphens, but the variable will be option_with_hyphens
+default=no value
+---
 name=bargs
 description=bash example.sh -n Willy --gender male -a 99
 default=irrelevant
