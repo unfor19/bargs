@@ -1,8 +1,46 @@
 #!/usr/bin/env bash
 
+# Check current "set -e" status and save it to a variable
+if [[ $- == *e* ]]; then
+    _BARGS_SET_E_ENABLED=1
+else
+    _BARGS_SET_E_ENABLED=0
+fi
+
+# Check current "set -x" status and save it to a variable
+if [[ $- == *x* ]]; then
+    _BARGS_SET_X_ENABLED=1
+else
+    _BARGS_SET_X_ENABLED=0
+fi
+
+# Check current "set -o pipefail" status and save it to a variable
+if [[ $- == *o* ]]; then
+    _BARGS_SET_O_ENABLED=1
+else
+    _BARGS_SET_O_ENABLED=0
+fi
+
+# Disable "set -e", "set -x" and "set -o pipefail"
+set +exo pipefail
+
+
+restore_values(){
+    if [[ $_BARGS_SET_E_ENABLED -eq 1 ]]; then
+        set -e
+    fi
+    if [[ $_BARGS_SET_X_ENABLED -eq 1 ]]; then
+        set -x
+    fi
+    if [[ $_BARGS_SET_O_ENABLED -eq 1 ]]; then
+        set -o pipefail
+    fi
+}
+
 # trap ctrl-c and call ctrl_c()
 trap ctrl_c INT
 ctrl_c() {
+    restore_values
     exit 0
 }
 
@@ -21,6 +59,7 @@ error_msg(){
     echo -e "[ERROR] $msg"
     [[ -z $no_usage ]] && usage
     export DEBUG=1
+    restore_values
     exit 1
 }
 
@@ -182,6 +221,7 @@ set_args_to_vars(){
                 -h | --help )
                     usage
                     export DEBUG=0
+                    restore_values
                     exit 0
                 ;;
                 -"${arg_dict[short]}" | --"${arg_dict[name]}" )
@@ -298,3 +338,4 @@ read_bargs_vars
 args_to_list_dicts
 set_args_to_vars "$@" # <-- user input
 export_args_validation
+restore_values

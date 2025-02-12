@@ -112,7 +112,7 @@ wsl -u root -d Ubuntu-18.04 -- source example.sh
    - The delimiter `---` is required once at the beginning, and **twice** in the end
    - Characters which are not supported: `=`, `~`, `\`, `'`, `"`
    - The last variable `bargs` is necessary, comments below
-   - It's best to `source` bargs at the top of the bash script. **Do not** add `set -o pipefail` before `source bargs.sh`
+   - It's best to `source` bargs at the top of the bash script.
 
 ```
 ---
@@ -201,7 +201,7 @@ default=irrelevant
 
 </details>
 
-4. Add **one** of the following lines at the beginning of your application (see Usage below)
+1. Add **one** of the following lines at the beginning of your application (see Usage below)
 
    - `bargs.sh` is in the root folder of your project (just like in this repo)
      ```bash
@@ -212,7 +212,7 @@ default=irrelevant
      source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/tools/bargs.sh "$@"
      ```
 
-5. The arguments are now available as environment variables, both lowercased and UPPERCASED (see Usage below)
+2. The arguments are now available as environment variables, both lowercased and UPPERCASED (see Usage below)
 
 ### Usage
 

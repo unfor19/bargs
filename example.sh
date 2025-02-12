@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+set -eo pipefail
 source "${PWD}"/"$(dirname ${BASH_SOURCE[0]})"/bargs.sh "$@"
 
 echo "
