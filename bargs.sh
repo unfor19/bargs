@@ -21,15 +21,25 @@ else
     _BARGS_SET_O_ENABLED=0
 fi
 
-# Disable set -e and set -x
-set +e
-set +x
-set +o pipefail
+# Disable "set -e", "set -x" and "set -o pipefail"
+set +exo pipefail
 
 # trap ctrl-c and call ctrl_c()
 trap ctrl_c INT
 ctrl_c() {
     exit 0
+}
+
+restore_values(){
+    if [[ $_BARGS_SET_E_ENABLED -eq 1 ]]; then
+        set -e
+    fi
+    if [[ $_BARGS_SET_X_ENABLED -eq 1 ]]; then
+        set -x
+    fi
+    if [[ $_BARGS_SET_O_ENABLED -eq 1 ]]; then
+        set -o pipefail
+    fi
 }
 
 ### Global variables
@@ -47,6 +57,7 @@ error_msg(){
     echo -e "[ERROR] $msg"
     [[ -z $no_usage ]] && usage
     export DEBUG=1
+    restore_values
     exit 1
 }
 
@@ -324,13 +335,4 @@ read_bargs_vars
 args_to_list_dicts
 set_args_to_vars "$@" # <-- user input
 export_args_validation
-# Restore values
-if [[ $_BARGS_SET_E_ENABLED -eq 1 ]]; then
-    set -e
-fi
-if [[ $_BARGS_SET_X_ENABLED -eq 1 ]]; then
-    set -x
-fi
-if [[ $_BARGS_SET_O_ENABLED -eq 1 ]]; then
-    set -o pipefail
-fi
+restore_values
