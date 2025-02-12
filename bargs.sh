@@ -24,11 +24,6 @@ fi
 # Disable "set -e", "set -x" and "set -o pipefail"
 set +exo pipefail
 
-# trap ctrl-c and call ctrl_c()
-trap ctrl_c INT
-ctrl_c() {
-    exit 0
-}
 
 restore_values(){
     if [[ $_BARGS_SET_E_ENABLED -eq 1 ]]; then
@@ -40,6 +35,13 @@ restore_values(){
     if [[ $_BARGS_SET_O_ENABLED -eq 1 ]]; then
         set -o pipefail
     fi
+}
+
+# trap ctrl-c and call ctrl_c()
+trap ctrl_c INT
+ctrl_c() {
+    restore_values
+    exit 0
 }
 
 ### Global variables
@@ -219,6 +221,7 @@ set_args_to_vars(){
                 -h | --help )
                     usage
                     export DEBUG=0
+                    restore_values
                     exit 0
                 ;;
                 -"${arg_dict[short]}" | --"${arg_dict[name]}" )
