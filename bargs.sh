@@ -1,5 +1,31 @@
 #!/usr/bin/env bash
 
+# Check current "set -e" status and save it to a variable
+if [[ $- == *e* ]]; then
+    _BARGS_SET_E_ENABLED=1
+else
+    _BARGS_SET_E_ENABLED=0
+fi
+
+# Check current "set -x" status and save it to a variable
+if [[ $- == *x* ]]; then
+    _BARGS_SET_X_ENABLED=1
+else
+    _BARGS_SET_X_ENABLED=0
+fi
+
+# Check current "set -o pipefail" status and save it to a variable
+if [[ $- == *o* ]]; then
+    _BARGS_SET_O_ENABLED=1
+else
+    _BARGS_SET_O_ENABLED=0
+fi
+
+# Disable set -e and set -x
+set +e
+set +x
+set +o pipefail
+
 # trap ctrl-c and call ctrl_c()
 trap ctrl_c INT
 ctrl_c() {
@@ -298,3 +324,13 @@ read_bargs_vars
 args_to_list_dicts
 set_args_to_vars "$@" # <-- user input
 export_args_validation
+# Restore values
+if [[ $_BARGS_SET_E_ENABLED -eq 1 ]]; then
+    set -e
+fi
+if [[ $_BARGS_SET_X_ENABLED -eq 1 ]]; then
+    set -x
+fi
+if [[ $_BARGS_SET_O_ENABLED -eq 1 ]]; then
+    set -o pipefail
+fi
